@@ -6,15 +6,18 @@ import {
       NavLink,
 } from "react-router-dom";
 
-
-
 // style
 
 // assets
 
 // components
+import MainAdminDashBoard from "./MainAdminDashboard";
+import MainEmployeeDashBoard from "./MainEmploeeDashboard";
+import MainProjectDashBoard from "./MainProjectDashboard";
 
-function App() {
+
+
+const App = () => {
   return (
     <AppContainer>
       <Router>
