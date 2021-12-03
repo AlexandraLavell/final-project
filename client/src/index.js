@@ -15,7 +15,7 @@ import App from "./components/App";
 ReactDOM.render(
   <React.StrictMode>
     <MainContextProvider>
-        <GlobalStyles />
+        {/* <GlobalStyles /> */}
         <App />
     </MainContextProvider>
   </React.StrictMode>,

@@ -14,15 +14,25 @@ import {
 
 // components
 
-
-
 function App() {
   return (
-    <div>
-      <header>
-        <p>HELLO</p>       
-      </header>
-    </div>
+    <AppContainer>
+      <Router>
+        <EmployeeList></EmployeeList>
+        <Switch>
+          <Route exact path="/">            
+            <MainAdminDashBoard />
+          </Route>
+          <Route exact path="/employee">            
+            <MainEmployeeDashBoard />
+          </Route>
+          <Route exact path="/project">            
+            <MainProjectDashBoard />
+          </Route>
+        </Switch>
+        <ProjectList></ProjectList>
+      </Router>
+    </AppContainer>
   );
 }
 
