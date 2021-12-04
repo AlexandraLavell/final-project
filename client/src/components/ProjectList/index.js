@@ -1,6 +1,8 @@
 import React from "react";
 
 
+import { ProjectListWrapper } from "./StyledProjectList";
+
 
 const ProjectList = () => {
 
@@ -10,7 +12,11 @@ const ProjectList = () => {
     // start of main return
     return (
 
-        <p>ProjectList</p>
+        <ProjectListWrapper>           
+
+            <p>ProjectList</p>
+
+        </ProjectListWrapper>
 
 
 
