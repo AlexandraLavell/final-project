@@ -1,5 +1,7 @@
 import React from "react";
 
+import { EmployeeListWrapper } from "./StyledEmployeeList";
+
 
 
 const EmployeeList = () => {
@@ -9,10 +11,13 @@ const EmployeeList = () => {
 
     // start of main return
     return (
+        <EmployeeListWrapper>
+            
 
-        <p>EmployeeList</p>
+            <p>EmployeeList</p>
 
 
+        </EmployeeListWrapper>
 
 
 

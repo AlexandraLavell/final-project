@@ -1,5 +1,8 @@
 import React from "react";
 
+// style
+import { AdminDashWrapper }  from "./StyledMainAdminDashboard";
+
 
 
 const MainAdminDashboard = () => {
@@ -9,8 +12,13 @@ const MainAdminDashboard = () => {
 
     // start of main return
     return (
+        <AdminDashWrapper>
+            
 
-        <p>MainAdminDashboard</p>
+                <p>MainAdminDashboard</p>
+
+
+        </AdminDashWrapper>
 
 
 
