@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
+
+// context
+import MainContext from "../MainContext";
 
 // style
 import { EmployeeDashWrapper }  from "./StyledMainEmployeeDashboard";
@@ -6,6 +9,9 @@ import { EmployeeDashWrapper }  from "./StyledMainEmployeeDashboard";
 
 
 const MainEmployeeDashboard = (props) => {
+
+    // consume context
+    const { employeeList, currentEmployee, setCurrentEmployee } = useContext(MainContext);
 
     const drop = (ev) => {        
 
@@ -23,13 +29,16 @@ const MainEmployeeDashboard = (props) => {
         // use includes instead of "===" because the class name also has automatic extra junk
         if (card_class.includes("employeeCard")){
 
-            const card= document.getElementById(card_id);
+            setCurrentEmployee(card_id);
 
-            console.log("ELEMENT BY ID ", card);
+            // const card= document.getElementById(card_id);
 
-            card.style.display = "block";
+            // console.log("ELEMENT BY ID ", card);
 
-            ev.target.appendChild(card);
+            // card.style.display = "block";
+
+            // ev.target.appendChild(card);
+
         } else if (card_class.includes("projectCard")){
 
             const card= document.getElementById(card_id);
@@ -40,6 +49,8 @@ const MainEmployeeDashboard = (props) => {
 
             ev.target.appendChild(card);
         }
+
+        console.log("CURRENT EMPLOYEE ", currentEmployee);
 
     }
 
@@ -61,6 +72,7 @@ const MainEmployeeDashboard = (props) => {
                     >
             { props.children }
             main employee background
+            <p>{currentEmployee}</p>
         </EmployeeDashWrapper>
 
 

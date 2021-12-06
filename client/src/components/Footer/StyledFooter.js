@@ -7,6 +7,7 @@ export const FooterWrapper = styled.div`
     display: flex;
     height: 100px;
     width: 100%;
-    background: green;
+    background: lemonchiffon;
+    border: 1px solid black;
 `;
 

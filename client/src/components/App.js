@@ -12,7 +12,7 @@ import styled from "styled-components";
 
 // components
 import MainAdminDashBoard from "./MainAdminDashboard";
-import MainEmployeeDashBoard from "./MainEmploeeDashboard";
+import MainEmployeeDashBoard from "./MainEmployeeDashboard";
 import MainProjectDashBoard from "./MainProjectDashboard";
 import DashNavigation from "./DashNavigation";
 import EmployeeList from "./EmployeeList";
@@ -27,24 +27,26 @@ const App = () => {
     <AppContainer>
       <Header />
       <Router>
-      <EmployeeList id="board-1" className="employeeBoard" />
-      <DashWrapper>
-        <DashNavigation />
-          <Switch>          
-            <Route exact path="/">            
-              <MainAdminDashBoard />
-            </Route>
-            <Route exact path="/employee">            
-              <MainEmployeeDashBoard />
-            </Route>
-            <Route exact path="/project">            
-              <MainProjectDashBoard />
-            </Route>
-          </Switch>
-        </DashWrapper>
-        <ProjectList id="board-2" className="projectBoard" />        
+        <ComponentContainer>  
+          <EmployeeList id="board-1" className="employeeBoard" />
+          <DashWrapper>
+            <DashNavigation />
+              <Switch>          
+                <Route exact path="/">            
+                  <MainAdminDashBoard />
+                </Route>
+                <Route exact path="/employee">            
+                  <MainEmployeeDashBoard />
+                </Route>
+                <Route exact path="/project">            
+                  <MainProjectDashBoard />
+                </Route>
+              </Switch>
+            </DashWrapper>
+            <ProjectList id="board-2" className="projectBoard" />   
+        </ComponentContainer>       
       </Router>
-      <Footer />
+      <Footer />     
     </AppContainer>
   );
 }
@@ -64,11 +66,21 @@ const AppContainer = styled.div`
   background-size: cover;
 `;
 
+const ComponentContainer = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  row-gap: 5px;
+  background-color: yellow;
+  width: 100%;
+  margin: 10% 5%;
+`;
+
 const DashWrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  margin: 10% 0px;
-  background-color: darkorange;
   width: 100%;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
 `;
