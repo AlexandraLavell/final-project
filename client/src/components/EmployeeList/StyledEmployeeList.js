@@ -3,27 +3,16 @@ import styled from "styled-components";
 
 export const EmployeeListWrapper = styled.div`
     position: relative;
-    display: flex;
+    display: flex;    
+    flex-direction: column;
+
     justify-content: flex-start;
-    height: 80vh;
+    max-height: 80%;
     color:white;
 
     width: 100%;
-    max-width: 768px;
-
-
-    margin: 10% auto ;
+    margin: 10% 0px;
 
     padding: 15px;
-    background: white;
-
-    /* &.employeeBoard { */
-        display: flex;
-        flex-direction: column;
-
-        width: 100%;
-        max-width: 300px;
-
-        background-color: seagreen;
-    /* } */
+    background: seagreen;
 `;

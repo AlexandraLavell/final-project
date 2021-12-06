@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 
+// context
+import MainContext from "../MainContext";
 
+// style
 import { ProjectListWrapper } from "./StyledProjectList";
 
+// components
+import ProjectCard from "../ProjectCard";
 
-const ProjectList = (props) => {   
+const ProjectList = (props) => {
+    
+    // consume context
+    const { projectList } = useContext(MainContext);
     
     const drop = (ev) => {        
         ev.preventDefault();
@@ -37,9 +45,13 @@ const ProjectList = (props) => {
                     className={props.className}
                     >
             { props.children }
+            {projectList.map((prj) => {
+                return  (<ProjectCard id={prj} className="projectCard" draggable="true" >
+                        <p>{prj}</p>
+                        </ProjectCard>)
+            })}
         </ProjectListWrapper>
     ) // end of main return
-    
 }
 
 export default ProjectList;
