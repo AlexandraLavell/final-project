@@ -5,14 +5,10 @@ export const EmployeeListWrapper = styled.div`
     position: relative;
     display: flex;    
     flex-direction: column;
-
     justify-content: flex-start;
-    max-height: 80%;
     color:white;
-
-    width: 100%;
-    margin: 10% 0px;
-
+    width: 25%;
     padding: 15px;
-    background: seagreen;
+    background: lemonchiffon;
+    border: 1px solid black;
 `;

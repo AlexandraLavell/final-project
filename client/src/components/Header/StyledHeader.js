@@ -7,7 +7,8 @@ export const HeaderWrapper = styled.div`
     display: flex;
     height: 100px;
     width: 100%;
-    background: green;
+    background: lemonchiffon;
+    border: 1px solid black;
     z-index: 10;
     transition-timing-function: ease-in;
     transition: 0.5s;

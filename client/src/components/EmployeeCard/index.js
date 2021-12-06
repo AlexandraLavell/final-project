@@ -1,10 +1,18 @@
-import React from "react";
+import React, {useContext} from "react";
 
+//context
+import MainContext from "../MainContext";
+
+
+// styled components
 import { EmployeeCardWrapper } from "./StyledEmployeeCard";
 
 
 
 const EmployeeCard = (props) => {
+
+    // consume context
+    const { employeeList } = useContext(MainContext);
 
     const dragStart = (ev) => {
         const target = ev.target;

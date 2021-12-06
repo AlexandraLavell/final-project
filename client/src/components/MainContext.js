@@ -14,8 +14,8 @@ export const MainContext = React.createContext(null);
 
 export const MainContextProvider = ({children}) => {
 
-    const [currentEmployee, setCurrentEmployee] = useState({}); // for the employee dashboard
-    const [currentProject, setCurrentProject] = useState({}); // for the project dashboard
+    const [currentEmployee, setCurrentEmployee] = useState(); // for the employee dashboard
+    const [currentProject, setCurrentProject] = useState(); // for the project dashboard
     const [mainDash, setMainDash] = useState({}); //all objects on the main dashboard
     const [employeeList, setEmployeeList] = useState(["employee-1", "employee-2"]); // list of all employees -- will be on the database
     const [projectList, setProjectList] = useState(["project-1", "project-2"]); // list of all projects -- will be on the database
