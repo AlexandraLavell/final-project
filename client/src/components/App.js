@@ -14,10 +14,9 @@ import styled from "styled-components";
 import MainAdminDashBoard from "./MainAdminDashboard";
 import MainEmployeeDashBoard from "./MainEmploeeDashboard";
 import MainProjectDashBoard from "./MainProjectDashboard";
+import DashNavigation from "./DashNavigation";
 import EmployeeList from "./EmployeeList";
-import EmployeeCard from "./EmployeeCard";
 import ProjectList from "./ProjectList";
-import ProjectCard from "./ProjectCard";
 import Header from "./Header";
 import Footer from "./Footer";
 
@@ -28,27 +27,22 @@ const App = () => {
     <AppContainer>
       <Header />
       <Router>
-      <EmployeeList id="board-1" className="employeeBoard">
-        <EmployeeCard id="card-1" className="employeeCard" draggable="true" >
-          <p>Card One</p>
-        </EmployeeCard>
-      </EmployeeList>      
-        <Switch>
-          <Route exact path="/">            
-            <MainAdminDashBoard />
-          </Route>
-          <Route exact path="/employee">            
-            <MainEmployeeDashBoard />
-          </Route>
-          <Route exact path="/project">            
-            <MainProjectDashBoard />
-          </Route>
-        </Switch>
-        <ProjectList id="board-2" className="projectBoard">
-        <ProjectCard id="card-2" className="projectCard" draggable="true" >
-          <p>Card Two</p>
-        </ProjectCard>
-      </ProjectList>
+      <EmployeeList id="board-1" className="employeeBoard" />
+      <DashWrapper>
+        <DashNavigation />
+          <Switch>          
+            <Route exact path="/">            
+              <MainAdminDashBoard />
+            </Route>
+            <Route exact path="/employee">            
+              <MainEmployeeDashBoard />
+            </Route>
+            <Route exact path="/project">            
+              <MainProjectDashBoard />
+            </Route>
+          </Switch>
+        </DashWrapper>
+        <ProjectList id="board-2" className="projectBoard" />        
       </Router>
       <Footer />
     </AppContainer>
@@ -61,11 +55,20 @@ export default App;
 const AppContainer = styled.div`
   position: relative;
   display: flex;
-  height: 200vh;
+  height: 100vh;
   width: 100%;
   background-image: url("garden.jpg");
   background-color: lemonchiffon;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+`;
+
+const DashWrapper = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 10% 0px;
+  background-color: darkorange;
+  width: 100%;
 `;

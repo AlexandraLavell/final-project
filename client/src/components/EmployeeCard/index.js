@@ -11,9 +11,9 @@ const EmployeeCard = (props) => {
         ev.dataTransfer.setData("card_id", target.id);
         ev.dataTransfer.setData("card_class", target.className);
 
-        setTimeout(() =>{
-            target.style.display = "none";
-        },0);
+        // setTimeout(() =>{
+        //     target.style.display = "none";
+        // },0);
     }
 
     // prevents extra card pickup

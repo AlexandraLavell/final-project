@@ -4,26 +4,12 @@ import styled from "styled-components";
 export const ProjectListWrapper = styled.div`
     position: relative;
     display: flex;
+    flex-direction: column;
     justify-content: flex-start;
-    height: 80vh;
-    color:white;
-
+    max-height: 80%;    
     width: 100%;
-    max-width: 768px;
-
-
+    color:white;
     margin: 10% auto ;
-
     padding: 15px;
-    background: white;
-
-    /* &.projectBoard { */
-        display: flex;
-        flex-direction: column;
-
-        width: 100%;
-        max-width: 300px;
-
-        background-color: seagreen;
-    /* } */
+    background-color: seagreen;
 `;
