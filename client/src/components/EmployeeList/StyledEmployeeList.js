@@ -17,7 +17,7 @@ export const EmployeeListWrapper = styled.div`
     padding: 15px;
     background: white;
 
-    /* &.board { */
+    /* &.employeeBoard { */
         display: flex;
         flex-direction: column;
 

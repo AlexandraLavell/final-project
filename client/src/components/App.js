@@ -27,8 +27,8 @@ const App = () => {
     <AppContainer>
       <Header />
       <Router>
-      <EmployeeList id="board-1" className="board">
-        <EmployeeCard id="card-1" className="card" draggable="true" >
+      <EmployeeList id="board-1" className="employeeBoard">
+        <EmployeeCard id="card-1" className="employeeCard" draggable="true" >
           <p>Card One</p>
         </EmployeeCard>
       </EmployeeList>      

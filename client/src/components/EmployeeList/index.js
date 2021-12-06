@@ -10,13 +10,18 @@ const EmployeeList = (props) => {
     const drop = (ev) => {        
         ev.preventDefault();
 
-        const card_id = ev.dataTransfer.getData("card_id")
+        const card_id = ev.dataTransfer.getData("card_id");
+        const card_class = ev.dataTransfer.getData("card_class");
 
-        const card= document.getElementById(card_id);
+        // use includes instead of "===" because the class name also has automatic extra junk
+        if (card_class.includes("employeeCard")){
 
-        card.style.display = "block";
+            const employeeCard= document.getElementById(card_id);
 
-        ev.target.appendChild(card);
+            employeeCard.style.display = "block";
+
+            ev.target.appendChild(employeeCard);
+        }
 
     }
 
@@ -35,9 +40,6 @@ const EmployeeList = (props) => {
                     >
             { props.children }
         </EmployeeListWrapper>
-
-
-
     ) // end of main return
 
 
