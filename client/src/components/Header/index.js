@@ -9,7 +9,7 @@ const Header = () => {
 
     const handleScroll = () => {
 
-        if (window.scrollY > 200){
+        if (window.scrollY > 300){
             setShow(false);
         } else {
             setShow(true);

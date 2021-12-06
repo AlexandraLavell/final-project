@@ -15,6 +15,7 @@ import MainAdminDashBoard from "./MainAdminDashboard";
 import MainEmployeeDashBoard from "./MainEmploeeDashboard";
 import MainProjectDashBoard from "./MainProjectDashboard";
 import EmployeeList from "./EmployeeList";
+import EmployeeCard from "./EmployeeCard";
 import ProjectList from "./ProjectList";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -26,7 +27,11 @@ const App = () => {
     <AppContainer>
       <Header />
       <Router>
-        <EmployeeList></EmployeeList>
+      <EmployeeList id="board-1" className="board">
+        <EmployeeCard id="card-1" className="card" draggable="true" >
+          <p>Card One</p>
+        </EmployeeCard>
+      </EmployeeList>      
         <Switch>
           <Route exact path="/">            
             <MainAdminDashBoard />
@@ -38,7 +43,12 @@ const App = () => {
             <MainProjectDashBoard />
           </Route>
         </Switch>
-        <ProjectList></ProjectList>
+        <EmployeeList id="board-2" className="board">
+        <EmployeeCard id="card-2" className="card" draggable="true" >
+          <p>Card Two</p>
+        </EmployeeCard>
+      </EmployeeList>
+        {/* <ProjectList></ProjectList> */}
       </Router>
       <Footer />
     </AppContainer>
@@ -52,9 +62,9 @@ const AppContainer = styled.div`
   position: relative;
   display: flex;
   height: 200vh;
-  width: 100vw;
+  width: 100%;
   background-image: url("garden.jpg");
-  background-color: darkgreen;
+  background-color: lemonchiffon;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
