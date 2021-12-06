@@ -17,6 +17,7 @@ import MainProjectDashBoard from "./MainProjectDashboard";
 import EmployeeList from "./EmployeeList";
 import EmployeeCard from "./EmployeeCard";
 import ProjectList from "./ProjectList";
+import ProjectCard from "./ProjectCard";
 import Header from "./Header";
 import Footer from "./Footer";
 
@@ -43,12 +44,11 @@ const App = () => {
             <MainProjectDashBoard />
           </Route>
         </Switch>
-        <EmployeeList id="board-2" className="board">
-        <EmployeeCard id="card-2" className="card" draggable="true" >
+        <ProjectList id="board-2" className="projectBoard">
+        <ProjectCard id="card-2" className="projectCard" draggable="true" >
           <p>Card Two</p>
-        </EmployeeCard>
-      </EmployeeList>
-        {/* <ProjectList></ProjectList> */}
+        </ProjectCard>
+      </ProjectList>
       </Router>
       <Footer />
     </AppContainer>
