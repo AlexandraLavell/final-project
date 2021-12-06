@@ -8,15 +8,38 @@ import { AdminDashWrapper }  from "./StyledMainAdminDashboard";
 const MainAdminDashboard = (props) => {
 
     const drop = (ev) => {        
+
+        // if (ev.target.className === "employeeCard_id"){
         ev.preventDefault();
 
-        const card_id = ev.dataTransfer.getData("card_id")
+        console.log("DROP ON MAIN DASH", ev.target.className);
 
-        const card= document.getElementById(card_id);
+        const card_id = ev.dataTransfer.getData("card_id");
+        const card_class = ev.dataTransfer.getData("card_class");
 
-        card.style.display = "block";
+        console.log("GET CLASS DATA", card_class);
+        console.log("GET ID DATA ", card_id);
 
-        ev.target.appendChild(card);
+        // use includes instead of "===" because the class name also has automatic extra junk
+        if (card_class.includes("employeeCard")){
+
+            const card= document.getElementById(card_id);
+
+            console.log("ELEMENT BY ID ", card);
+
+            card.style.display = "block";
+
+            ev.target.appendChild(card);
+        } else if (card_class.includes("projectCard")){
+
+            const card= document.getElementById(card_id);
+
+            console.log("ELEMENT BY ID ", card);
+
+            card.style.display = "block";
+
+            ev.target.appendChild(card);
+        }
 
     }
 
