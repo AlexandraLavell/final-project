@@ -18,7 +18,7 @@ const DashNavigation = () => {
     // main return
     return (
         <NavigationWrapper>
-        <MainDashLink exact to="/">
+        <MainDashLink exact to="/dash">
             <p>Dash</p>
         </MainDashLink>          
         <EmployeeDashLink exact to="/employee">
