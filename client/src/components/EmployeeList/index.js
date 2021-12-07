@@ -71,8 +71,8 @@ const EmployeeList = (props) => {
                     >
             { props.children }
             {employeeList.map((emp) => {
-                return  (<EmployeeCard id={emp} className="employeeCard" draggable="true" >
-                        <p>{emp}</p>
+                return  (<EmployeeCard id={emp._id} className="employeeCard" draggable="true" >
+                        <p>{emp._id}</p>
                         </EmployeeCard>)
             })}
         </EmployeeListWrapper>

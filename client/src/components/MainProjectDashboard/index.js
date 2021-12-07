@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
+
+// context
+import MainContext from "../MainContext";
 
 // style
 import { ProjectDashWrapper }  from "./StyledMainProjectDashboard";
@@ -6,6 +9,9 @@ import { ProjectDashWrapper }  from "./StyledMainProjectDashboard";
 
 
 const MainProjectDashboard = (props) => {
+
+    // consume context
+    const { projectList, currentProject, setCurrentProject } = useContext(MainContext);
 
     const drop = (ev) => {        
 
@@ -31,13 +37,15 @@ const MainProjectDashboard = (props) => {
             ev.target.appendChild(card);
         } else if (card_class.includes("projectCard")){
 
-            const card= document.getElementById(card_id);
+            setCurrentProject(card_id);
 
-            console.log("ELEMENT BY ID ", card);
+            // const card= document.getElementById(card_id);
 
-            card.style.display = "block";
+            // console.log("ELEMENT BY ID ", card);
 
-            ev.target.appendChild(card);
+            // card.style.display = "block";
+
+            // ev.target.appendChild(card);
         }
     }
 
@@ -56,6 +64,7 @@ const MainProjectDashboard = (props) => {
                     >
             { props.children }
             main project background
+            <p>{currentProject}</p>
         </ProjectDashWrapper>
     ) // end of main return
 }
