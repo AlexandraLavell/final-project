@@ -14,6 +14,7 @@ export const MainContext = React.createContext(null);
 
 export const MainContextProvider = ({children}) => {
 
+    const [signInPage, setSignInPage ] = useState(true);
     const [currentEmployee, setCurrentEmployee] = useState(); // for the employee dashboard
     const [currentProject, setCurrentProject] = useState(); // for the project dashboard
     const [mainDash, setMainDash] = useState({}); //all objects on the main dashboard
@@ -28,6 +29,7 @@ export const MainContextProvider = ({children}) => {
 
 
     return <MainContext.Provider value={{
+                                            signInPage, setSignInPage,
                                             currentEmployee, setCurrentEmployee,
                                             currentProject, setCurrentProject,
                                             mainDash, setMainDash,                                            

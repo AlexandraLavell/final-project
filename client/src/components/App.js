@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
       BrowserRouter as Router,
       Route,
@@ -21,13 +21,22 @@ import ProjectList from "./ProjectList";
 import Header from "./Header";
 import Footer from "./Footer";
 
+// context
+import MainContext from "./MainContext";
+
 
 
 const App = () => {
+
+  // consume context
+  const { signInPage, setSignInPage } = useContext(MainContext);
+
   return (
-    <AppContainer>      
-      <Header />
-      <Router>      
+    <Router>  
+    {signInPage ?
+    <SignIn /> :
+    <AppContainer>
+      <Header />            
         <ComponentContainer>  
           <EmployeeList id="board-1" className="employeeBoard" />
           <DashWrapper>
@@ -45,10 +54,10 @@ const App = () => {
               </Switch>
             </DashWrapper>
             <ProjectList id="board-2" className="projectBoard" />   
-        </ComponentContainer>       
-      </Router>
-      <Footer />     
-    </AppContainer>
+        </ComponentContainer>
+      <Footer />        
+    </AppContainer>}
+  </Router>  
   );
 }
 

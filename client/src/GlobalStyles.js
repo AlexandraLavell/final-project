@@ -1,13 +1,16 @@
+
+// import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+
 import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
     :root {
-        --color-main-yellow: #f9f77d;
-        --color-dark-yellow: ##F7F44D;
+        --color-main-yellow: lemonchiffon;//#f9f77d;
+        --color-dark-yellow: #F7F44D;
         --color-compliment-green: #056B36;
         --color-compliment-blue: #020442;
         --color-file-brown: #c49e7a;
-        --font-heading: 'Permanent Marker', Arial, Helvetica, sans-serif;
+        --font-heading: "Courier New", monospace;
         --font-body: 'Kosugi', Arial, Helvetica, sans-serif;
         --padding-page: 24px;
     }
