@@ -11,6 +11,7 @@ import styled from "styled-components";
 
 
 // components
+import SignIn from "./SignIn";
 import MainAdminDashBoard from "./MainAdminDashboard";
 import MainEmployeeDashBoard from "./MainEmployeeDashboard";
 import MainProjectDashBoard from "./MainProjectDashboard";
@@ -24,9 +25,9 @@ import Footer from "./Footer";
 
 const App = () => {
   return (
-    <AppContainer>
+    <AppContainer>      
       <Header />
-      <Router>
+      <Router>      
         <ComponentContainer>  
           <EmployeeList id="board-1" className="employeeBoard" />
           <DashWrapper>
@@ -40,7 +41,7 @@ const App = () => {
                 </Route>
                 <Route exact path="/project">            
                   <MainProjectDashBoard />
-                </Route>
+                </Route>                
               </Switch>
             </DashWrapper>
             <ProjectList id="board-2" className="projectBoard" />   

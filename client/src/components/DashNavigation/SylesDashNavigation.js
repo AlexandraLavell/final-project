@@ -13,7 +13,7 @@ export const NavigationWrapper = styled.div`
     align-items: flex-end;
     min-height: 50px;
     width: 100%;
-    background: lemonchiffon;
+    background: var(--color-main-yellow);
     margin: 0;
     
 `;

@@ -72,7 +72,7 @@ const MainEmployeeDashboard = (props) => {
                     >
             { props.children }
             main employee background
-            <p>{currentEmployee}</p>
+            <p>{currentEmployee + employeeList[0].projects}</p>
         </EmployeeDashWrapper>
 
 
