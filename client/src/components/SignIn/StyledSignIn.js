@@ -27,7 +27,7 @@ export const GoToButton = styled(NavLink) `
     background-color: black;
     position: absolute;
     bottom: 5px;
-    right: 5px;
+    right: 15px;
     font-size: .2em;
     text-decoration: none;
     color: var(--color-main-yellow);
