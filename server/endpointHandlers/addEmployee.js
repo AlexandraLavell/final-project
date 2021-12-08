@@ -12,11 +12,11 @@ const options = {
     useUnifiedTopology: true,
 }
 
-// get all items from the database
+// add an employee to the database
 const addEmployee = async (req, res) =>  {
 
     try {
-         // get the id number from params
+        // get the employee details from the request body
         const { _id,
                 firstName,
                 lastName,
@@ -65,7 +65,7 @@ const addEmployee = async (req, res) =>  {
                                         .insertOne(newEmployee); 
 
 
-        //close the collection
+        // close the collection
         client.close();
         console.log("DISCONNECTED");
 

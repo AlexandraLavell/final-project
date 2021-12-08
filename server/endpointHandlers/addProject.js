@@ -15,8 +15,14 @@ const options = {
 // get all items from the database
 const addProject = async (req, res) =>  {
     try {
-         // get the id number from params
-        const { _id } = req.params;
+         // get project details from the body
+        const { _id=0,
+                approval="pending",
+                description,
+                requested_budget,
+                actual_budget,
+                status,
+                final_report } = req.body;
 
         // create a new client
         const client = new MongoClient(MONGO_URI, options);
@@ -25,17 +31,22 @@ const addProject = async (req, res) =>  {
         await client.connect();
 
         // connect to the database
-        const db = client.db("Ecommerce");
+        const db = client.db("goodmorning");
         console.log("CONNECTED");
 
-        // retreive all items
-        // parseId() required for the function to recognize the variable 
-        // _id from params as a number. If it's not there the function returns null
-        const singleCompany = await db.collection("companies")
-                                        .findOne({_id: parseInt(_id)}); 
+        const newProject = {    _id,
+                                approval,
+                                description,
+                                requested_budget,
+                                actual_budget,
+                                status,
+                                final_report };
+
+        // add a project
+        const projectAdded = await db.collection("projects").insertOne(newProject);
 
 
-        //close the collection
+        // close the collection
         client.close();
         console.log("DISCONNECTED");
 
@@ -45,7 +56,7 @@ const addProject = async (req, res) =>  {
             // SUCCESS return
             res.status(200).json({
                 status: 200,
-                data: singleCompany,
+                data: projectAdded,
             })
         ) 
     } catch (err) {
