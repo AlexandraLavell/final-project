@@ -17,6 +17,7 @@ import MainEmployeeDashBoard from "./MainEmployeeDashboard";
 import MainProjectDashBoard from "./MainProjectDashboard";
 import DashNavigation from "./DashNavigation";
 import EmployeeList from "./EmployeeList";
+import AddEmployeeForm from "./AddEmployeeForm";
 import ProjectList from "./ProjectList";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -33,7 +34,7 @@ const App = () => {
 
   return (
     <Router>  
-    {signInPage ?
+    {false ?
     <SignIn /> :
     <AppContainer>
       <Header />            
@@ -50,6 +51,9 @@ const App = () => {
                 </Route>
                 <Route exact path="/project">            
                   <MainProjectDashBoard />
+                </Route>    
+                <Route exact path="/addEmployee">            
+                  <AddEmployeeForm />
                 </Route>                
               </Switch>
             </DashWrapper>

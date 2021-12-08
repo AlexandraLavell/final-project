@@ -31,7 +31,7 @@ export const MainDashLink = styled(NavLink)`
     border-style: solid;
     border-color: black;
     border-width: 1px 1px 1px 1px;
-    border-radius: 5px 5px 0 0;
+    /* border-radius: 5px 5px 0 0; */
 `;
 
 export const EmployeeDashLink = styled(NavLink)`
@@ -47,7 +47,7 @@ export const EmployeeDashLink = styled(NavLink)`
     border-style: solid;
     border-color: black;
     border-width: 1px 1px 1px 1px;
-    border-radius: 5px 5px 0 0;
+    /* border-radius: 5px 5px 0 0; */
 `;
 
 export const ProjectDashLink = styled(NavLink)`
@@ -63,5 +63,5 @@ export const ProjectDashLink = styled(NavLink)`
     border-style: solid;
     border-color: black;
     border-width: 1px 1px 1px 1px;
-    border-radius: 5px 5px 0 0;
+    /* border-radius: 5px 5px 0 0; */
 `;
