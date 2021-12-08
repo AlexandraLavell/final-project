@@ -41,7 +41,7 @@ app.get("/employee/:id", getEmployeeById);
 // get an employee by project
 app.get("/employees/project/:id", getEmployeesByProject);
 // add a employee
-app.post("employees", addEmployee);
+app.post("/employees", addEmployee);
 // modify a employee
 app.patch("/employees/:id", modifyEmployee);
 // delete a employee
