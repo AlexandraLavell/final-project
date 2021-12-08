@@ -4,7 +4,7 @@
 const { MongoClient } = require("mongodb");
 
 //get URI
-require("dotenv").config({path:"./.env"});
+require("dotenv").config({path:"../.env"});
 const { MONGO_URI } = process.env;
 
 const options = {
@@ -14,6 +14,7 @@ const options = {
 
 // get all items from the database
 const addEmployee = async (req, res) =>  {
+
     try {
          // get the id number from params
         const { _id,
@@ -21,7 +22,8 @@ const addEmployee = async (req, res) =>  {
                 lastName,
                 email, 
                 phone,
-                projects, } = req.query;
+                projects } = req.body;
+
 
         // create a new client
         const client = new MongoClient(MONGO_URI, options);
@@ -33,18 +35,34 @@ const addEmployee = async (req, res) =>  {
         const db = client.db("goodmorning");
         console.log("CONNECTED");
 
+        // change the dates in the project object to ISO date objects
+        
+        // all the keys of the project object
+        const allProjectKeys = Object.keys(projects);
+        const updatedProjects = {};
+
+        // map through the project object keys
+        allProjectKeys.map((prjKey) => {
+            const dateArray = [];
+            // map through each object and transform the date to an ISO date object
+            projects[prjKey].map((item) =>{
+                dateArray.push(Date(item));
+            }); 
+            // add the formated date to an updated projects object
+            updatedProjects[prjKey] = dateArray;
+        })
+
         // create a new employee object
         const newEmployee = { _id,
             firstName,
             lastName,
             email, 
             phone,
-            projects, }
-
+            projects: updatedProjects};
 
         // insert one new employee
-        const oneNewEmployee = await db.collection("employees")
-                                        .insertOne({newEmployee}); 
+        const employeeAdded = await db.collection("employees")
+                                        .insertOne(newEmployee); 
 
 
         //close the collection
@@ -57,7 +75,7 @@ const addEmployee = async (req, res) =>  {
             // SUCCESS return
             res.status(200).json({
                 status: 200,
-                data: oneNewEmployee,
+                data: employeeAdded,
             })
         ) 
     } catch (err) {
