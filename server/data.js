@@ -5,7 +5,7 @@ const employees = [
         lastName: "Cardenas",
         email: "aisha_crdenas@gmorning.ca",
         phone: "514-514-1110",
-        projects: {},
+        projects: {"pr0001":[Date("2022-01-20"), Date("2022-02-20")]},
     },
     {
         _id: "ee1111",
@@ -13,7 +13,7 @@ const employees = [
         lastName: "Burgess",
         email: "marietta_burgess@gmorning.ca",
         phone: "514-514-1111",
-        projects: {},
+        projects: {"pr0001":[Date("2022-01-20"), Date("2022-02-20")]},
     },
     {
         _id: "ee1112",
@@ -21,7 +21,7 @@ const employees = [
         lastName: "Stanton",
         email: "nicole_stanton@gmorning.ca",
         phone: "514-514-1112",
-        projects: {},
+        projects: {"pr0001":[Date("2022-01-20"), Date("2022-02-20")]},
     },
     {
         _id: "ee1113",
@@ -29,7 +29,7 @@ const employees = [
         lastName: "Watson",
         email: "esther_watson@gmorning.ca",
         phone: "514-514-1113",
-        projects: [ {projectId:"pr1110", days:[1,87,90]}],
+        projects: {"pr0001":[Date("2022-01-20"), Date("2022-02-20")]},
     },
     {
         _id: "ee1114",
@@ -37,7 +37,7 @@ const employees = [
         lastName: "Chaney",
         email: "rebecca_chaney@gmorning.ca",
         phone: "514-514-1114",
-        projects: {},
+        projects: {"pr0001":[Date("2022-01-20"), Date("2022-02-20")]},
     },
     {
         _id: "ee1115",
@@ -45,7 +45,7 @@ const employees = [
         lastName: "Manning",
         email: "ella_manning@gmorning.ca",
         phone: "514-514-1115",
-        projects: {},
+        projects: {"pr0001":[Date("2022-01-20"), Date("2022-02-20")]},
     },
     {
         _id: "ee1116",
@@ -53,7 +53,7 @@ const employees = [
         lastName: "Griffith",
         email: "mikela_griffith@gmorning.ca",
         phone: "514-514-1116",
-        projects: {},
+        projects: {"pr0001":[Date("2022-01-20"), Date("2022-02-20")]},
     },
     {
         _id: "ee1117",
@@ -61,7 +61,7 @@ const employees = [
         lastName: "Dyer",
         email: "jessie_dyer@gmorning.ca",
         phone: "514-514-1117",
-        projects: {},
+        projects: {"pr0001":[Date("2022-01-20"), Date("2022-02-20")]},
     },
     {
         _id: "ee1118",
@@ -69,7 +69,7 @@ const employees = [
         lastName: "Nielsen",
         email: "hope_nielsen@gmorning.ca",
         phone: "514-514-1118",
-        projects: {},
+        projects: {"pr0001":[Date("2022-01-20"), Date("2022-02-20")]},
     },
     {
         _id: "ee1119",
@@ -77,45 +77,57 @@ const employees = [
         lastName: "Richardson",
         email: "kimberley_richardson@gmorning.ca",
         phone: "514-514-1119",
-        projects: {},
+        projects: {"pr0001":[Date("2022-01-20"), Date("2022-02-20")]},
     },
 
 ];
 
 const projects = [
     {
-        _id: "pr1110",
-        description: "TEST PROJECT",
-        budget: "20",
-        employees: {},
+        _id: "pr0001",
+        approval: "approved",
+        description: "Global Main Project",
+        requested_budget: "30",
+        actual_budget: "20",
+        // employees: {},
+        status: "in progress",
+        final_report: "",
     },
     {
         _id: "pr1111",
+        approval: "pending",
         description: "TEST PROJECT",
-        budget: "20",
-        employees: {},
+        requested_budget: "30",
+        actual_budget: "",
+        // employees: {},
+        status: "not started",
+        final_report: "",
     },
     {
         _id: "pr1112",
+        approval: "approved",
         description: "TEST PROJECT",
-        budget: "20",
-        employees: {},
+        requested_budget: "30",
+        actual_budget: "20",
+        status: "complete",
+        // employees: {},
+        final_report: "We did it!",
     }
 ]
 
-const users = [
-    {
-        _id: "u1110",
-        type: "admin",
-        userName: "admin",
-        password: "admin",
-    },
-    {
-        _id: "u1111",
-        type: "employee",
-        userName: "employee",
-        password: "employee",
-    },
-]
+// const users = [
+//     {
+//         _id: "u1110",
+//         type: "admin",
+//         userName: "admin",
+//         password: "admin",
+//     },
+//     {
+//         _id: "u1111",
+//         type: "employee",
+//         userName: "employee",
+//         password: "employee",
+//     },
+// ]
 
-module.exports = { employees, projects, users };
+        module.exports = { employees, projects }; //, users };
