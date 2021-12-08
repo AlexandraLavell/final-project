@@ -9,7 +9,20 @@ const morgan = require("morgan");
 const app = express()
 
 // import handlers
-
+const { getAllEmployees } = require("./endpointHandlers/getAllEmployees");
+const { getEmployeeById } = require("./endpointHandlers/getEmployeeById");
+const { getEmployeesByProject } = require("./endpointHandlers/getEmployeesByProject");
+const { addEmployee } = require("./endpointHandlers/addEmployee");
+const { modifyEmployee } = require("./endpointHandlers/modifyEmployee");
+const { deleteEmployee }= require("./endpointHandlers/deleteEmployee");
+const { deleteAllEmployees } = require("./endpointHandlers/deleteAllEmployees");
+const { getAllProjects } = require("./endpointHandlers/getAllProjects");
+const { getProjectById } = require("./endpointHandlers/getProjectById");
+const { getProjectsByEmployee} = require("./endpointHandlers/getProjectsByEmployee");
+const { addProject } = require("./endpointHandlers/addProject");
+const { modifyProject } = require("./endpointHandlers/modifyProject");
+const { deleteProjectById } = require("./endpointHandlers/deleteProjectById");
+const { deleteAllProjects } = require("./endpointHandlers/deleteAllProjects");
 
 // to log more info in the console
 app.use(morgan("tiny"));
@@ -18,50 +31,41 @@ app.use(express.json());
 // requests for static files will be directed to the public folder
 app.use(express.static("public"));
 
-// example
-// .patch("/reservations/update", updateReservation)
-
-
-// add a project
-app.post("/projects", addProject);
-// modify a project
-app.patch("/projects/:id", modifyProject);
-// find a project by id
-app.get("/projects/:id", findProjectById);
-// find a project by employee
-app.get("/projects/employee/:id", findProjectByEmployee);
-// find all projects
-app.get("/projects", getAllProjects);
-// delete a project
-app.delete("/projects/:id", deleteProjectById);
-// delete all projects
-app.delete("/projects", deleteAllProjects);
+///////////////////////
+// EMPLOYEE ENDPOINTS//
+///////////////////////
+// get all employees
+app.get("/employees", getAllEmployees);
+// get an employee by id
+app.get("/employee/:id", getEmployeeById);
+// get an employee by project
+app.get("/employees/project/:id", getEmployeesByProject);
 // add a employee
 app.post("employees", addEmployee);
 // modify a employee
 app.patch("/employees/:id", modifyEmployee);
-// find an employee by id/name
-app.get("/employee/:id", findEmployeeById);
-// find an employee by project
-app.get("/employees/project/:id");
-// find all employees
-app.get("/employees", getAllEmployees);
 // delete a employee
 app.delete("/employees/:id", deleteEmployee);
-// delete all employees
+// delete all employees - FOR DEVELOPMENT
 app.delete("/employees", deleteAllEmployees);
-// add a calendar item
-// modify a calendar item
-// delete a calendar item
-// find calandar items by employee
-// find calendar item by project
-// find all calendar items
 
-
-
-
-
-
+//////////////////////
+// PROJECT ENDPOINTS//
+//////////////////////
+// get all projects
+app.get("/projects", getAllProjects);
+// get a project by id
+app.get("/projects/:id", getProjectById);
+// get a project by employee
+app.get("/projects/employee/:id", getProjectsByEmployee);
+// add a project
+app.post("/projects", addProject);
+// modify a project
+app.patch("/projects/:id", modifyProject);
+// delete a project
+app.delete("/projects/:id", deleteProjectById);
+// delete all projects - FOR DEVELOPMENT
+app.delete("/projects", deleteAllProjects);
 
 // catch all endpoint
 app.get("*", (req,res) => {
