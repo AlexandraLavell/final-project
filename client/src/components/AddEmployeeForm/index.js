@@ -1,4 +1,7 @@
 import React, { useState, useContext } from "react";
+// import DatePicker from "react-datepicker";
+
+// import "react-datepicker/dist/react-datepicker.css";
 
 // style
 import {    EmployeeFormWrapper, 
@@ -6,14 +9,19 @@ import {    EmployeeFormWrapper,
             ProjectDates} from "./StyledAddEmployeeForm";
 
 const AddEmployeeForm = () => {
-
+    
     const [ dates, setDates ] = useState([]);
 
     const handleDates = (ev) => {
 
-        setDates([...dates, ev.target.value]);   
+        if(dates.includes(ev.target.value)){  
+            const newArray = dates.filter((date) => {return date !== ev.target.value});
+            setDates(newArray); 
+        }else{
+            setDates([...dates, ev.target.value]);
+            // ev.target.value=0;           
+        }   
         console.log(dates);        
-
     }
 
 
@@ -21,8 +29,8 @@ const AddEmployeeForm = () => {
     return(
 
         <EmployeeFormWrapper>
-            <DateWrapper id="datewrapper">
-                <ProjectDates type="date" onChange={handleDates} />
+            <DateWrapper id="datewrapper">              
+                <ProjectDates type="date" value={dates} onChange={handleDates} />
                 {dates}
             </DateWrapper>
         </EmployeeFormWrapper>

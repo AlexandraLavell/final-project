@@ -16,13 +16,13 @@ const options = {
 const addProject = async (req, res) =>  {
     try {
          // get project details from the body
-        const { _id=0,
-                approval="pending",
-                description,
-                requested_budget,
-                actual_budget,
-                status,
-                final_report } = req.body;
+        const { _id,
+                approval = "",
+                description = "",
+                requested_budget = "",
+                actual_budget = "",
+                status = "",
+                final_report = "" } = req.body;
 
         // create a new client
         const client = new MongoClient(MONGO_URI, options);
