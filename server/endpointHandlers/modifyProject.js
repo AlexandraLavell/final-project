@@ -4,7 +4,7 @@
 const { MongoClient } = require("mongodb");
 
 //get URI
-require("dotenv").config({path:"./.env"});
+require("dotenv").config({path:"../.env"});
 const { MONGO_URI } = process.env;
 
 const options = {
@@ -12,11 +12,21 @@ const options = {
     useUnifiedTopology: true,
 }
 
-// get all items from the database
+// get an employee by id
 const modifyProject = async (req, res) =>  {
     try {
-         // get the id number from params
+        // get the project id from the request parameters
         const { _id } = req.params;
+        
+        // get updated info from request body
+        const {
+                approval,
+                description,
+                requested_budget,
+                actual_budget,
+                status,
+                final_report,
+                } = req.body;
 
         // create a new client
         const client = new MongoClient(MONGO_URI, options);
@@ -25,15 +35,40 @@ const modifyProject = async (req, res) =>  {
         await client.connect();
 
         // connect to the database
-        const db = client.db("Ecommerce");
-        console.log("CONNECTED");
+        const db = client.db("goodmorning");
+        console.log("CONNECTED");   
 
-        // retreive all items
-        // parseId() required for the function to recognize the variable 
-        // _id from params as a number. If it's not there the function returns null
-        const singleCompany = await db.collection("companies")
-                                        .findOne({_id: parseInt(_id)}); 
+        // find the employee
+        const projectFound = await db.collection("projects")
+                                        .findOne({_id}); 
+        
+        // check for updated information
+        const newApproval = projectFound.approval !== approval ? approval : "";
+        const newDescription = projectFound.description !== description ? description : "";
+        const newRequested_budget = projectFound.requested_budget !== requested_budget ? requested_budget : "";
+        const newActual_budget = projectFound.actual_budget !== actual_budget ? actual_budget : "";
+        const newStatus = projectFound.status !== status ? status : "";
+        const newFinal_report = projectFound.final_report !== final_report ? final_report : "";
+        
+        // update all employee info except projects
+        const filterProjects = {_id};
 
+        const updateProjectInfo = {$set: {
+                                            "$.approval": newApproval,
+                                            "$.description" : newDescription,
+                                            "$.requested_budget" : newRequested_budget,
+                                            "$.actual_budget" : newActual_budget,
+                                            "$.status" : newStatus,
+                                            "$.final_report" : newFinal_report,
+                                            }};
+
+        
+
+        // update
+        const updatedProject = await db.collection("projects")
+                                        .updateOne(filterProjects, updateProjectInfo);  
+
+        
 
         //close the collection
         client.close();
@@ -45,7 +80,7 @@ const modifyProject = async (req, res) =>  {
             // SUCCESS return
             res.status(200).json({
                 status: 200,
-                data: singleCompany,
+                data: updatedProject,
             })
         ) 
     } catch (err) {

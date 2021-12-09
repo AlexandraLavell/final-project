@@ -10,7 +10,7 @@ export const SignInWrapper = styled.div`
     flex-direction: column;
     height: 99vh;
     width: 100%;
-    padding: 5px;
+    padding: 2%;
     background-color: var(--color-main-yellow);
 
 `;
@@ -18,6 +18,7 @@ export const SignInWrapper = styled.div`
 export const Greeting = styled.div`
     font-family: "Courier New";
     font-size: 256px;
+    font-weight: bold;
 
 `;
 

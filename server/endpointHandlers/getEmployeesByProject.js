@@ -12,9 +12,11 @@ const options = {
     useUnifiedTopology: true,
 }
 
-// get all items from the database
+// get all employees working on a particular project
 const getEmployeesByProject = async (req, res) =>  {
     try {
+        // get the project id from the request parameters
+        const { _id } = req.params;
 
         // create a new client
         const client = new MongoClient(MONGO_URI, options);
@@ -24,13 +26,12 @@ const getEmployeesByProject = async (req, res) =>  {
 
         // connect to the database
         const db = client.db("goodmorning");
-        console.log("CONNECTED");   
+        console.log("CONNECTED");  
+        
+        const queryString = "projects." + _id;
 
-
-        // find all employees
-        const allEmployees = await db.collection("employees")
-                                        .find({}).toArray(); 
-
+        // find all employees who are working on the project
+        const employeesOnTheProject = await db.collection("employees").find({[queryString]:{$exists:true}}).toArray(); 
 
         //close the collection
         client.close();
@@ -42,7 +43,7 @@ const getEmployeesByProject = async (req, res) =>  {
             // SUCCESS return
             res.status(200).json({
                 status: 200,
-                data: allEmployees,
+                data: employeesOnTheProject,
             })
         ) 
     } catch (err) {

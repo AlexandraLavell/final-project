@@ -17,12 +17,14 @@ const addEmployee = async (req, res) =>  {
 
     try {
         // get the employee details from the request body
+        // default vaules for consistency
         const { _id,
                 firstName = "",
                 lastName = "",
                 email = "", 
                 phone = "",
-                projects = {} } = req.body;
+                projects = {} 
+            } = req.body;
 
 
         // create a new client

@@ -4,7 +4,7 @@
 const { MongoClient } = require("mongodb");
 
 //get URI
-require("dotenv").config({path:"./.env"});
+require("dotenv").config({path:"../.env"});
 const { MONGO_URI } = process.env;
 
 const options = {
@@ -12,10 +12,10 @@ const options = {
     useUnifiedTopology: true,
 }
 
-// get all items from the database
+// get one project by _id
 const getProjectById = async (req, res) =>  {
     try {
-         // get the id number from params
+         // get the id from the request parameters
         const { _id } = req.params;
 
         // create a new client
@@ -25,15 +25,12 @@ const getProjectById = async (req, res) =>  {
         await client.connect();
 
         // connect to the database
-        const db = client.db("Ecommerce");
+        const db = client.db("goodmorning");
         console.log("CONNECTED");
 
-        // retreive all items
-        // parseId() required for the function to recognize the variable 
-        // _id from params as a number. If it's not there the function returns null
-        const singleCompany = await db.collection("companies")
-                                        .findOne({_id: parseInt(_id)}); 
-
+        // find the project
+        const projectFound = await db.collection("projects")
+                                        .findOne({_id}); 
 
         //close the collection
         client.close();
@@ -45,7 +42,7 @@ const getProjectById = async (req, res) =>  {
             // SUCCESS return
             res.status(200).json({
                 status: 200,
-                data: singleCompany,
+                data: projectFound,
             })
         ) 
     } catch (err) {

@@ -4,7 +4,7 @@
 const { MongoClient } = require("mongodb");
 
 //get URI
-require("dotenv").config({path:"./.env"});
+require("dotenv").config({path:"../.env"});
 const { MONGO_URI } = process.env;
 
 const options = {
@@ -12,11 +12,20 @@ const options = {
     useUnifiedTopology: true,
 }
 
-// get all items from the database
+// get an employee by id
 const modifyEmployee = async (req, res) =>  {
     try {
-         // get the id number from params
+        // get the employee id from the request parameters
         const { _id } = req.params;
+        
+        // get updated info from request body
+        const {
+                    firstName,
+                    lastName,
+                    email = "", 
+                    phone = "",
+                    // projects = {} 
+                } = req.body;
 
         // create a new client
         const client = new MongoClient(MONGO_URI, options);
@@ -25,15 +34,45 @@ const modifyEmployee = async (req, res) =>  {
         await client.connect();
 
         // connect to the database
-        const db = client.db("Ecommerce");
-        console.log("CONNECTED");
+        const db = client.db("goodmorning");
+        console.log("CONNECTED");   
 
-        // retreive all items
-        // parseId() required for the function to recognize the variable 
-        // _id from params as a number. If it's not there the function returns null
-        const singleCompany = await db.collection("companies")
-                                        .findOne({_id: parseInt(_id)}); 
+        // find the employee
+        const employeeFound = await db.collection("employees")
+                                        .findOne({_id}); 
+        
+        // check for updated information
+        const newFirstName = employeeFound.firstName !== firstName ? firstName : "";
+        const newLastName = employeeFound.lastName !== lastName ? lastName : "";
+        const newEmail = employeeFound.email !== email ? email : "";
+        const newPhone = employeeFound.phone !== phone ? phone : "";
 
+        // const currentProjects = Object.keys(employeeFound.projects);
+        // const newProjects = Object.keys(projects);
+
+        // newProjects = newProjects.filter((prj) => {
+        //     return !currentProjects.includes(prj);
+        // })
+
+        // console.log(newProjects);
+
+        // update all employee info except projects
+        const filterEmployees = {_id};
+
+        const updateEmployeeInfo = {$set: {
+                                            "$.firstName": newFirstName,
+                                            "$.lastName" : newLastName,
+                                            "$.email" : newEmail,
+                                            "$.phone" : newPhone
+                                            }};
+
+        
+
+        // update
+        const updatedEmployee = await db.collection("employees")
+                                        .updateOne(filterEmployees, updateEmployeeInfo);  
+
+        
 
         //close the collection
         client.close();
@@ -45,7 +84,7 @@ const modifyEmployee = async (req, res) =>  {
             // SUCCESS return
             res.status(200).json({
                 status: 200,
-                data: singleCompany,
+                data: updatedEmployee,
             })
         ) 
     } catch (err) {

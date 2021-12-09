@@ -12,12 +12,9 @@ const options = {
     useUnifiedTopology: true,
 }
 
-// get all items from the database
+// delete all projects in the database FOR DEV PURPOSES
 const deleteAllProjects = async (req, res) =>  {
-    try {
-         // get the id number from params
-        const { _id } = req.params;
-
+    try {        
         // create a new client
         const client = new MongoClient(MONGO_URI, options);
 
@@ -25,15 +22,12 @@ const deleteAllProjects = async (req, res) =>  {
         await client.connect();
 
         // connect to the database
-        const db = client.db("Ecommerce");
+        const db = client.db("goodmorning");
         console.log("CONNECTED");
 
-        // retreive all items
-        // parseId() required for the function to recognize the variable 
-        // _id from params as a number. If it's not there the function returns null
-        const singleCompany = await db.collection("companies")
-                                        .findOne({_id: parseInt(_id)}); 
-
+       // delete all projects - are you sure?
+        const allProjectsDeleted = await db.collection("projects")
+                                        .deleteMany({ }); 
 
         //close the collection
         client.close();
@@ -45,7 +39,7 @@ const deleteAllProjects = async (req, res) =>  {
             // SUCCESS return
             res.status(200).json({
                 status: 200,
-                data: singleCompany,
+                data: allProjectsDeleted,
             })
         ) 
     } catch (err) {
