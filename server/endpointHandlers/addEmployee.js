@@ -18,11 +18,11 @@ const addEmployee = async (req, res) =>  {
     try {
         // get the employee details from the request body
         const { _id,
-                firstName,
-                lastName,
-                email, 
-                phone,
-                projects } = req.body;
+                firstName = "",
+                lastName = "",
+                email = "", 
+                phone = "",
+                projects = {} } = req.body;
 
 
         // create a new client
