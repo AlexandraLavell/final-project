@@ -19,8 +19,10 @@ import DashNavigation from "./DashNavigation";
 import EmployeeList from "./EmployeeList";
 import AddEmployeeForm from "./AddEmployeeForm";
 import ProjectList from "./ProjectList";
+import AddProjectForm from "./AddProjectForm";
 import Header from "./Header";
 import Footer from "./Footer";
+import ErrorPage from "./ErrorPage";
 
 // context
 import MainContext from "./MainContext";
@@ -54,6 +56,12 @@ const App = () => {
                 </Route>    
                 <Route exact path="/addEmployee">            
                   <AddEmployeeForm />
+                </Route>
+                <Route exact path="/addProject">            
+                  <AddProjectForm />
+                </Route> 
+                <Route exact path="/error">            
+                  <ErrorPage />
                 </Route>                
               </Switch>
             </DashWrapper>
@@ -71,7 +79,7 @@ export default App;
 const AppContainer = styled.div`
   position: relative;
   display: flex;
-  height: 100vh;
+  height: 200vh;
   width: 100%;
   background-image: url("garden.jpg");
   background-color: lemonchiffon;

@@ -14,7 +14,7 @@ const { getEmployeeById } = require("./endpointHandlers/getEmployeeById");
 const { getEmployeesByProject } = require("./endpointHandlers/getEmployeesByProject");
 const { addEmployee } = require("./endpointHandlers/addEmployee");
 const { modifyEmployee } = require("./endpointHandlers/modifyEmployee");
-const { deleteEmployee }= require("./endpointHandlers/deleteEmployee");
+const { deleteEmployeeById }= require("./endpointHandlers/deleteEmployeeById");
 const { deleteAllEmployees } = require("./endpointHandlers/deleteAllEmployees");
 const { getAllProjects } = require("./endpointHandlers/getAllProjects");
 const { getProjectById } = require("./endpointHandlers/getProjectById");
@@ -37,15 +37,15 @@ app.use(express.static("public"));
 // get all employees
 app.get("/employees", getAllEmployees);
 // get an employee by id
-app.get("/employee/:id", getEmployeeById);
+app.get("/employees/:_id", getEmployeeById);
 // get an employee by project
-app.get("/employees/project/:id", getEmployeesByProject);
+app.get("/employees/project/:_id", getEmployeesByProject);
 // add a employee
 app.post("/employees", addEmployee);
-// modify a employee
-app.patch("/employees/:id", modifyEmployee);
-// delete a employee
-app.delete("/employees/:id", deleteEmployee);
+// modify a employee all info except projects
+app.patch("/employees/:_id", modifyEmployee);
+// delete a employee by _id
+app.delete("/employees/:_id", deleteEmployeeById);
 // delete all employees - FOR DEVELOPMENT
 app.delete("/employees", deleteAllEmployees);
 
@@ -55,15 +55,15 @@ app.delete("/employees", deleteAllEmployees);
 // get all projects
 app.get("/projects", getAllProjects);
 // get a project by id
-app.get("/projects/:id", getProjectById);
+app.get("/projects/:_id", getProjectById);
 // get a project by employee
-app.get("/projects/employee/:id", getProjectsByEmployee);
+app.get("/projects/employee/:_id", getProjectsByEmployee);
 // add a project
 app.post("/projects", addProject);
 // modify a project
-app.patch("/projects/:id", modifyProject);
-// delete a project
-app.delete("/projects/:id", deleteProjectById);
+app.patch("/projects/:_id", modifyProject);
+// delete a project by _id
+app.delete("/projects/:_id", deleteProjectById);
 // delete all projects - FOR DEVELOPMENT
 app.delete("/projects", deleteAllProjects);
 

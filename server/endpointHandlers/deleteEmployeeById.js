@@ -4,7 +4,7 @@
 const { MongoClient } = require("mongodb");
 
 //get URI
-require("dotenv").config({path:"./.env"});
+require("dotenv").config({path:"../.env"});
 const { MONGO_URI } = process.env;
 
 const options = {
@@ -12,11 +12,13 @@ const options = {
     useUnifiedTopology: true,
 }
 
-// get all items from the database
-const deleteEmployee = async (req, res) =>  {
+// delete one employee by _id
+const deleteEmployeeById = async (req, res) =>  {
     try {
-         // get the id number from params
+         // get the employee id number from the request parameters
         const { _id } = req.params;
+
+        console.log(_id);
 
         // create a new client
         const client = new MongoClient(MONGO_URI, options);
@@ -25,15 +27,12 @@ const deleteEmployee = async (req, res) =>  {
         await client.connect();
 
         // connect to the database
-        const db = client.db("Ecommerce");
+        const db = client.db("goodmorning");
         console.log("CONNECTED");
 
-        // retreive all items
-        // parseId() required for the function to recognize the variable 
-        // _id from params as a number. If it's not there the function returns null
-        const singleCompany = await db.collection("companies")
-                                        .findOne({_id: parseInt(_id)}); 
-
+        // delete employee
+        const oneEmployeeDeleted = await db.collection("employees")
+                                        .deleteOne({_id}); 
 
         //close the collection
         client.close();
@@ -45,7 +44,7 @@ const deleteEmployee = async (req, res) =>  {
             // SUCCESS return
             res.status(200).json({
                 status: 200,
-                data: singleCompany,
+                data: oneEmployeeDeleted,
             })
         ) 
     } catch (err) {
@@ -59,4 +58,4 @@ const deleteEmployee = async (req, res) =>  {
 }
 
 // export handler function
-module.exports = { deleteEmployee };
+module.exports = { deleteEmployeeById };

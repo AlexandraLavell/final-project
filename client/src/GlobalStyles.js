@@ -10,7 +10,7 @@ export default createGlobalStyle`
         --color-compliment-green: #056B36;
         --color-compliment-blue: #020442;
         --color-file-brown: #c49e7a;
-        --font-heading: "Courier New", monospace;
+        --font-main: "Courier New", monospace;
         --font-body: 'Kosugi', Arial, Helvetica, sans-serif;
         --padding-page: 24px;
     }
@@ -39,6 +39,7 @@ export default createGlobalStyle`
         box-sizing: border-box;
         font-size: 100%;
         vertical-align: baseline;
+        text-decoration: none;
     }
     /* HTML5 display-role reset for older browsers */
     article, aside, details, figcaption, figure,
@@ -66,16 +67,18 @@ export default createGlobalStyle`
     label,
     button {
     color: #fff;
-    font-family: var(--font-heading);
+    font-family: var(--font-main);
     font-size: 32px;
     text-align: center;
+    text-decoration: none;
     }
     p,
     a,
     li,
     blockquote,
     input {
-    font-family: var(--font-body);
+    font-family: var(--font-main);
+    text-decoration: none;
     }
 
     input {
