@@ -73,6 +73,7 @@ const EmployeeList = (props) => {
             {employeeList.map((emp) => {
                 return  (<EmployeeCard id={emp._id} className="employeeCard" draggable="true" >
                         <p>{emp._id}</p>
+                        <p>{emp.firstName} {emp.lastName}</p>
                         </EmployeeCard>)
             })}
         </EmployeeListWrapper>

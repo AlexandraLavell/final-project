@@ -4,17 +4,12 @@ import styled from "styled-components";
 export const EmployeeCardWrapper = styled.div`
     position: relative;
     display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
     justify-content: space-between;
-
-    /* margin: 0 auto ; */
-
     padding: 15px 25px;
-    background-color: white;
-    /* background: palegreen; */
     color: black;
     cursor: pointer;
-
     margin-bottom: 15px;
-
-
+    border: 2px solid black;
 `;

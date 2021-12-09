@@ -35,7 +35,8 @@ const App = () => {
   const { signInPage, setSignInPage } = useContext(MainContext);
 
   return (
-    <Router>  
+    <>
+    // <Router>  
     {false ?
     <SignIn /> :
     <AppContainer>
@@ -69,7 +70,8 @@ const App = () => {
         </ComponentContainer>
       <Footer />        
     </AppContainer>}
-  </Router>  
+  // </Router> 
+  </> 
   );
 }
 

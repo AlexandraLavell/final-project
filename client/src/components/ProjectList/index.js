@@ -46,8 +46,8 @@ const ProjectList = (props) => {
                     >
             { props.children }
             {projectList.map((prj) => {
-                return  (<ProjectCard id={prj} className="projectCard" draggable="true" >
-                        <p>{prj}</p>
+                return  (<ProjectCard id={prj._id} className="projectCard" draggable="true" >
+                        <p>{prj._id}</p>
                         </ProjectCard>)
             })}
         </ProjectListWrapper>

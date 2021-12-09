@@ -6,31 +6,30 @@ import { FaBell, FaBookmark, FaUser, FaHome } from "react-icons/fa";
 
 // styled components
 import {    NavigationWrapper,
-            MainDashLink,
-            EmployeeDashLink,
-            ProjectDashLink } from "./SyledDashNavigation";
+            DashLink } 
+            from "./SyledDashNavigation";
 
 
 const DashNavigation = () => {
 
-
-
     // main return
     return (
         <NavigationWrapper>
-        <MainDashLink exact to="/dash">
+        <DashLink activeClassName="active" exact to="/dash">
             <p>Dash</p>
-        </MainDashLink>          
-        <EmployeeDashLink exact to="/employee">
+        </DashLink>          
+        <DashLink activeClassName="active" exact to="/employee">
             <p>Employee</p> 
-        </EmployeeDashLink>
-        <ProjectDashLink exact to="/project">
+        </DashLink>
+        <DashLink activeClassName="active" exact to="/project">
             <p>Project</p>
-        </ProjectDashLink>
+        </DashLink>
         </NavigationWrapper>
     )
 
 }
+
+
 
 export default DashNavigation;
 

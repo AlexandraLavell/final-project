@@ -89,7 +89,6 @@ const projects = [
         description: "Global Main Project",
         requested_budget: "30",
         actual_budget: "20",
-        // employees: {},
         status: "in progress",
         final_report: "",
     },
@@ -99,7 +98,6 @@ const projects = [
         description: "TEST PROJECT",
         requested_budget: "30",
         actual_budget: "",
-        // employees: {},
         status: "not started",
         final_report: "",
     },
@@ -110,7 +108,6 @@ const projects = [
         requested_budget: "30",
         actual_budget: "20",
         status: "complete",
-        // employees: {},
         final_report: "We did it!",
     }
 ]
