@@ -25,7 +25,7 @@ export const MainContextProvider = ({children}) => {
     const [currentProject, setCurrentProject] = useState(); // for the project dashboard
     const [mainDash, setMainDash] = useState({}); //all objects on the main dashboard
     const [employeeList, setEmployeeList] = useState(); 
-    const [projectList, setProjectList] = useState(["project-1", "project-2"]); // list of all projects -- will be on the database
+    const [projectList, setProjectList] = useState(); // list of all projects -- will be on the database
     const [today, setToday] = useState(); //to determine what day it is
     const [projectProgress, setProjectProgress] = useState(); //for overall progress of all projects
     const [projectSubmission, setProjectSubmission] = useState(); //array of all project proposals -- will be on the database
@@ -40,20 +40,42 @@ export const MainContextProvider = ({children}) => {
             }
         })
         .then(res => res.json())
-        .then(data => setEmployeeList(data.data))
+        .then(data => {
+                        console.log(data);
+                        setEmployeeList(data.data);
+        })
         .catch((err) => {
                             setErrorMessage(err);
                             history.push("/error");
                         });
     },[]);
 
-    while(
+    useEffect(()=>{       
+        fetch(`/projects`, {
+        method: "GET",
+        headers: {
+            Accept: "application/json",// response type
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+                        console.log(data);
+                        setProjectList(data.data);
+        })
+        .catch((err) => {
+                            setErrorMessage(err);
+                            history.push("/error");
+                        });
+    },[]);
+
+
+    if(
             !employeeList
+            || !projectList
         ){  return (
                         <CircularProgressWrapper>
                             <CircularProgress color="primary"/>
-                        </CircularProgressWrapper>
-                    
+                        </CircularProgressWrapper>                    
                     )                    
         }
 
