@@ -8,7 +8,7 @@ import { FaBell, FaBookmark, FaUser, FaHome } from "react-icons/fa";
 import {    NavigationWrapper,
             MainDashLink,
             EmployeeDashLink,
-            ProjectDashLink } from "./SylesDashNavigation";
+            ProjectDashLink } from "./SyledDashNavigation";
 
 
 const DashNavigation = () => {
