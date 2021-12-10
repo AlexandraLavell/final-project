@@ -8,12 +8,18 @@ import "tippy.js/dist/tippy.css";
 import MainContext from "../MainContext";
 
 // style
-import {    EmployeeListWrapper,
+import {    EmployeeContainerWrapper,
+            EmployeeListHeader,
+            AddNav,
+            EmployeeListWrapper,
             TippyWrapper,
             TippyContent} from "./StyledEmployeeList";
 
 // componenets
 import EmployeeCard from "../EmployeeCard";
+
+// assets
+import { FiPlus } from "react-icons/fi"
 
 const EmployeeList = (props) => {
 
@@ -62,44 +68,45 @@ const EmployeeList = (props) => {
 
     }
 
+    const handleClick = () => {
+        
+
+    }
+
     // start of main return
     return (
-        <EmployeeListWrapper
-                    _id={props.id}
-                    onDrop={drop}
-                    onDragOver={dragOver}
-                    onDragLeave={dragLeave}
-                    className={props.className}
-                    >
-            { props.children }
-            {employeeList.map((emp) => {
-                
-                // this generates a list of projects the employee is working on today
-                const keyList = Object.keys(emp.projects);
-                const todaysProjects = keyList.filter((key) => {
-                    return ( emp.projects[key].filter((keyDate) => {
-                        return Date(keyDate) === Date();})    
-                    )}                
-                )                
-
-                return  (                            
-                            <EmployeeCard _id={emp._id} className="employeeCard" draggable="true" >                                
-                                <TippyWrapper content={<div><p>Today: </p><TippyContent>{todaysProjects.toString()}</TippyContent></div>}>
-                                    <div>
-                                        <p>{emp._id}</p>
-                                        <p>{emp.firstName} {emp.lastName}</p> 
-                                    </div>
-                                </TippyWrapper>                                
-                            </EmployeeCard>                           
-                        )
-            })}
-        </EmployeeListWrapper>
+        <EmployeeContainerWrapper>
+            <EmployeeListHeader>Employees<AddNav exact to="/addEmployee"><FiPlus/></AddNav></EmployeeListHeader>
+            <EmployeeListWrapper
+                        _id={props.id}
+                        onDrop={drop}
+                        onDragOver={dragOver}
+                        onDragLeave={dragLeave}
+                        className={props.className}
+                        >
+                { props.children }
+                {employeeList.map((emp) => {                
+                    // this generates a list of projects the employee is working on today
+                    const keyList = Object.keys(emp.projects);
+                    const todaysProjects = keyList.filter((key) => {
+                        return ( emp.projects[key].filter((keyDate) => {
+                            return Date(keyDate) === Date();})    
+                        )}                
+                    )      
+                    return  (                            
+                                <EmployeeCard _id={emp._id} className="employeeCard" draggable="true" >                                
+                                    <TippyWrapper content={<div><p>Today: </p><TippyContent>{todaysProjects.toString()}</TippyContent></div>}>
+                                        <div>
+                                            <p>{emp._id}</p>
+                                            <p>{emp.firstName} {emp.lastName}</p> 
+                                        </div>
+                                    </TippyWrapper>                                
+                                </EmployeeCard>                           
+                            )
+                })}
+            </EmployeeListWrapper>
+        </EmployeeContainerWrapper>
     ) // end of main return
-
-
-
-
-
 }
 
 export default EmployeeList;
