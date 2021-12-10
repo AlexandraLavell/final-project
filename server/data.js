@@ -85,6 +85,7 @@ const employees = [
 const projects = [
     {
         _id: "pr0001",
+        project_name: "Global project",
         approval: "approved",
         description: "Global Main Project",
         requested_budget: "30",
@@ -94,6 +95,7 @@ const projects = [
     },
     {
         _id: "pr1111",
+        project_name: "Test project",
         approval: "pending",
         description: "TEST PROJECT",
         requested_budget: "30",
@@ -103,6 +105,7 @@ const projects = [
     },
     {
         _id: "pr1112",
+        project_name: "Another test project",
         approval: "approved",
         description: "TEST PROJECT",
         requested_budget: "30",

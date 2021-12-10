@@ -54,9 +54,7 @@ const ProjectCard = (props) => {
             <CircularProgress color="primary"/>
         </CircularProgressWrapper>                    
     )                    
-    }
-
-    
+    }    
     
     // drag and drop
     const dragStart = (ev) => {
