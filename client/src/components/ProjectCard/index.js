@@ -13,7 +13,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 
 
 // styled components
-import {    ProjectCardWrapper, 
+import {    CardWrapper, 
             TippyWrapper,
             TippyContent } 
             from "./StyledProjectCard";
@@ -88,7 +88,7 @@ const ProjectCard = (props) => {
     // start of main return
     return (
 
-        <ProjectCardWrapper
+        <CardWrapper
             id={props._id}
             className={props.className}
             draggable={props.draggable}
@@ -99,7 +99,7 @@ const ProjectCard = (props) => {
             <TippyWrapper content={<div><p>On this project: </p><TippyContent>{projectEmployees.toString()}</TippyContent></div>}>
                 <div>{ props.children }</div>
             </TippyWrapper>
-        </ProjectCardWrapper>
+        </CardWrapper>
     ) // end of main return
 }
 

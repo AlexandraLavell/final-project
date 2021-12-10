@@ -3,7 +3,7 @@
 
 // import the node_modules
 const express = require("express");
-const morgan = require("morgan");
+const morgan = require("morgan"); 
 
 // express object
 const app = express()
@@ -23,6 +23,7 @@ const { addProject } = require("./endpointHandlers/addProject");
 const { modifyProject } = require("./endpointHandlers/modifyProject");
 const { deleteProjectById } = require("./endpointHandlers/deleteProjectById");
 const { deleteAllProjects } = require("./endpointHandlers/deleteAllProjects");
+const { handleJoke } = require("./endpointHandlers/handleJoke");
 
 // to log more info in the console
 app.use(morgan("tiny"));
@@ -66,6 +67,9 @@ app.patch("/projects/:_id", modifyProject);
 app.delete("/projects/:_id", deleteProjectById);
 // delete all projects - FOR DEVELOPMENT
 app.delete("/projects", deleteAllProjects);
+
+// whimsy
+app.get("/joke", handleJoke)
 
 // catch all endpoint
 app.get("*", (req,res) => {

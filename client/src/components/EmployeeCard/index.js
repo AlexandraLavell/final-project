@@ -4,7 +4,7 @@ import React, {useContext} from "react";
 import MainContext from "../MainContext";
 
 // styled components
-import { EmployeeCardWrapper } from "./StyledEmployeeCard";
+import { CardWrapper } from "./StyledEmployeeCard";
 
 const EmployeeCard = (props) => {
 
@@ -39,7 +39,7 @@ const EmployeeCard = (props) => {
     // start of main return
     return (
 
-        <EmployeeCardWrapper
+        <CardWrapper
             _id={props.id}
             className={props.className}
             draggable={props.draggable}
@@ -48,7 +48,7 @@ const EmployeeCard = (props) => {
             onDragEnd={dragEnd}
         >
             { props.children }
-        </EmployeeCardWrapper>
+        </CardWrapper>
 
 
 

@@ -14,8 +14,8 @@ export const ProjectContainerWrapper = styled.div`
     border: 1px solid black;
 `;
 
-export const ProjectListHeader = styled.div`    
-    height: fit-content;
+export const SubsectionHeader = styled.div`    
+    height: 3%;
     display: flex; 
     justify-content: space-between;
     color:black;

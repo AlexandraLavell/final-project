@@ -5,34 +5,55 @@ import React, { useState, useContext } from "react";
 
 // style
 import {    EmployeeFormWrapper, 
-            DateWrapper,
-            ProjectDates} from "./StyledAddEmployeeForm";
+            EmployeeFormInput,
+            SubsectionHeader,
+        } from "./StyledAddEmployeeForm";
 
 const AddEmployeeForm = () => {
     
+    // local state variables
     const [ dates, setDates ] = useState([]);
-
-    const handleDates = (ev) => {
-
-        if(dates.includes(ev.target.value)){  
-            const newArray = dates.filter((date) => {return date !== ev.target.value});
-            setDates(newArray); 
-        }else{
-            setDates([...dates, ev.target.value]);
-            // ev.target.value=0;           
-        }   
-        console.log(dates);        
-    }
+    const [ empNumber, setEmpNumber ] = useState();
+    const [ empFirstName, setEmpFirstName ] = useState();
+    const [ empLastName, setEmpLastName ] = useState();
+    const [ empPhone, setEmpPhone ] = useState();
+    const [ empEmail, setEmpEmail ] = useState();   
 
 
     // start main return
     return(
-
         <EmployeeFormWrapper>
-            <DateWrapper id="datewrapper">              
-                <ProjectDates type="date" value={dates} onChange={handleDates} />
-                {dates}
-            </DateWrapper>
+            <SubsectionHeader>Add Employee </SubsectionHeader>
+            <EmployeeFormInput  type="text" 
+                                value={empNumber} 
+                                onChange={(ev)=>setEmpNumber(ev.target.value)}
+                                placeholder="Employee Number">                                    
+                                </EmployeeFormInput>
+            <EmployeeFormInput  type="text" 
+                                value={empFirstName} 
+                                onChange={(ev)=>setEmpFirstName(ev.target.value)}
+                                placeholder="First Name">
+                                </EmployeeFormInput>
+            <EmployeeFormInput  type="text" 
+                                value={empLastName} 
+                                onChange={(ev)=>setEmpLastName(ev.target.value)}
+                                placeholder="Last Name">
+                                </EmployeeFormInput>
+            <EmployeeFormInput  type="email" 
+                                value={empEmail} 
+                                onChange={(ev)=>setEmpEmail(ev.target.value)}
+                                placeholder="Email">
+                                </EmployeeFormInput>
+            <EmployeeFormInput  type="tel" 
+                                value={empPhone} 
+                                onChange={(ev)=>setEmpPhone(ev.target.value)}
+                                placeholder="Phone Number">
+                                </EmployeeFormInput>                 
+            <EmployeeFormInput  type="submit" 
+                                value="Submit">
+                                </EmployeeFormInput>   
+            <EmployeeFormInput  type="reset" >
+                                </EmployeeFormInput>   
         </EmployeeFormWrapper>
 
 

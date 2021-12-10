@@ -18,8 +18,8 @@ export const EmployeeContainerWrapper = styled.div`
     background: var(--color-main-yellow);
     border: 1px solid black;
 `;
-export const EmployeeListHeader = styled.div`    
-    height: fit-content;
+export const SubsectionHeader = styled.div`    
+    height: 3%;
     display: flex; 
     justify-content: space-between;
     color:black;
