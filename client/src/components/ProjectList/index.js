@@ -4,10 +4,17 @@ import React, { useContext } from "react";
 import MainContext from "../MainContext";
 
 // style
-import { ProjectListWrapper } from "./StyledProjectList";
+import {    ProjectContainerWrapper,
+            ProjectListHeader,
+            AddNav,
+            ProjectListWrapper } from "./StyledProjectList";
 
 // components
 import ProjectCard from "../ProjectCard";
+
+// assets
+import { FiPlus } from "react-icons/fi"
+
 
 const ProjectList = (props) => {
     
@@ -38,19 +45,22 @@ const ProjectList = (props) => {
 
     // start of main return
     return (
-        <ProjectListWrapper
-                    id={props.id}
-                    onDrop={drop}
-                    onDragOver={dragOver}
-                    className={props.className}
-                    >
-            { props.children }
-            {projectList.map((prj) => {
-                return  (<ProjectCard _id={prj._id} className="projectCard" draggable="true" >
-                        <p>{prj._id}</p>
-                        </ProjectCard>)
-            })}
-        </ProjectListWrapper>
+        <ProjectContainerWrapper>
+            <ProjectListHeader><p>Projects</p><AddNav exact to="/addProject"><FiPlus/></AddNav></ProjectListHeader>
+            <ProjectListWrapper
+                        id={props.id}
+                        onDrop={drop}
+                        onDragOver={dragOver}
+                        className={props.className}
+                        >
+                { props.children }
+                {projectList.map((prj) => {
+                    return  (<ProjectCard _id={prj._id} className="projectCard" draggable="true" >
+                            <p>{prj._id}</p>
+                            </ProjectCard>)
+                })}
+            </ProjectListWrapper>
+        </ProjectContainerWrapper>
     ) // end of main return
 }
 
