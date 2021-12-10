@@ -8,7 +8,7 @@ require("dotenv").config({path:"../.env"});
 const { OPENCAGE_API_KEY } = process.env;
 
 const options = {
-    uri: 'https://icanhazdadjoke.com/ ',
+    uri: 'https://icanhazdadjoke.com/ ', 
     headers:{ 
         "Accept": "application/json"
         }
