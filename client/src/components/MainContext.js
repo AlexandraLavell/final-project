@@ -41,7 +41,6 @@ export const MainContextProvider = ({children}) => {
         })
         .then(res => res.json())
         .then(data => {
-                        console.log(data);
                         setEmployeeList(data.data);
         })
         .catch((err) => {
@@ -59,7 +58,6 @@ export const MainContextProvider = ({children}) => {
         })
         .then(res => res.json())
         .then(data => {
-                        console.log(data);
                         setProjectList(data.data);
         })
         .catch((err) => {
@@ -67,7 +65,6 @@ export const MainContextProvider = ({children}) => {
                             history.push("/error");
                         });
     },[]);
-
 
     if(
             !employeeList
@@ -78,6 +75,9 @@ export const MainContextProvider = ({children}) => {
                         </CircularProgressWrapper>                    
                     )                    
         }
+
+
+    
 
 
 

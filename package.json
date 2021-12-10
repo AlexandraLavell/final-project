@@ -3,6 +3,7 @@
     "dotenv": "^10.0.0",
     "file-system": "^2.2.2",
     "mongodb": "^4.2.0",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "react-tippy": "^1.4.0"
   }
 }

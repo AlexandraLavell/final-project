@@ -31,11 +31,17 @@ const getEmployeesByProject = async (req, res) =>  {
         const queryString = "projects." + _id;
 
         // find all employees who are working on the project
-        const employeesOnTheProject = await db.collection("employees").find({[queryString]:{$exists:true}}).toArray(); 
+        const employeesOnTheProject = await db.collection("employees").find({[queryString]:{$exists:true}}, 
+                                                                        { projection: {_id:1}}).toArray(); 
 
         //close the collection
         client.close();
         console.log("DISCONNECTED");
+
+        let listOfEmployees = [];
+        employeesOnTheProject.map((emp) => {
+            listOfEmployees.push(emp._id);
+        });
 
         // return the json object and status
         return (
@@ -43,7 +49,7 @@ const getEmployeesByProject = async (req, res) =>  {
             // SUCCESS return
             res.status(200).json({
                 status: 200,
-                data: employeesOnTheProject,
+                data: listOfEmployees,
             })
         ) 
     } catch (err) {

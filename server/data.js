@@ -5,7 +5,7 @@ const employees = [
         lastName: "Cardenas",
         email: "aisha_crdenas@gmorning.ca",
         phone: "514-514-1110",
-        projects: {"pr0001":[Date("2022-01-20"), Date("2022-02-20")]},
+        projects: {"pr0001":[Date()]},
     },
     {
         _id: "ee1111",
@@ -13,7 +13,7 @@ const employees = [
         lastName: "Burgess",
         email: "marietta_burgess@gmorning.ca",
         phone: "514-514-1111",
-        projects: {"pr0001":[Date("2022-01-20"), Date("2022-02-20")]},
+        projects: {"pr0001":[Date()]},
     },
     {
         _id: "ee1112",
@@ -21,7 +21,7 @@ const employees = [
         lastName: "Stanton",
         email: "nicole_stanton@gmorning.ca",
         phone: "514-514-1112",
-        projects: {"pr0001":[Date("2022-01-20"), Date("2022-02-20")]},
+        projects: {"pr0001":[Date()]},
     },
     {
         _id: "ee1113",
@@ -29,7 +29,7 @@ const employees = [
         lastName: "Watson",
         email: "esther_watson@gmorning.ca",
         phone: "514-514-1113",
-        projects: {"pr0001":[Date("2022-01-20"), Date("2022-02-20")]},
+        projects: {"pr0001":[Date()]},
     },
     {
         _id: "ee1114",
@@ -37,7 +37,7 @@ const employees = [
         lastName: "Chaney",
         email: "rebecca_chaney@gmorning.ca",
         phone: "514-514-1114",
-        projects: {"pr0001":[Date("2022-01-20"), Date("2022-02-20")]},
+        projects: {"pr0001":[Date()]},
     },
     {
         _id: "ee1115",
@@ -45,7 +45,7 @@ const employees = [
         lastName: "Manning",
         email: "ella_manning@gmorning.ca",
         phone: "514-514-1115",
-        projects: {"pr0001":[Date("2022-01-20"), Date("2022-02-20")]},
+        projects: {"pr0001":[Date()]},
     },
     {
         _id: "ee1116",
@@ -53,7 +53,7 @@ const employees = [
         lastName: "Griffith",
         email: "mikela_griffith@gmorning.ca",
         phone: "514-514-1116",
-        projects: {"pr0001":[Date("2022-01-20"), Date("2022-02-20")]},
+        projects: {"pr0001":[Date()]},
     },
     {
         _id: "ee1117",
@@ -61,7 +61,7 @@ const employees = [
         lastName: "Dyer",
         email: "jessie_dyer@gmorning.ca",
         phone: "514-514-1117",
-        projects: {"pr0001":[Date("2022-01-20"), Date("2022-02-20")]},
+        projects: {"pr0001":[Date()]},
     },
     {
         _id: "ee1118",
@@ -69,7 +69,7 @@ const employees = [
         lastName: "Nielsen",
         email: "hope_nielsen@gmorning.ca",
         phone: "514-514-1118",
-        projects: {"pr0001":[Date("2022-01-20"), Date("2022-02-20")]},
+        projects: {"pr0001":[Date()]},
     },
     {
         _id: "ee1119",
@@ -77,7 +77,7 @@ const employees = [
         lastName: "Richardson",
         email: "kimberley_richardson@gmorning.ca",
         phone: "514-514-1119",
-        projects: {"pr0001":[Date("2022-01-20"), Date("2022-02-20")]},
+        projects: {"pr0001":[Date()]},
     },
 
 ];
