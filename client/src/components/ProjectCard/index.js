@@ -12,8 +12,12 @@ import "tippy.js/dist/tippy.css";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 
-// style
-import { ProjectCardWrapper } from "./StyledProjectCard";
+// styled components
+import {    ProjectCardWrapper, 
+            TippyWrapper,
+            TippyContent } 
+            from "./StyledProjectCard";
+
 import styled from "styled-components";
 
 const ProjectCard = (props) => {
@@ -92,10 +96,9 @@ const ProjectCard = (props) => {
             onDragOver={dragOver}
             onDragEnd={dragEnd}
         >
-            {projectEmployees ?
-            <Tippy content={"On this project: " + projectEmployees.toString()}>
+            <TippyWrapper content={<div><p>On this project: </p><TippyContent>{projectEmployees.toString()}</TippyContent></div>}>
                 <div>{ props.children }</div>
-            </Tippy> : <div>{ props.children }</div> }
+            </TippyWrapper>
         </ProjectCardWrapper>
     ) // end of main return
 }

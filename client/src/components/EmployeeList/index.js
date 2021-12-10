@@ -4,12 +4,13 @@ import React,{ useContext } from "react";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 
-
 // context
 import MainContext from "../MainContext";
 
 // style
-import { EmployeeListWrapper } from "./StyledEmployeeList";
+import {    EmployeeListWrapper,
+            TippyWrapper,
+            TippyContent} from "./StyledEmployeeList";
 
 // componenets
 import EmployeeCard from "../EmployeeCard";
@@ -83,12 +84,12 @@ const EmployeeList = (props) => {
 
                 return  (                            
                             <EmployeeCard _id={emp._id} className="employeeCard" draggable="true" >                                
-                                <Tippy content={"Today: " + todaysProjects.toString()}>
+                                <TippyWrapper content={<div><p>Today: </p><TippyContent>{todaysProjects.toString()}</TippyContent></div>}>
                                     <div>
                                         <p>{emp._id}</p>
                                         <p>{emp.firstName} {emp.lastName}</p> 
                                     </div>
-                                </Tippy>                                
+                                </TippyWrapper>                                
                             </EmployeeCard>                           
                         )
             })}
