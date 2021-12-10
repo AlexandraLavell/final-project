@@ -1,43 +1,83 @@
 import React, { useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
 // import DatePicker from "react-datepicker";
 
 // import "react-datepicker/dist/react-datepicker.css";
 
+// context
+import MainContext from "../MainContext"
+
 // style
-import {    ProjectFormWrapper, 
-            DateWrapper,
-            ProjectDates} from "./StyledAddProjectForm";
+import {    ProjectFormWrapper,
+            FormInput,
+            SubsectionHeader,  
+            } from "./StyledAddProjectForm";
 
 const AddProjectForm = () => {
+
+    // consume context
+    const { projectList,
+            setProjectSubmission } = useContext(MainContext);  
     
-    const [ dates, setDates ] = useState([]);
+    const history = useHistory();
 
-    const handleDates = (ev) => {
+    // for project submission form        
+    const today = new Date();
 
-        if(dates.includes(ev.target.value)){  
-            const newArray = dates.filter((date) => {return date !== ev.target.value});
-            setDates(newArray); 
-        }else{
-            setDates([...dates, ev.target.value]);
-            // ev.target.value=0;           
-        }   
-        console.log(dates);        
-    }
+    // local state variables
+    const [ submissionDate, setSubmissionDate ] = useState(today.toDateString());
+    const [ prjName, setPrjName ] = useState();
+    const [ prjDescription, setPrjDescription ] = useState();   
+    const [ prjBudgetRequest, setPrjBudgetRequest ] = useState();
 
-
+    const handleSubmit = (ev) => {
+        ev.preventDefault();
+        
+        setProjectSubmission({
+                        "project_name": prjName,
+                        "approval": "pending",
+                        "description": prjDescription,
+                        "requested_budget": prjBudgetRequest,
+                        "actual_budget": "",
+                        "status": "not startd",
+                        "final_report": "" 
+                    }); 
+        history.push("/dash");
+    }   
+    
     // start main return
     return(
-
-        <ProjectFormWrapper>
-            <DateWrapper id="datewrapper">              
-                <ProjectDates type="date" value={dates} onChange={handleDates} />
-                {dates}
-            </DateWrapper>
+        <ProjectFormWrapper onSubmit={handleSubmit}>
+            <SubsectionHeader>Project request</SubsectionHeader>
+            <FormInput  type="text" 
+                        value={submissionDate}
+                        required>
+                        </FormInput>       
+            <FormInput  type="text" 
+                        value={prjName} 
+                        onChange={(ev)=>setPrjName(ev.target.value)}
+                        placeholder="Project name"
+                        required>                                    
+                        </FormInput>
+            <FormInput  type="text" 
+                        value={prjDescription} 
+                        onChange={(ev)=>setPrjDescription(ev.target.value)}
+                        placeholder="Short description"
+                        required>
+                        </FormInput>  
+            <FormInput  type="number" 
+                        min="0"
+                        step="1"
+                        value={prjBudgetRequest} 
+                        onChange={(ev)=>setPrjBudgetRequest(ev.target.value)}
+                        placeholder="Requested budget"
+                        required>
+                        </FormInput>                         
+            <FormInput  type="submit" 
+                        value="Submit"
+                        className="submit">
+                        </FormInput> 
         </ProjectFormWrapper>
-
-
-
-
     ) // end of main return
 
 

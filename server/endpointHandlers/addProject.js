@@ -15,8 +15,9 @@ const options = {
 // get all items from the database
 const addProject = async (req, res) =>  {
     try {
-         // get project details from the body
-        const { _id,
+         // get project details from the body, default values listed
+        const { _id = "pr" + Date.now(),
+                project_name = "",
                 approval = "",
                 description = "",
                 requested_budget = "",
@@ -33,19 +34,20 @@ const addProject = async (req, res) =>  {
         // connect to the database
         const db = client.db("goodmorning");
         console.log("CONNECTED");
-
+        
         const newProject = {    _id,
+                                project_name,
                                 approval,
                                 description,
                                 requested_budget,
                                 actual_budget,
                                 status,
                                 final_report };
+    
 
         // add a project
         const projectAdded = await db.collection("projects").insertOne(newProject);
-
-
+    
         // close the collection
         client.close();
         console.log("DISCONNECTED");

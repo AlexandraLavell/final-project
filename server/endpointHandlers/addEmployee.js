@@ -18,7 +18,7 @@ const addEmployee = async (req, res) =>  {
     try {
         // get the employee details from the request body
         // default vaules for consistency
-        const { _id,
+        const { _id = "ee" + Date.now(),
                 firstName = "",
                 lastName = "",
                 email = "", 

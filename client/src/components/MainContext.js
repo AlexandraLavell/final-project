@@ -25,6 +25,7 @@ export const MainContextProvider = ({children}) => {
     const [currentProject, setCurrentProject] = useState(); // for the project dashboard
     const [mainDash, setMainDash] = useState({}); //all objects on the main dashboard
     const [employeeList, setEmployeeList] = useState(); 
+    const [newEmployee, setNewEmployee] = useState();
     const [projectList, setProjectList] = useState(); // list of all projects -- will be on the database
     const [today, setToday] = useState(); //to determine what day it is
     const [projectProgress, setProjectProgress] = useState(); //for overall progress of all projects
@@ -32,6 +33,7 @@ export const MainContextProvider = ({children}) => {
     const [errorMessage, setErrorMessage] = useState("error"); //error message from server
     
     
+    // fetch a list of all employees
     useEffect(()=>{       
         fetch(`/employees`, {
         method: "GET",
@@ -49,6 +51,7 @@ export const MainContextProvider = ({children}) => {
                         });
     },[]);
 
+    // fetch a list of all projects
     useEffect(()=>{       
         fetch(`/projects`, {
         method: "GET",
@@ -66,6 +69,56 @@ export const MainContextProvider = ({children}) => {
                         });
     },[]);
 
+    // submit a project
+    useEffect(() => {
+        // if statement stops useEffect from actioning on pageload
+        // since no new project submission has been added
+        if(projectSubmission){
+            fetch(`/projects`, {
+                method: "POST",
+                headers: {
+                    Accept: "application/json",// response type
+                    "Content-Type": "application/json", //send type of the body                
+                },
+                body: JSON.stringify(projectSubmission),
+                })
+                .then(res => res.json())
+                .then(data => {
+                                console.log(data);                                
+                })
+                .catch(err => {
+                    console.log(err);
+                    history.push("/error");
+                });   
+                
+            } 
+    },[projectSubmission])
+
+    // add new employee
+    useEffect(() => {
+        // if statement stops useEffect from actioning on pageload
+        // since no new employee has been added
+        if(newEmployee){
+            fetch(`/employees`, {
+                method: "POST",
+                headers: {
+                    Accept: "application/json",// response type
+                    "Content-Type": "application/json", //send type of the body                
+                },
+                body: JSON.stringify(newEmployee),
+                })
+                .then(res => res.json())
+                .then(data => {
+                                console.log(data);                                
+                })
+                .catch(err => {
+                    console.log(err);
+                    history.push("/error");
+                });   
+                
+            } 
+    },[newEmployee])
+
     if(
             !employeeList
             || !projectList
@@ -76,17 +129,13 @@ export const MainContextProvider = ({children}) => {
                     )                    
         }
 
-
-    
-
-
-
     return <MainContext.Provider value={{
                                             signInPage, setSignInPage,
                                             currentEmployee, setCurrentEmployee,
                                             currentProject, setCurrentProject,
                                             mainDash, setMainDash,                                            
                                             employeeList, setEmployeeList,
+                                            newEmployee, setNewEmployee,
                                             projectList, setProjectList,
                                             today, setToday,
                                             projectProgress, setProjectProgress,
@@ -106,3 +155,6 @@ const CircularProgressWrapper = styled.div`
 
 
 export default MainContext;
+
+
+
