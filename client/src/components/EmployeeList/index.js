@@ -1,5 +1,10 @@
 import React,{ useContext } from "react";
 
+// Tippy
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css";
+
+
 // context
 import MainContext from "../MainContext";
 
@@ -9,15 +14,11 @@ import { EmployeeListWrapper } from "./StyledEmployeeList";
 // componenets
 import EmployeeCard from "../EmployeeCard";
 
-
-
 const EmployeeList = (props) => {
 
     // consume context
     const { employeeList } = useContext(MainContext);
-
-    console.log("EMPLOYEE LIST ", employeeList);
-
+    
     const drop = (ev) => {        
         ev.preventDefault();
 
@@ -63,7 +64,7 @@ const EmployeeList = (props) => {
     // start of main return
     return (
         <EmployeeListWrapper
-                    id={props.id}
+                    _id={props.id}
                     onDrop={drop}
                     onDragOver={dragOver}
                     onDragLeave={dragLeave}
@@ -71,10 +72,25 @@ const EmployeeList = (props) => {
                     >
             { props.children }
             {employeeList.map((emp) => {
-                return  (<EmployeeCard id={emp._id} className="employeeCard" draggable="true" >
-                        <p>{emp._id}</p>
-                        <p>{emp.firstName} {emp.lastName}</p>
-                        </EmployeeCard>)
+                
+                // this generates a list of projects the employee is working on today
+                const keyList = Object.keys(emp.projects);
+                const todaysProjects = keyList.filter((key) => {
+                    return ( emp.projects[key].filter((keyDate) => {
+                        return Date(keyDate) === Date();})    
+                    )}                
+                )                
+
+                return  (                            
+                            <EmployeeCard _id={emp._id} className="employeeCard" draggable="true" >                                
+                                <Tippy content={"Today: " + todaysProjects.toString()}>
+                                    <div>
+                                        <p>{emp._id}</p>
+                                        <p>{emp.firstName} {emp.lastName}</p> 
+                                    </div>
+                                </Tippy>                                
+                            </EmployeeCard>                           
+                        )
             })}
         </EmployeeListWrapper>
     ) // end of main return
