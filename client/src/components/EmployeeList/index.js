@@ -9,7 +9,7 @@ import MainContext from "../MainContext";
 
 // style
 import {    EmployeeContainerWrapper,
-            EmployeeListHeader,
+            SubsectionHeader,
             AddNav,
             EmployeeListWrapper,
             TippyWrapper,
@@ -76,7 +76,7 @@ const EmployeeList = (props) => {
     // start of main return
     return (
         <EmployeeContainerWrapper>
-            <EmployeeListHeader>Employees<AddNav exact to="/addEmployee"><FiPlus/></AddNav></EmployeeListHeader>
+            <SubsectionHeader>Employees<AddNav exact to="/addEmployee"><FiPlus/></AddNav></SubsectionHeader>
             <EmployeeListWrapper
                         _id={props.id}
                         onDrop={drop}

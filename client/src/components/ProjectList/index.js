@@ -5,7 +5,7 @@ import MainContext from "../MainContext";
 
 // style
 import {    ProjectContainerWrapper,
-            ProjectListHeader,
+            SubsectionHeader,
             AddNav,
             ProjectListWrapper } from "./StyledProjectList";
 
@@ -46,7 +46,7 @@ const ProjectList = (props) => {
     // start of main return
     return (
         <ProjectContainerWrapper>
-            <ProjectListHeader><p>Projects</p><AddNav exact to="/addProject"><FiPlus/></AddNav></ProjectListHeader>
+            <SubsectionHeader><p>Projects</p><AddNav exact to="/addProject"><FiPlus/></AddNav></SubsectionHeader>
             <ProjectListWrapper
                         id={props.id}
                         onDrop={drop}
