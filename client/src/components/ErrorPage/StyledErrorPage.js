@@ -10,9 +10,8 @@ export const ErrorWrapper = styled.div`
     height: 100%;
     width: 100%;
     padding: 15px;
-    background: lemonchiffon;    
+    background: var(--color-main-yellow);    
     border-top: 1px solid black;
-
 `;
 
 export const MessageWrapper = styled.div`

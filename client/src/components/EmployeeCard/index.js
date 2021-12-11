@@ -40,7 +40,7 @@ const EmployeeCard = (props) => {
     return (
 
         <CardWrapper
-            _id={props.id}
+            id={props._id}
             className={props.className}
             draggable={props.draggable}
             onDragStart={dragStart}

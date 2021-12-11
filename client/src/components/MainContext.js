@@ -23,6 +23,7 @@ export const MainContextProvider = ({children}) => {
     const [signInPage, setSignInPage ] = useState(true);
     const [currentEmployee, setCurrentEmployee] = useState(); // for the employee dashboard
     const [currentProject, setCurrentProject] = useState(); // for the project dashboard
+    const [projectDash, setProjectDash] = useState(); //get all info for project dash
     const [mainDash, setMainDash] = useState({}); //all objects on the main dashboard
     const [employeeList, setEmployeeList] = useState(); 
     const [newEmployee, setNewEmployee] = useState();
@@ -31,7 +32,25 @@ export const MainContextProvider = ({children}) => {
     const [projectProgress, setProjectProgress] = useState(); //for overall progress of all projects
     const [projectSubmission, setProjectSubmission] = useState(); //array of all project proposals -- will be on the database
     const [errorMessage, setErrorMessage] = useState("error"); //error message from server
+    const [joke, setJoke] = useState();
     
+    // fetch a joke on load
+    useEffect(()=>{       
+        fetch(`/joke`, {
+        method: "GET",
+        headers: {
+            Accept: "application/json",// response type
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+                        setJoke(data.data);
+        })
+        .catch((err) => {
+                            setErrorMessage(err);
+                            history.push("/error");
+                        });
+    },[]);
     
     // fetch a list of all employees
     useEffect(()=>{       
@@ -117,22 +136,69 @@ export const MainContextProvider = ({children}) => {
                 });   
                 
             } 
-    },[newEmployee])
+    },[newEmployee]);
+
+      // fetch a list of all projects
+    useEffect(()=>{ 
+        // if statement stops useEffect from actioning on pageload
+        // since no project has been added to the dash
+        if(currentProject){      
+        fetch(`/projects/${currentProject}`, {
+        method: "GET",
+        headers: {
+            Accept: "application/json",// response type
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+                        setProjectDash(data.data);
+        })
+        .catch((err) => {
+                            setErrorMessage(err);
+                            history.push("/error");
+                        });
+        }
+    },[currentProject]);    
+
+     // fetch a list of all projects
+    useEffect(()=>{ 
+        // if statement stops useEffect from actioning on pageload
+        // since no project has been added to the dash
+        if(currentProject){      
+        fetch(`/projects/${currentProject}`, {
+        method: "GET",
+        headers: {
+            Accept: "application/json",// response type
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+                        setProjectDash(data.data);
+        })
+        .catch((err) => {
+                            setErrorMessage(err);
+                            history.push("/error");
+                        });
+        }
+    },[currentProject]);
 
     if(
-            !employeeList
-            || !projectList
-        ){  return (
-                        <CircularProgressWrapper>
-                            <CircularProgress color="primary"/>
-                        </CircularProgressWrapper>                    
-                    )                    
-        }
+        !employeeList
+        || !projectList
+        || !joke
+    ){  return (
+                    <CircularProgressWrapper>
+                        <CircularProgress color="primary"/>
+                    </CircularProgressWrapper>                    
+                )                    
+    }
+
 
     return <MainContext.Provider value={{
                                             signInPage, setSignInPage,
                                             currentEmployee, setCurrentEmployee,
                                             currentProject, setCurrentProject,
+                                            projectDash, setProjectDash,
                                             mainDash, setMainDash,                                            
                                             employeeList, setEmployeeList,
                                             newEmployee, setNewEmployee,
@@ -141,6 +207,7 @@ export const MainContextProvider = ({children}) => {
                                             projectProgress, setProjectProgress,
                                             projectSubmission, setProjectSubmission,
                                             errorMessage, setErrorMessage,
+                                            joke, setJoke,
         }}>{children}</MainContext.Provider>
 }
 

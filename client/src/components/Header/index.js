@@ -26,7 +26,7 @@ const Header = () => {
     // start of main return
     return (
         <HeaderWrapper className={show && "blue"}>
-            <p>Header</p>
+            <p>Good Morning.</p>
         </HeaderWrapper>
 
     ) //end of main return
