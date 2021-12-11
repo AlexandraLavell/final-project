@@ -37,7 +37,7 @@ const App = () => {
   return (
     <>
     // <Router>  
-    {false ?
+    {signInPage ?
     <SignIn /> :
     <AppContainer>
       <Header />            

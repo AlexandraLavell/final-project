@@ -4,6 +4,10 @@ import React, { useState,
             } from "react";
 import { useHistory } from "react-router-dom";
 
+// persisted state hook
+import usePersistedState from "./PersistedStateHook.js";
+
+
 // circular progress
 import CircularProgress from "@material-ui/core/CircularProgress";
 
@@ -20,7 +24,7 @@ export const MainContextProvider = ({children}) => {
     // history for error page
     const history = useHistory();
 
-    const [signInPage, setSignInPage ] = useState(true);
+    const [signInPage, setSignInPage ] = usePersistedState("sign-in", true); //for keeping the use logged in
     const [currentEmployee, setCurrentEmployee] = useState(); // for the employee dashboard
     const [currentProject, setCurrentProject] = useState(); // for the project dashboard
     const [projectDash, setProjectDash] = useState(); //get all info for project dash
