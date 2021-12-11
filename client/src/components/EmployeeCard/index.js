@@ -35,7 +35,6 @@ const EmployeeCard = (props) => {
         target.style.display = "block";
     }
 
-
     // start of main return
     return (
 
@@ -49,16 +48,7 @@ const EmployeeCard = (props) => {
         >
             { props.children }
         </CardWrapper>
-
-
-
-
     ) // end of main return
-
-
-
-
-
 }
 
 export default EmployeeCard;

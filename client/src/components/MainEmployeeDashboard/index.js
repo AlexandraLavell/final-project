@@ -6,25 +6,16 @@ import MainContext from "../MainContext";
 // style
 import { EmployeeDashWrapper }  from "./StyledMainEmployeeDashboard";
 
-
-
 const MainEmployeeDashboard = (props) => {
 
     // consume context
     const { employeeList, currentEmployee, setCurrentEmployee } = useContext(MainContext);
 
-    const drop = (ev) => {        
-
-        // if (ev.target.className === "employeeCard_id"){
+    const drop = (ev) => {      
         ev.preventDefault();
-
-        console.log("DROP ON EMPLOYEE DASH", ev.target.className);
 
         const card_id = ev.dataTransfer.getData("card_id");
         const card_class = ev.dataTransfer.getData("card_class");
-
-        console.log("GET CLASS DATA", card_class);
-        console.log("GET ID DATA ", card_id);
 
         // use includes instead of "===" because the class name also has automatic extra junk
         if (card_class.includes("employeeCard")){
@@ -43,14 +34,11 @@ const MainEmployeeDashboard = (props) => {
 
             const card= document.getElementById(card_id);
 
-            console.log("ELEMENT BY ID ", card);
-
             card.style.display = "block";
 
             ev.target.appendChild(card);
         }
 
-        console.log("CURRENT EMPLOYEE ", currentEmployee);
 
     }
 
@@ -71,14 +59,9 @@ const MainEmployeeDashboard = (props) => {
                     className={props.className}
                     >
             { props.children }
-            main employee background
-            <p>{currentEmployee + employeeList[0].projects}</p>
+            <p>{currentEmployee}</p>
+
         </EmployeeDashWrapper>
-
-
-
-
-
     ) // end of main return
 
 

@@ -17,13 +17,12 @@ const addEmployee = async (req, res) =>  {
 
     try {
         // get the employee details from the request body
-        // default vaules for consistency
-        const { _id = "ee" + Date.now(),
+        const { _id,
                 firstName = "",
                 lastName = "",
                 email = "", 
                 phone = "",
-                projects = {} 
+                projects = {}
             } = req.body;
 
 
@@ -60,7 +59,7 @@ const addEmployee = async (req, res) =>  {
             lastName,
             email, 
             phone,
-            projects: updatedProjects};
+            projects : updatedProjects};
 
         // insert one new employee
         const employeeAdded = await db.collection("employees")
@@ -81,6 +80,7 @@ const addEmployee = async (req, res) =>  {
             })
         ) 
     } catch (err) {
+        console.log(err);
 
         // ERROR return
         res.status(400).json({
