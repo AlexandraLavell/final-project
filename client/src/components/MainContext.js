@@ -35,7 +35,8 @@ export const MainContextProvider = ({children}) => {
     const [mainDash, setMainDash] = useState({}); //all objects on the main dashboard
 
     // employee dashboard    
-    const [currentEmployee, setCurrentEmployee] = useState("Drag employee card here"); // for the employee dashboard    
+    const [currentEmployee, setCurrentEmployee] = useState();
+    const [currentEmployeeDash, setCurrentEmployeeDash] = useState();
     
     // project dashboard    
     const [currentProject, setCurrentProject] = useState(); // for the project dashboard
@@ -109,7 +110,7 @@ export const MainContextProvider = ({children}) => {
     useEffect(() => {
         // if statement stops useEffect from actioning on pageload
         // since no new project submission has been added
-        if(projectSubmission){
+        if(!!projectSubmission){
             fetch(`/projects`, {
                 method: "POST",
                 headers: {
@@ -134,7 +135,7 @@ export const MainContextProvider = ({children}) => {
     useEffect(() => {
         // if statement stops useEffect from actioning on pageload
         // since no new employee has been added
-        if(newEmployee){
+        if(!!newEmployee){
             fetch(`/employees`, {
                 method: "POST",
                 headers: {
@@ -159,7 +160,7 @@ export const MainContextProvider = ({children}) => {
     useEffect(()=>{ 
         // if statement stops useEffect from actioning on pageload
         // since no project has been added to the dash
-        if(currentProject){      
+        if(!!currentProject){      
         fetch(`/projects/${currentProject}`, {
         method: "GET",
         headers: {
@@ -177,27 +178,50 @@ export const MainContextProvider = ({children}) => {
         }
     },[currentProject]);    
 
-     // fetch a list of all projects
-    useEffect(()=>{ 
-        // if statement stops useEffect from actioning on pageload
-        // since no project has been added to the dash
-        if(currentProject){      
-        fetch(`/projects/${currentProject}`, {
-        method: "GET",
-        headers: {
-            Accept: "application/json",// response type
-            }
-        })
-        .then(res => res.json())
-        .then(data => {
-                        setProjectDash(data.data);
-        })
-        .catch((err) => {
-                            setErrorMessage(err);
-                            history.push("/error");
-                        });
-        }
-    },[currentProject]);
+    // fetches a single employee for the employee dash
+    useEffect(() => {
+        if(!!currentEmployee){
+            fetch(`/employees/${currentEmployee}`, {
+                method: "GET",
+                headers: {
+                    Accept: "application/json",// response type
+                    }
+                })
+                .then(res => res.json())
+                .then(data => {
+                                setCurrentEmployeeDash(data.data);
+                })
+                .catch((err) => {
+                                    setErrorMessage(err);
+                                    history.push("/error");
+                                });  
+                        }    
+    }, [currentEmployee]);
+
+    // delete employee
+    const deleteEmployee = (emp) => {
+        console.log("INSIDE DELETE");
+        if(!!currentEmployee){
+            fetch(`/employees/${emp}`, {
+                method: "DELETE",
+                headers: {
+                    Accept: "application/json",// response type
+                    }
+                })
+                .then(res => res.json())
+                .then(data => {
+                                setCurrentEmployeeDash();
+                                setCurrentEmployee();
+                                console.log(data.data);
+                })
+                .catch((err) => {
+                                    setErrorMessage(err);
+                                    history.push("/error");
+                                });  
+                        }  
+    }
+        
+
 
     if(
         !employeeList
@@ -214,6 +238,8 @@ export const MainContextProvider = ({children}) => {
     return <MainContext.Provider value={{
                                             signInPage, setSignInPage,
                                             currentEmployee, setCurrentEmployee,
+                                            currentEmployeeDash, setCurrentEmployeeDash,
+                                            deleteEmployee,
                                             currentProject, setCurrentProject,
                                             projectDash, setProjectDash,
                                             mainDash, setMainDash,                                            
