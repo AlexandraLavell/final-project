@@ -47,6 +47,6 @@ export const ProjectListWrapper = styled.div`
     color:white;
     width: 100%;
     padding: 15px;
-    background: lemonchiffon;
+    background: var(--color-main-yellow);
     /* border: 1px solid black; */
 `;

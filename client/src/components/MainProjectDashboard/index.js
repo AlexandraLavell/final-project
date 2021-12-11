@@ -11,7 +11,10 @@ import { ProjectDashWrapper }  from "./StyledMainProjectDashboard";
 const MainProjectDashboard = (props) => {
 
     // consume context
-    const { projectList, currentProject, setCurrentProject } = useContext(MainContext);
+    const { projectList, 
+            currentProject, 
+            setCurrentProject,
+            projectDash } = useContext(MainContext);
 
     const drop = (ev) => {        
 
@@ -64,7 +67,13 @@ const MainProjectDashboard = (props) => {
                     >
             { props.children }
             main project background
-            <p>{currentProject}</p>
+            {projectDash && <div>
+                            <p>{projectDash._id}</p>
+                            <p>{projectDash.name}</p>
+                            <p>{projectDash.description}</p>
+                            <p>{projectDash.actual_budget}</p>
+                            <p>{projectDash.approval}</p>
+                            </div>}
         </ProjectDashWrapper>
     ) // end of main return
 }

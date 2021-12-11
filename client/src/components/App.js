@@ -70,7 +70,7 @@ const App = () => {
         </ComponentContainer>
       <Footer />        
     </AppContainer>}
-  // </Router> 
+  </Router> 
   </> 
   );
 }
@@ -84,7 +84,7 @@ const AppContainer = styled.div`
   height: 200vh;
   width: 100%;
   background-image: url("garden.jpg");
-  background-color: lemonchiffon;
+  background-color: var(--color-main-yellow);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

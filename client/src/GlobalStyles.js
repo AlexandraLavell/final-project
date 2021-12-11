@@ -5,12 +5,12 @@ import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
     :root {
-        --color-main-yellow: lemonchiffon;//#f9f77d;
+        --color-main-yellow: lemonchiffon;//rgba(4, 93, 28, 1);//#009B77; //lemonchiffon;//#f9f77d; 
         --color-dark-yellow: #F7F44D;
         --color-compliment-green: #056B36;
         --color-compliment-blue: #020442;
         --color-file-brown: #c49e7a;
-        --font-main: "Courier New", monospace;
+        --font-main: "Courier Prime", monospace;
         --font-body: 'Kosugi', Arial, Helvetica, sans-serif;
         --padding-page: 24px;
     }
@@ -40,6 +40,7 @@ export default createGlobalStyle`
         font-size: 100%;
         vertical-align: baseline;
         text-decoration: none;
+        font-weight: bold;
     }
     /* HTML5 display-role reset for older browsers */
     article, aside, details, figcaption, figure,
