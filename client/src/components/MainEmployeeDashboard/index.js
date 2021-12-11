@@ -1,15 +1,32 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 // context
 import MainContext from "../MainContext";
 
 // style
-import { EmployeeDashWrapper }  from "./StyledMainEmployeeDashboard";
+import {    EmployeeDashWrapper,
+            SubsectionHeader,
+            EmployeeDashForm,
+            FormInput,
+        }  from "./StyledMainEmployeeDashboard";
 
 const MainEmployeeDashboard = (props) => {
 
+    // local state variables to toggle for modifying an employee
+    const [ modify, setModify ] = useState(false);
+
+    // local state variable for update form submission
+    const [ empNumber, setEmpNumber ] = useState();
+    const [ empFirstName, setEmpFirstName] = useState();
+    const [ empLastName, setEmpLastName ] = useState();
+    const [ empEmail, setEmpEmail ] = useState();
+    const [ empPhone, setEmpPhone ] = useState();
+
     // consume context
-    const { employeeList, currentEmployee, setCurrentEmployee } = useContext(MainContext);
+    const { currentEmployee, setCurrentEmployee,
+            currentEmployeeDash,
+            deleteEmployee,
+            } = useContext(MainContext);
 
     const drop = (ev) => {      
         ev.preventDefault();
@@ -47,8 +64,14 @@ const MainEmployeeDashboard = (props) => {
         ev.preventDefault();
     }
 
+    const handleDeleteEmployee = (emp) => {
+        window.alert(`Are you sure you want to delete ${emp}`);
+        deleteEmployee(emp);
+    }
 
-
+    const handleSubmit = () => {
+        updateEmployee()
+    }
 
     // start of main return
     return (
@@ -58,9 +81,61 @@ const MainEmployeeDashboard = (props) => {
                     onDragOver={dragOver}
                     className={props.className}
                     >
+            <EmployeeDashForm onSubmit={handleSubmit}>
+                <SubsectionHeader>{currentEmployee ? currentEmployee : "Drag employee card here"}</SubsectionHeader>
+                <FormInput  type="text" 
+                            value={modify ? empNumber : (currentEmployeeDash ? currentEmployeeDash._id : "")} 
+                            onChange={(ev)=>setEmpNumber(ev.target.value)}
+                            placeholder={!!currentEmployeeDash ? currentEmployeeDash._id : "Employee number"}>                                    
+                    </FormInput>
+                <FormInput  type="text" 
+                            value={modify ? empFirstName : (currentEmployeeDash ? currentEmployeeDash.firstName : "")} 
+                            onChange={(ev)=>setEmpFirstName(ev.target.value)}
+                            placeholder={!!currentEmployeeDash ? currentEmployeeDash.firstName : "First name"}
+                            required>
+                            </FormInput>
+                <FormInput  type="text" 
+                            value={modify ? empLastName : (currentEmployeeDash ? currentEmployeeDash.lastName : "")} 
+                            onChange={(ev)=>setEmpLastName(ev.target.value)}
+                            placeholder={!!currentEmployeeDash ? currentEmployeeDash.lastName : "Last name"}
+                            required>
+                            </FormInput>
+                <FormInput  type="email" 
+                            value={modify ? empEmail : (currentEmployeeDash ? currentEmployeeDash.email : "")}  
+                            onChange={(ev)=>setEmpEmail(ev.target.value)}
+                            placeholder={!!currentEmployeeDash ? currentEmployeeDash.email : "Email"}
+                            required>
+                            </FormInput>
+                <FormInput  type="tel" 
+                            value={modify ? empPhone : (currentEmployeeDash ? currentEmployeeDash.phone : "")} 
+                            onChange={(ev)=>setEmpPhone(ev.target.value)}
+                            placeholder={!!currentEmployeeDash ? currentEmployeeDash.phone : "Phone"}
+                            required>
+                            </FormInput>   
+                <FormInput  type="text" 
+                            value={!!currentEmployeeDash ? Object.keys(currentEmployeeDash.projects).toString() : ""} 
+                            // onChange={(ev)=>setEmpPhone(ev.target.value)}
+                            placeholder={!!currentEmployeeDash ? Object.keys(currentEmployeeDash.projects).toString() : "Projects"}
+                            required>
+                            </FormInput>                
+                {/* display update and delete buttons when the user is modifying the form, toggled with modify button */}
+                {currentEmployee && modify && <FormInput  type="submit" 
+                            className={"pointer"}
+                            value="Update">
+                            </FormInput>}                 
+                {currentEmployee && modify && <FormInput  type="button" 
+                            className={"pointer"}
+                            value="Delete"
+                            onClick={()=>{handleDeleteEmployee(currentEmployeeDash._id)}}>
+                            </FormInput>} 
+                {/* modify button toggles with update button */}
+                {currentEmployee && !modify && <FormInput  type="button"
+                            className={"pointer"}
+                            value="Modify"
+                            onClick={() => {setModify(!modify)}}>
+                            </FormInput>}   
+        </EmployeeDashForm>
             { props.children }
-            <p>{currentEmployee}</p>
-
         </EmployeeDashWrapper>
     ) // end of main return
 
