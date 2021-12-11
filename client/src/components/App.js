@@ -81,7 +81,7 @@ export default App;
 const AppContainer = styled.div`
   position: relative;
   display: flex;
-  height: 200vh;
+  min-height: 200vh;
   width: 100%;
   background-image: url("garden.jpg");
   background-color: var(--color-main-yellow);

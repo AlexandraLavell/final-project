@@ -24,19 +24,32 @@ export const MainContextProvider = ({children}) => {
     // history for error page
     const history = useHistory();
 
+    // global state variables
     const [signInPage, setSignInPage ] = usePersistedState("sign-in", true); //for keeping the use logged in
-    const [currentEmployee, setCurrentEmployee] = useState(); // for the employee dashboard
-    const [currentProject, setCurrentProject] = useState(); // for the project dashboard
-    const [projectDash, setProjectDash] = useState(); //get all info for project dash
-    const [mainDash, setMainDash] = useState({}); //all objects on the main dashboard
-    const [employeeList, setEmployeeList] = useState(); 
-    const [newEmployee, setNewEmployee] = useState();
-    const [projectList, setProjectList] = useState(); // list of all projects -- will be on the database
-    const [today, setToday] = useState(); //to determine what day it is
-    const [projectProgress, setProjectProgress] = useState(); //for overall progress of all projects
-    const [projectSubmission, setProjectSubmission] = useState(); //array of all project proposals -- will be on the database
-    const [errorMessage, setErrorMessage] = useState("error"); //error message from server
+    const [employeeList, setEmployeeList] = useState(); // list of all employees
+    const [projectList, setProjectList] = useState(); // list of all projects 
     const [joke, setJoke] = useState();
+    const [errorMessage, setErrorMessage] = useState("error"); //error message from server
+
+    // main dashboard
+    const [mainDash, setMainDash] = useState({}); //all objects on the main dashboard
+
+    // employee dashboard    
+    const [currentEmployee, setCurrentEmployee] = useState("Drag employee card here"); // for the employee dashboard    
+    
+    // project dashboard    
+    const [currentProject, setCurrentProject] = useState(); // for the project dashboard
+    const [projectDash, setProjectDash] = useState(); //get all info for project dash        
+    
+    // extra?
+    const [projectProgress, setProjectProgress] = useState(); //for overall progress of all projects
+    
+    // forms
+    const [today, setToday] = useState(); //to determine what day it is for form submission
+    const [newEmployee, setNewEmployee] = useState(); // for adding a new employee
+    const [projectSubmission, setProjectSubmission] = useState(); //array of all project proposals 
+    
+    
     
     // fetch a joke on load
     useEffect(()=>{       
