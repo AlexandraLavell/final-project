@@ -29,9 +29,8 @@ const MainProjectDashboard = (props) => {
     
 
     // consume context
-    const { currentProject, 
-            setCurrentProject,
-            currentProjectDash,
+    const { currentProject, setCurrentProject,
+            currentProjectDash, setCurrentProjectDash,
             updateProject,
             deleteProject, 
             } = useContext(MainContext);
@@ -52,7 +51,8 @@ const MainProjectDashboard = (props) => {
 
             ev.target.appendChild(card);
         } else if (card_class.includes("projectCard")){
-
+            
+            setCurrentProjectDash();
             setCurrentProject(card_id);
 
             // const card= document.getElementById(card_id);

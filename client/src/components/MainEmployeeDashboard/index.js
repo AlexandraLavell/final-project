@@ -21,11 +21,11 @@ const MainEmployeeDashboard = (props) => {
     const [ empLastName, setEmpLastName ] = useState();
     const [ empEmail, setEmpEmail ] = useState();
     const [ empPhone, setEmpPhone ] = useState();
-    const [ empProjects, setEmpProjects] = useState();
+    const [ empProjects, setEmpProjects] = useState([]);
 
     // consume context
     const { currentEmployee, setCurrentEmployee,
-            currentEmployeeDash,
+            currentEmployeeDash, setCurrentEmployeeDash,
             updateEmployee,
             deleteEmployee,
             } = useContext(MainContext);
@@ -39,6 +39,7 @@ const MainEmployeeDashboard = (props) => {
         // use includes instead of "===" because the class name also has automatic extra junk
         if (card_class.includes("employeeCard")){
 
+            setCurrentEmployeeDash();
             setCurrentEmployee(card_id);
 
             // const card= document.getElementById(card_id);
@@ -51,11 +52,13 @@ const MainEmployeeDashboard = (props) => {
 
         } else if (card_class.includes("projectCard")){
 
-            const card= document.getElementById(card_id);
+            setEmpProjects([...empProjects, card_id]);
 
-            card.style.display = "block";
+            // const card= document.getElementById(card_id);
 
-            ev.target.appendChild(card);
+            // card.style.display = "block";
+
+            // ev.target.appendChild(card);
         }
     }
 
@@ -93,36 +96,36 @@ const MainEmployeeDashboard = (props) => {
             <EmployeeDashForm onSubmit={handleSubmit}>
                 <SubsectionHeader>{currentEmployee ? currentEmployee : "Drag employee card here"}</SubsectionHeader>
                 <FormInput  type="text" 
-                            value={currentEmployeeDash ? currentEmployeeDash._id : ""} 
+                            value={ currentEmployeeDash?._id || ""} 
                             // onChange={(ev)=>setEmpNumber(ev.target.value)}
-                            placeholder={!!currentEmployeeDash ? currentEmployeeDash._id : "Employee number"}>                                    
+                            placeholder={currentEmployeeDash?._id || "Employee number"}>                                    
                     </FormInput>
                 <FormInput  type="text" 
                             value={modify ? empFirstName : (currentEmployeeDash ? currentEmployeeDash.firstName : "")} 
                             onChange={(ev)=>setEmpFirstName(ev.target.value)}
-                            placeholder={!!currentEmployeeDash ? currentEmployeeDash.firstName : "First name"}
+                            placeholder={currentEmployeeDash?.firstName || "First name"}
                             required>
                             </FormInput>
                 <FormInput  type="text" 
                             value={modify ? empLastName : (currentEmployeeDash ? currentEmployeeDash.lastName : "")} 
                             onChange={(ev)=>setEmpLastName(ev.target.value)}
-                            placeholder={!!currentEmployeeDash ? currentEmployeeDash.lastName : "Last name"}
+                            placeholder={currentEmployeeDash?.lastName || "Last name"}
                             required>
                             </FormInput>
                 <FormInput  type="email" 
                             value={modify ? empEmail : (currentEmployeeDash ? currentEmployeeDash.email : "")}  
                             onChange={(ev)=>setEmpEmail(ev.target.value)}
-                            placeholder={!!currentEmployeeDash ? currentEmployeeDash.email : "Email"}
+                            placeholder={currentEmployeeDash?.email || "Email"}
                             required>
                             </FormInput>
                 <FormInput  type="tel" 
                             value={modify ? empPhone : (currentEmployeeDash ? currentEmployeeDash.phone : "")} 
                             onChange={(ev)=>setEmpPhone(ev.target.value)}
-                            placeholder={!!currentEmployeeDash ? currentEmployeeDash.phone : "Phone"}
+                            placeholder={currentEmployeeDash?.phone || "Phone"}
                             required>
                             </FormInput>   
                 <FormInput  type="text" 
-                            value={!!currentEmployeeDash ? Object.keys(currentEmployeeDash.projects).toString() : ""} 
+                            value={modify ? empProjects : (currentEmployeeDash ? Object.keys(currentEmployeeDash.projects).toString() : "")} 
                             // onChange={(ev)=>setEmpPhone(ev.target.value)}
                             placeholder={!!currentEmployeeDash ? Object.keys(currentEmployeeDash.projects).toString() : "Projects"}
                             required>
