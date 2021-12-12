@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
 
 // context
 import MainContext from "../MainContext";
@@ -18,8 +17,7 @@ const MainProjectDashboard = (props) => {
     // local state variables to toggle for modifying a project
     const [ modify, setModify ] = useState(false);
 
-    // local state variable for update form submission
-    const [ prjNumber, setPrjNumber ] = useState();
+    // local state variable for update form submission    
     const [ prjName, setPrjName ] = useState();
     const [ prjApproval, setPrjApproval ] = useState();
     const [ prjDescription, setPrjDescription] = useState();
@@ -28,13 +26,13 @@ const MainProjectDashboard = (props) => {
     const [ prjStatus, setPrjStatus ] = useState();
     const [prjFinalReport, setPrjFinalReport ] = useState();
 
-    const history = useHistory();
+    
 
     // consume context
-    const { projectList, 
-            currentProject, 
+    const { currentProject, 
             setCurrentProject,
             currentProjectDash,
+            updateProject,
             deleteProject, 
             } = useContext(MainContext);
 
@@ -72,15 +70,25 @@ const MainProjectDashboard = (props) => {
         ev.preventDefault();
     }
 
-    const handleDeleteProject = async (prj) => {
+    const handleDeleteProject = (prj) => {
         window.alert(`Are you sure you want to delete ${prj}`);
-        await deleteProject(prj);
+        deleteProject(prj);
     }
 
     const handleSubmit = (ev) => {
         ev.preventDefault();
-        // updateProject()
-    }
+        
+        updateProject({
+                        "_id": currentProjectDash._id,
+                        "project_name": prjName,
+                        "approval": prjApproval,
+                        "description": prjDescription,
+                        "requested_budget": prjRequestedBudget,
+                        "actual_budget": prjActualBudget,
+                        "status": prjStatus,
+                        "final_report": prjFinalReport,
+                    }); 
+    }   
 
     // start of main return
     return (
@@ -93,8 +101,7 @@ const MainProjectDashboard = (props) => {
             <ProjectDashForm onSubmit={handleSubmit}>
                 <SubsectionHeader>{currentProject ? currentProject : "Drag project card here"}</SubsectionHeader>
                 <FormInput  type="text" 
-                            value={modify ? prjNumber : (currentProjectDash ? currentProjectDash._id : "")} 
-                            onChange={(ev)=>setPrjNumber(ev.target.value)}
+                            value={currentProjectDash ? currentProjectDash._id : ""} 
                             placeholder={!!currentProjectDash ? currentProjectDash._id : "Project number"}>                                    
                     </FormInput>
                 <FormInput  type="text" 
@@ -141,7 +148,7 @@ const MainProjectDashboard = (props) => {
                 {currentProject && modify && <FormInput  type="reset" 
                             className={"pointer"}
                             value="Delete"
-                            onClick={(ev)=>{  handleDeleteProject(currentProjectDash._id) }}>
+                            onClick={(ev)=>{  handleDeleteProject(currentProjectDash._id)}}>
                             </FormInput>} 
                 {/* modify button toggles with update button */}
                 {currentProject && !modify && <FormInput  type="button"

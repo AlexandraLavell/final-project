@@ -12,14 +12,15 @@ const options = {
     useUnifiedTopology: true,
 }
 
-// get an employee by id
+// modify a project
 const modifyProject = async (req, res) =>  {
     try {
         // get the project id from the request parameters
         const { _id } = req.params;
         
         // get updated info from request body
-        const {
+        const { 
+                project_name,
                 approval,
                 description,
                 requested_budget,
@@ -43,6 +44,7 @@ const modifyProject = async (req, res) =>  {
                                         .findOne({_id}); 
         
         // check for updated information
+        const newName = projectFound.project_name !== project_name ? project_name : "";
         const newApproval = projectFound.approval !== approval ? approval : "";
         const newDescription = projectFound.description !== description ? description : "";
         const newRequested_budget = projectFound.requested_budget !== requested_budget ? requested_budget : "";
@@ -51,24 +53,21 @@ const modifyProject = async (req, res) =>  {
         const newFinal_report = projectFound.final_report !== final_report ? final_report : "";
         
         // update all employee info except projects
-        const filterProjects = {_id};
-
-        const updateProjectInfo = {$set: {
-                                            "$.approval": newApproval,
-                                            "$.description" : newDescription,
-                                            "$.requested_budget" : newRequested_budget,
-                                            "$.actual_budget" : newActual_budget,
-                                            "$.status" : newStatus,
-                                            "$.final_report" : newFinal_report,
-                                            }};
-
+        const filterProjects = {"_id":_id};
         
+        const updateProjectInfo = {$set: {
+                                            "project_name": newName,
+                                            "approval": newApproval,
+                                            "description" : newDescription,
+                                            "requested_budget" : newRequested_budget,
+                                            "actual_budget" : newActual_budget,
+                                            "status" : newStatus,
+                                            "final_report" : newFinal_report,
+                                            }};
 
         // update
         const updatedProject = await db.collection("projects")
                                         .updateOne(filterProjects, updateProjectInfo);  
-
-        
 
         //close the collection
         client.close();

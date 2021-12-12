@@ -42,7 +42,7 @@ const AddProjectForm = () => {
                         "status": "not startd",
                         "final_report": "" 
                     }); 
-        history.push("/dash");
+        history.push("/project");
     }   
     
     // start main return
