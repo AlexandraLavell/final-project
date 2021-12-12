@@ -256,6 +256,8 @@ export const MainContextProvider = ({children}) => {
 
     // update employee IN PROGRESS
     const updateEmployee = (emp) => {
+
+        console.log(emp);
         
         fetch(`/employees/${emp._id}`, {
             method: "PATCH",
