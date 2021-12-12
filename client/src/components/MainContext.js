@@ -30,6 +30,7 @@ export const MainContextProvider = ({children}) => {
     const [projectList, setProjectList] = useState(); // list of all projects 
     const [joke, setJoke] = useState();
     const [errorMessage, setErrorMessage] = useState("error"); //error message from server
+    const [renderFlag, setRenderFlag] = useState(false);
 
     // main dashboard
     const [mainDash, setMainDash] = useState({}); //all objects on the main dashboard
@@ -40,7 +41,7 @@ export const MainContextProvider = ({children}) => {
     
     // project dashboard    
     const [currentProject, setCurrentProject] = useState(); // for the project dashboard
-    const [projectDash, setProjectDash] = useState(); //get all info for project dash        
+    const [currentProjectDash, setCurrentProjectDash] = useState(); //get all info for project dash        
     
     // extra?
     const [projectProgress, setProjectProgress] = useState(); //for overall progress of all projects
@@ -68,7 +69,7 @@ export const MainContextProvider = ({children}) => {
                             setErrorMessage(err);
                             history.push("/error");
                         });
-    },[]);
+    },[renderFlag]);
     
     // fetch a list of all employees
     useEffect(()=>{       
@@ -86,7 +87,7 @@ export const MainContextProvider = ({children}) => {
                             setErrorMessage(err);
                             history.push("/error");
                         });
-    },[]);
+    },[renderFlag]);
 
     // fetch a list of all projects
     useEffect(()=>{       
@@ -120,7 +121,8 @@ export const MainContextProvider = ({children}) => {
                 body: JSON.stringify(projectSubmission),
                 })
                 .then(res => res.json())
-                .then(data => {
+                .then(data => {                                
+                                setRenderFlag(!renderFlag);
                                 console.log(data);                                
                 })
                 .catch(err => {
@@ -145,7 +147,8 @@ export const MainContextProvider = ({children}) => {
                 body: JSON.stringify(newEmployee),
                 })
                 .then(res => res.json())
-                .then(data => {
+                .then(data => {                    
+                                setRenderFlag(!renderFlag);
                                 console.log(data);                                
                 })
                 .catch(err => {
@@ -156,26 +159,26 @@ export const MainContextProvider = ({children}) => {
             } 
     },[newEmployee]);
 
-      // fetch a list of all projects
+    // fetch a project for the project dash
     useEffect(()=>{ 
         // if statement stops useEffect from actioning on pageload
         // since no project has been added to the dash
         if(!!currentProject){      
-        fetch(`/projects/${currentProject}`, {
-        method: "GET",
-        headers: {
-            Accept: "application/json",// response type
+            fetch(`/projects/${currentProject}`, {
+            method: "GET",
+            headers: {
+                Accept: "application/json",// response type
+                }
+            })
+            .then(res => res.json())
+            .then(data => {
+                            setCurrentProjectDash(data.data);
+            })
+            .catch((err) => {
+                                setErrorMessage(err);
+                                history.push("/error");
+                            });
             }
-        })
-        .then(res => res.json())
-        .then(data => {
-                        setProjectDash(data.data);
-        })
-        .catch((err) => {
-                            setErrorMessage(err);
-                            history.push("/error");
-                        });
-        }
     },[currentProject]);    
 
     // fetches a single employee for the employee dash
@@ -212,6 +215,31 @@ export const MainContextProvider = ({children}) => {
                 .then(data => {
                                 setCurrentEmployeeDash();
                                 setCurrentEmployee();
+                                setRenderFlag(!renderFlag);
+                                console.log(data.data);
+                })
+                .catch((err) => {
+                                    setErrorMessage(err);
+                                    history.push("/error");
+                                });  
+                        }  
+    }
+
+    // delete project
+    const deleteProject = (prj) => {
+        console.log("INSIDE DELETE");
+        if(!!currentProject){
+            fetch(`/projects/${prj}`, {
+                method: "DELETE",
+                headers: {
+                    Accept: "application/json",// response type
+                    }
+                })
+                .then(res => res.json())
+                .then(data => {
+                                setCurrentProjectDash();
+                                setCurrentProject();                                
+                                setRenderFlag(!renderFlag);
                                 console.log(data.data);
                 })
                 .catch((err) => {
@@ -241,7 +269,8 @@ export const MainContextProvider = ({children}) => {
                                             currentEmployeeDash, setCurrentEmployeeDash,
                                             deleteEmployee,
                                             currentProject, setCurrentProject,
-                                            projectDash, setProjectDash,
+                                            currentProjectDash, setCurrentProjectDash,
+                                            deleteProject,
                                             mainDash, setMainDash,                                            
                                             employeeList, setEmployeeList,
                                             newEmployee, setNewEmployee,

@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { useHistory } from "react-router-dom";
 
 // context
 import MainContext from "../MainContext";
@@ -21,6 +22,8 @@ const MainEmployeeDashboard = (props) => {
     const [ empLastName, setEmpLastName ] = useState();
     const [ empEmail, setEmpEmail ] = useState();
     const [ empPhone, setEmpPhone ] = useState();
+
+    const history = useHistory();
 
     // consume context
     const { currentEmployee, setCurrentEmployee,
@@ -70,7 +73,7 @@ const MainEmployeeDashboard = (props) => {
     }
 
     const handleSubmit = () => {
-        updateEmployee()
+        // updateEmployee()
     }
 
     // start of main return
@@ -123,18 +126,19 @@ const MainEmployeeDashboard = (props) => {
                             className={"pointer"}
                             value="Update">
                             </FormInput>}                 
-                {currentEmployee && modify && <FormInput  type="button" 
+                {currentEmployee && modify && <FormInput  type="reset" 
                             className={"pointer"}
                             value="Delete"
                             onClick={()=>{handleDeleteEmployee(currentEmployeeDash._id)}}>
                             </FormInput>} 
                 {/* modify button toggles with update button */}
-                {currentEmployee && !modify && <FormInput  type="button"
+                {currentEmployee && !modify && <FormInput  type="submit"
                             className={"pointer"}
                             value="Modify"
                             onClick={() => {setModify(!modify)}}>
                             </FormInput>}   
         </EmployeeDashForm>
+            {/* space for the cards to be dropped */}
             { props.children }
         </EmployeeDashWrapper>
     ) // end of main return
