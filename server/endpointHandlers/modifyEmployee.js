@@ -22,9 +22,9 @@ const modifyEmployee = async (req, res) =>  {
         const {
                     firstName,
                     lastName,
-                    email = "", 
-                    phone = "",
-                    // projects = {} 
+                    email, 
+                    phone,
+                    // projects,
                 } = req.body;
 
         // create a new client
@@ -42,10 +42,10 @@ const modifyEmployee = async (req, res) =>  {
                                         .findOne({_id}); 
         
         // check for updated information
-        const newFirstName = employeeFound.firstName !== firstName ? firstName : "";
-        const newLastName = employeeFound.lastName !== lastName ? lastName : "";
-        const newEmail = employeeFound.email !== email ? email : "";
-        const newPhone = employeeFound.phone !== phone ? phone : "";
+        const newFirstName = employeeFound.firstName !== firstName ? firstName : employeeFound.firstName;
+        const newLastName = employeeFound.lastName !== lastName ? lastName : employeeFound.lastName;
+        const newEmail = employeeFound.email !== email ? email : employeeFound.email;
+        const newPhone = employeeFound.phone !== phone ? phone : employeeFound.phone;
 
         // const currentProjects = Object.keys(employeeFound.projects);
         // const newProjects = Object.keys(projects);
@@ -57,13 +57,13 @@ const modifyEmployee = async (req, res) =>  {
         // console.log(newProjects);
 
         // update all employee info except projects
-        const filterEmployees = {_id};
+        const filterEmployees = {"_id":_id};
 
         const updateEmployeeInfo = {$set: {
-                                            "$.firstName": newFirstName,
-                                            "$.lastName" : newLastName,
-                                            "$.email" : newEmail,
-                                            "$.phone" : newPhone
+                                            "firstName": newFirstName,
+                                            "lastName" : newLastName,
+                                            "email" : newEmail,
+                                            "phone" : newPhone
                                             }};
 
         

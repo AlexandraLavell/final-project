@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import { useHistory } from "react-router-dom";
 
 // context
 import MainContext from "../MainContext";
@@ -22,12 +21,12 @@ const MainEmployeeDashboard = (props) => {
     const [ empLastName, setEmpLastName ] = useState();
     const [ empEmail, setEmpEmail ] = useState();
     const [ empPhone, setEmpPhone ] = useState();
-
-    const history = useHistory();
+    const [ empProjects, setEmpProjects] = useState();
 
     // consume context
     const { currentEmployee, setCurrentEmployee,
             currentEmployeeDash,
+            updateEmployee,
             deleteEmployee,
             } = useContext(MainContext);
 
@@ -58,8 +57,6 @@ const MainEmployeeDashboard = (props) => {
 
             ev.target.appendChild(card);
         }
-
-
     }
 
     const dragOver = (ev) => {
@@ -72,9 +69,18 @@ const MainEmployeeDashboard = (props) => {
         deleteEmployee(emp);
     }
 
-    const handleSubmit = () => {
-        // updateEmployee()
-    }
+    const handleSubmit = (ev) => {
+        ev.preventDefault();
+                
+        updateEmployee({
+                        "_id": currentEmployeeDash._id,
+                        "firstName": empFirstName,
+                        "lastName": empLastName,
+                        "email": empEmail,
+                        "phone": empPhone,
+                        "projects": empProjects,
+                    }); 
+    }   
 
     // start of main return
     return (
@@ -87,8 +93,8 @@ const MainEmployeeDashboard = (props) => {
             <EmployeeDashForm onSubmit={handleSubmit}>
                 <SubsectionHeader>{currentEmployee ? currentEmployee : "Drag employee card here"}</SubsectionHeader>
                 <FormInput  type="text" 
-                            value={modify ? empNumber : (currentEmployeeDash ? currentEmployeeDash._id : "")} 
-                            onChange={(ev)=>setEmpNumber(ev.target.value)}
+                            value={currentEmployeeDash ? currentEmployeeDash._id : ""} 
+                            // onChange={(ev)=>setEmpNumber(ev.target.value)}
                             placeholder={!!currentEmployeeDash ? currentEmployeeDash._id : "Employee number"}>                                    
                     </FormInput>
                 <FormInput  type="text" 
