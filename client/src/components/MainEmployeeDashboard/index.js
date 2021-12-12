@@ -21,7 +21,7 @@ const MainEmployeeDashboard = (props) => {
     const [ empLastName, setEmpLastName ] = useState();
     const [ empEmail, setEmpEmail ] = useState();
     const [ empPhone, setEmpPhone ] = useState();
-    const [ empProjects, setEmpProjects] = useState([]);
+    const [ empProjects, setEmpProjects] = useState([]);    
 
     // consume context
     const { currentEmployee, setCurrentEmployee,
@@ -52,7 +52,9 @@ const MainEmployeeDashboard = (props) => {
 
         } else if (card_class.includes("projectCard")){
 
-            setEmpProjects([...empProjects, card_id]);
+            if(!empProjects.includes(card_id)){
+                setEmpProjects([...empProjects, card_id]);
+            }
 
             // const card= document.getElementById(card_id);
 
@@ -125,9 +127,9 @@ const MainEmployeeDashboard = (props) => {
                             required>
                             </FormInput>   
                 <FormInput  type="text" 
-                            value={modify ? empProjects : (currentEmployeeDash ? Object.keys(currentEmployeeDash.projects).toString() : "")} 
+                            value={modify ? empProjects : (currentEmployeeDash ? Object.keys(currentEmployeeDash.projects) : "")} 
                             // onChange={(ev)=>setEmpPhone(ev.target.value)}
-                            placeholder={!!currentEmployeeDash ? Object.keys(currentEmployeeDash.projects).toString() : "Projects"}
+                            placeholder={!!currentEmployeeDash ? Object.keys(currentEmployeeDash.projects) : "Projects"}
                             required>
                             </FormInput>                
                 {/* display update and delete buttons when the user is modifying the form, toggled with modify button */}
@@ -144,7 +146,13 @@ const MainEmployeeDashboard = (props) => {
                 {currentEmployee && !modify && <FormInput  type="submit"
                             className={"pointer"}
                             value="Modify"
-                            onClick={() => {setModify(!modify)}}>
+                            onClick={() => {    setModify(!modify);
+                                                setEmpNumber(currentEmployeeDash._id)
+                                                setEmpFirstName(currentEmployeeDash.firstName);
+                                                setEmpLastName(currentEmployeeDash.lastName);
+                                                setEmpEmail(currentEmployeeDash.email);
+                                                setEmpPhone(currentEmployeeDash.phone);
+                                                setEmpProjects(Object.keys(currentEmployeeDash.projects));}}>
                             </FormInput>}   
         </EmployeeDashForm>
             {/* space for the cards to be dropped */}
