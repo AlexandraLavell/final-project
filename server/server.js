@@ -8,7 +8,11 @@ const morgan = require("morgan");
 // express object
 const app = express()
 
-// import handlers
+////////////////////
+// import handlers//
+////////////////////
+
+// employee handlers
 const { getAllEmployees } = require("./endpointHandlers/getAllEmployees");
 const { getEmployeeById } = require("./endpointHandlers/getEmployeeById");
 const { getEmployeesByProject } = require("./endpointHandlers/getEmployeesByProject");
@@ -16,6 +20,8 @@ const { addEmployee } = require("./endpointHandlers/addEmployee");
 const { modifyEmployee } = require("./endpointHandlers/modifyEmployee");
 const { deleteEmployeeById }= require("./endpointHandlers/deleteEmployeeById");
 const { deleteAllEmployees } = require("./endpointHandlers/deleteAllEmployees");
+
+// project handlers
 const { getAllProjects } = require("./endpointHandlers/getAllProjects");
 const { getProjectById } = require("./endpointHandlers/getProjectById");
 const { getProjectsByEmployee} = require("./endpointHandlers/getProjectsByEmployee");
@@ -23,6 +29,8 @@ const { addProject } = require("./endpointHandlers/addProject");
 const { modifyProject } = require("./endpointHandlers/modifyProject");
 const { deleteProjectById } = require("./endpointHandlers/deleteProjectById");
 const { deleteAllProjects } = require("./endpointHandlers/deleteAllProjects");
+
+// whimsy handlers
 const { handleJoke } = require("./endpointHandlers/handleJoke");
 
 // to log more info in the console
@@ -68,7 +76,9 @@ app.delete("/projects/:_id", deleteProjectById);
 // delete all projects - FOR DEVELOPMENT
 app.delete("/projects", deleteAllProjects);
 
-// whimsy
+////////////////////
+//WHIMSY ENDPOINTS//
+///////////////////
 app.get("/joke", handleJoke)
 
 // catch all endpoint

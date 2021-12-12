@@ -51,10 +51,9 @@ export const MainContextProvider = ({children}) => {
     const [newEmployee, setNewEmployee] = useState(); // for adding a new employee
     const [projectSubmission, setProjectSubmission] = useState(); //array of all project proposals 
     
-    
-    
     // fetch a joke on load
-    useEffect(()=>{       
+    useEffect(()=>{ 
+        
         fetch(`/joke`, {
         method: "GET",
         headers: {
@@ -72,7 +71,8 @@ export const MainContextProvider = ({children}) => {
     },[renderFlag]);
     
     // fetch a list of all employees
-    useEffect(()=>{       
+    useEffect(()=>{  
+
         fetch(`/employees`, {
         method: "GET",
         headers: {
@@ -90,7 +90,8 @@ export const MainContextProvider = ({children}) => {
     },[renderFlag]);
 
     // fetch a list of all projects
-    useEffect(()=>{       
+    useEffect(()=>{     
+
         fetch(`/projects`, {
         method: "GET",
         headers: {
@@ -112,6 +113,7 @@ export const MainContextProvider = ({children}) => {
         // if statement stops useEffect from actioning on pageload
         // since no new project submission has been added
         if(!!projectSubmission){
+
             fetch(`/projects`, {
                 method: "POST",
                 headers: {
@@ -135,6 +137,7 @@ export const MainContextProvider = ({children}) => {
 
     // add new employee
     useEffect(() => {
+
         // if statement stops useEffect from actioning on pageload
         // since no new employee has been added
         if(!!newEmployee){
@@ -161,6 +164,7 @@ export const MainContextProvider = ({children}) => {
 
     // fetch a project for the project dash
     useEffect(()=>{ 
+
         // if statement stops useEffect from actioning on pageload
         // since no project has been added to the dash
         if(!!currentProject){      
@@ -183,6 +187,7 @@ export const MainContextProvider = ({children}) => {
 
     // fetches a single employee for the employee dash
     useEffect(() => {
+
         if(!!currentEmployee){
             fetch(`/employees/${currentEmployee}`, {
                 method: "GET",
@@ -203,7 +208,7 @@ export const MainContextProvider = ({children}) => {
 
     // delete employee
     const deleteEmployee = (emp) => {
-        console.log("INSIDE DELETE");
+
         if(!!currentEmployee){
             fetch(`/employees/${emp}`, {
                 method: "DELETE",
@@ -227,7 +232,7 @@ export const MainContextProvider = ({children}) => {
 
     // delete project
     const deleteProject = (prj) => {
-        console.log("INSIDE DELETE");
+
         if(!!currentProject){
             fetch(`/projects/${prj}`, {
                 method: "DELETE",
@@ -248,6 +253,57 @@ export const MainContextProvider = ({children}) => {
                                 });  
                         }  
     }
+
+    // update employee IN PROGRESS
+    const updateEmployee = (emp) => {
+        
+        fetch(`/employees/${emp._id}`, {
+            method: "PATCH",
+            headers: {
+                Accept: "application/json",// response type
+                "Content-Type": "application/json", //send type of the body                
+            },
+            body: JSON.stringify(emp),//UPDATE HERE 
+            })
+            .then(res => res.json())
+            .then(data => {                    
+                            setRenderFlag(!renderFlag);
+                            console.log(data);                                
+            })
+            .catch(err => {
+                console.log(err);
+                history.push("/error");
+            });   
+        
+    };
+
+
+     // update project INPROGRESS
+    const updateProject = (prj) => {
+            console.log("Project ID: ", prj._id);
+        
+            fetch(`/projects/${prj._id}`, {
+                method: "PATCH",
+                headers: {
+                    Accept: "application/json",// response type
+                    "Content-Type": "application/json", //send type of the body                
+                },
+                body: JSON.stringify(prj),
+                })
+                .then(res => res.json())
+                .then(data => {                    
+                                setRenderFlag(!renderFlag);
+                                console.log(data);                                
+                })
+                .catch(err => {
+                    console.log(err);
+                    history.push("/error");
+                });                             
+    } 
+
+    
+
+    
         
 
 
@@ -267,10 +323,10 @@ export const MainContextProvider = ({children}) => {
                                             signInPage, setSignInPage,
                                             currentEmployee, setCurrentEmployee,
                                             currentEmployeeDash, setCurrentEmployeeDash,
-                                            deleteEmployee,
+                                            updateEmployee, deleteEmployee,
                                             currentProject, setCurrentProject,
                                             currentProjectDash, setCurrentProjectDash,
-                                            deleteProject,
+                                            updateProject, deleteProject,
                                             mainDash, setMainDash,                                            
                                             employeeList, setEmployeeList,
                                             newEmployee, setNewEmployee,
