@@ -47,3 +47,13 @@ export const FormInput = styled.input`
         cursor: pointer;
     }
 `;
+
+export const FormTextArea = styled.textarea`
+    position: relative;
+    display: flex;
+    border: 1px solid black;
+    background: transparent;
+    margin: 10px 15px;
+    border-radius: 0px;
+    font-size: 1em;
+`;

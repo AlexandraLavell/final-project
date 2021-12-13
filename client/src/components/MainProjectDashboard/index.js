@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
 
 // context
 import MainContext from "../MainContext";
@@ -8,14 +9,18 @@ import {    ProjectDashWrapper,
             SubsectionHeader,
             ProjectDashForm,
             FormInput,
+            FormTextArea,
         }  from "./StyledMainProjectDashboard";
 
 
-
+// MAIN EXPORTED FUNCTION
 const MainProjectDashboard = (props) => {
 
     // local state variables to toggle for modifying a project
     const [ modify, setModify ] = useState(false);
+
+    // local state variable for generating a list of employees on a partiular project
+    const [projectEmployees, setProjectEmployees] = useState();
 
     // local state variable for update form submission    
     const [ prjName, setPrjName ] = useState();
@@ -24,16 +29,38 @@ const MainProjectDashboard = (props) => {
     const [ prjRequestedBudget, setPrjRequestedBudget ] = useState();
     const [ prjActualBudget, setPrjActualBudget ] = useState();
     const [ prjStatus, setPrjStatus ] = useState();
-    const [prjFinalReport, setPrjFinalReport ] = useState();
-
+    const [ prjFinalReport, setPrjFinalReport ] = useState();
     
 
     // consume context
     const { currentProject, setCurrentProject,
             currentProjectDash, setCurrentProjectDash,
             updateProject,
-            deleteProject, 
+            deleteProject,
+            setErrorMessage, 
             } = useContext(MainContext);
+
+
+    // set up useHistory for the fetch
+    const history = useHistory();
+
+    // local fetch function
+    const getProjectEmployees = (id) => {
+        fetch(`/employees/project/${id}`, {
+            method: "GET",
+            headers: {
+                Accept: "application/json",// response type
+                }
+            })
+            .then(res => res.json())
+            .then(data => {
+                            setProjectEmployees(data.data);
+                        })
+            .catch((err) => {
+                                setErrorMessage(err);
+                                history.push("/error");
+                            });        
+    };    
 
     const drop = (ev) => {        
 
@@ -54,6 +81,7 @@ const MainProjectDashboard = (props) => {
             
             setCurrentProjectDash();
             setCurrentProject(card_id);
+            getProjectEmployees(card_id);
 
             // const card= document.getElementById(card_id);
 
@@ -111,6 +139,7 @@ const MainProjectDashboard = (props) => {
                             required>
                             </FormInput>
                 <FormInput  type="text" 
+                            spellCheck
                             value={modify ? prjDescription : (currentProjectDash ? currentProjectDash.description : "")} 
                             onChange={(ev)=>setPrjDescription(ev.target.value)}
                             placeholder={!!currentProjectDash ? currentProjectDash.description : "Description"}
@@ -135,11 +164,18 @@ const MainProjectDashboard = (props) => {
                             required>
                             </FormInput>
                 <FormInput  type="text" 
-                            value={modify ? prjFinalReport : (currentProjectDash ? currentProjectDash.final_report : "")} 
-                            onChange={(ev)=>setPrjFinalReport(ev.target.value)}
-                            placeholder={!!currentProjectDash ? currentProjectDash.final_report : "Final report"}
+                            value={modify ? projectEmployees : (!!currentProjectDash ? projectEmployees : "")} 
+                            // onChange={(ev)=>setPrjStatus(ev.target.value)}
+                            placeholder={!!currentProjectDash ? projectEmployees : "Employees on the project"}
                             required>
-                            </FormInput>                           
+                            </FormInput>
+                <FormTextArea   type="text" 
+                                spellCheck
+                                value={modify ? prjFinalReport : (currentProjectDash ? currentProjectDash.final_report : "")} 
+                                onChange={(ev)=>setPrjFinalReport(ev.target.value)}
+                                placeholder={!!currentProjectDash ? currentProjectDash.final_report : "Final report"}
+                                required>
+                                </FormTextArea>                           
                 {/* display update and delete buttons when the user is modifying the form, toggled with modify button */}
                 {currentProject && modify && <FormInput  type="submit" 
                             className={"pointer"}
@@ -150,6 +186,11 @@ const MainProjectDashboard = (props) => {
                             value="Delete"
                             onClick={(ev)=>{  handleDeleteProject(currentProjectDash._id)}}>
                             </FormInput>} 
+                {currentProject && modify && <FormInput    type="button" 
+                                                className={"pointer"}
+                                                value="Cancel"
+                                                onClick={()=>{setModify(!modify)}}>
+                                                </FormInput>} 
                 {/* modify button toggles with update button */}
                 {currentProject && !modify && <FormInput  type="button"
                             className={"pointer"}
