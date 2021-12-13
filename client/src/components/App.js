@@ -35,8 +35,8 @@ const App = () => {
   const { signInPage, setSignInPage } = useContext(MainContext);
 
   return (
-    <>
-    // <Router>  
+    
+    <MyRouter>  
     {signInPage ?
     <SignIn /> :
     <AppContainer>
@@ -46,7 +46,7 @@ const App = () => {
           <DashWrapper>
             <DashNavigation />
               <Switch>          
-                <Route exact path="/">            
+                <Route exact path="/dash">            
                   <MainAdminDashBoard />
                 </Route>
                 <Route exact path="/employee">            
@@ -70,8 +70,8 @@ const App = () => {
         </ComponentContainer>
       <Footer />        
     </AppContainer>}
-  </Router> 
-  </> 
+  </MyRouter> 
+  
   );
 }
 
@@ -109,3 +109,9 @@ const DashWrapper = styled.div`
   border-top: 1px solid black;
   border-bottom: 1px solid black;
 `;
+
+const MyRouter = styled(Router)`
+  position: relative;
+  height: 100%;
+  width: 100%;
+`
