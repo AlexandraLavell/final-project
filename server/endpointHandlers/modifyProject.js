@@ -27,6 +27,7 @@ const modifyProject = async (req, res) =>  {
                 actual_budget,
                 status,
                 final_report,
+                project_employees,
                 } = req.body;
 
         // create a new client

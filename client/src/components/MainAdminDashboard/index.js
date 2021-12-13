@@ -1,9 +1,9 @@
 import React from "react";
 
 // style
-import { AdminDashWrapper }  from "./StyledMainAdminDashboard";
-
-
+import {    AdminDashWrapper,
+            SubsectionHeader 
+        }  from "./StyledMainAdminDashboard";
 
 const MainAdminDashboard = (props) => {
 
@@ -60,7 +60,7 @@ const MainAdminDashboard = (props) => {
                     className={props.className}
                     >
             { props.children }
-            main admin background
+            <SubsectionHeader>Main admin dash</SubsectionHeader>
         </AdminDashWrapper>
 
 
