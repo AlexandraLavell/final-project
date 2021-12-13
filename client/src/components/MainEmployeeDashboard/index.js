@@ -128,10 +128,12 @@ const MainEmployeeDashboard = (props) => {
                             </FormInput>   
                 <FormInput  type="text" 
                             value={modify ? empProjects : (currentEmployeeDash ? Object.keys(currentEmployeeDash.projects) : "")} 
-                            // onChange={(ev)=>setEmpPhone(ev.target.value)}
+                            // onChange={(ev)=>setEmpProjects(ev.target.value)} //REVIEW THIS
                             placeholder={!!currentEmployeeDash ? Object.keys(currentEmployeeDash.projects) : "Projects"}
                             required>
-                            </FormInput>                
+                            </FormInput> 
+                 {/* space for the cards to be dropped */}
+                { props.children }              
                 {/* display update and delete buttons when the user is modifying the form, toggled with modify button */}
                 {currentEmployee && modify && <FormInput    type="submit" 
                                                             className={"pointer"}
@@ -160,8 +162,7 @@ const MainEmployeeDashboard = (props) => {
                                             setEmpProjects(Object.keys(currentEmployeeDash.projects));}}>
                             </FormInput>}   
         </EmployeeDashForm>
-            {/* space for the cards to be dropped */}
-            { props.children }
+           
         </EmployeeDashWrapper>
     ) // end of main return
 

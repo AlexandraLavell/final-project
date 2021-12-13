@@ -27,8 +27,6 @@ import ErrorPage from "./ErrorPage";
 // context
 import MainContext from "./MainContext";
 
-
-
 const App = () => {
 
   // consume context
@@ -76,7 +74,6 @@ const App = () => {
 }
 
 export default App;
-
 
 const AppContainer = styled.div`
   position: relative;

@@ -49,20 +49,32 @@ const modifyEmployee = async (req, res) =>  {
 
         const newProjects = employeeFound.projects;
 
+        // console.log("NEW PROJECTS ONE: ", newProjects);
+        // console.log("PROJECTS ONE: ", projects);
+        // console.log("NEW PROJECTS KEYS: ", Object.keys(employeeFound.projects) );
+
         // remove the projects that have been deleted
         Object.keys(employeeFound.projects).forEach((key) => {
+            // console.log("INSIDE");
             if(!projects.includes(key)){
+                // console.log("INSIDE 2", employeeFound.projects[key]);
                 delete employeeFound.projects[key];
             }
+            // console.log(employeeFound.projects);
         })
+
+        console.log("AFTER DELETE: ", employeeFound.projects);
 
         // add the new projects
         projects.forEach((prj) => {
+            console.log("INSIDE NEXT CHECK");
             const randomDate = () => { return (Date(Date.now() + Math.round(Math.random()*31556952000)))}
             if(!Object.keys(employeeFound.projects).includes(prj)){
             newProjects[prj] = [randomDate()];
             }
         });
+
+        console.log("NEW PROJECTS: ", newProjects);
 
 
 

@@ -13,7 +13,7 @@ export const HeaderWrapper = styled.div`
     width: 100%;
     background: var(--color-main-yellow);
     font-family: var(--font-main);
-    color: whitesmoke;
+    color: black;
     font-weight: bold;
     font-size: 6em;
     border: 1px solid black;

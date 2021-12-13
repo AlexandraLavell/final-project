@@ -79,9 +79,7 @@ const ProjectCard = (props) => {
         const target = ev.target;        
         
         target.style.display = "block";
-    }
-
-    
+    }    
 
     // start of main return
     return (
