@@ -77,6 +77,8 @@ const MainProjectDashboard = (props) => {
             setCurrentProject(card_id);
             getProjectEmployees(card_id);
 
+            
+
             // const card= document.getElementById(card_id);
 
             // console.log("ELEMENT BY ID ", card);
@@ -86,7 +88,7 @@ const MainProjectDashboard = (props) => {
             // ev.target.appendChild(card);
         } else if (card_class.includes("employeeCard")){
 
-                if(!projectEmployees.includes(card_id)){
+                if(!projectEmployees.includes(card_id) && modify){
                     setProjectEmployees([...projectEmployees, card_id]);
                 }
     
