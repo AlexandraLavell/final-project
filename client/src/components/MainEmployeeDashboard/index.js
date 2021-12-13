@@ -41,25 +41,21 @@ const MainEmployeeDashboard = (props) => {
 
             setCurrentEmployeeDash();
             setCurrentEmployee(card_id);
+            
+        
 
             // const card= document.getElementById(card_id);
-
-            // console.log("ELEMENT BY ID ", card);
-
             // card.style.display = "block";
-
             // ev.target.appendChild(card);
 
         } else if (card_class.includes("projectCard")){
 
-            if(!empProjects.includes(card_id)){
+            if(!empProjects.includes(card_id) && modify){
                 setEmpProjects([...empProjects, card_id]);
             }
 
             // const card= document.getElementById(card_id);
-
             // card.style.display = "block";
-
             // ev.target.appendChild(card);
         }
     }
@@ -162,7 +158,7 @@ const MainEmployeeDashboard = (props) => {
                                                             onClick={()=>{setModify(!modify)}}>
                                                             </FormInput>} 
                 {/* modify button toggles with update button */}
-                {currentEmployee && !modify && <FormInput  type="submit"
+                {currentEmployee && !modify && <FormInput  type="button"
                         className={"pointer"}
                         value="Modify"
                         onClick={() => {    setModify(!modify);
