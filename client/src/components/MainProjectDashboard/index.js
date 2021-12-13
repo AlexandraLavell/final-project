@@ -108,10 +108,13 @@ const MainProjectDashboard = (props) => {
         deleteProject(prj);
     }
 
-    const handleSubmit = (ev) => {
+    const handleSubmit = async (ev) => {
         ev.preventDefault();
+
+        console.log("PROJ EMPLOYEES IN SUBMIT: ", projectEmployees);
+        console.log("PROJ ID IN SUBMIT: ", currentProjectDash._id);
         
-        updateProject({
+        await updateProject({
                         "_id": currentProjectDash._id,
                         "project_name": prjName,
                         "approval": prjApproval,
@@ -123,9 +126,10 @@ const MainProjectDashboard = (props) => {
                     }); 
 
         projectEmployees.forEach((emp) => {
+            console.log("EMP: ", emp);
             updateEmployee({
                 "_id": emp,
-                "projects": currentProjectDash._id
+                "projects": [currentProjectDash._id]
             })
         })
     }   
