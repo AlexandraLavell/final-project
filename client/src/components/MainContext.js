@@ -329,6 +329,7 @@ export const MainContextProvider = ({children}) => {
                                             today, setToday,
                                             projectProgress, setProjectProgress,
                                             projectSubmission, setProjectSubmission,
+                                            renderFlag, setRenderFlag,
                                             errorMessage, setErrorMessage,
                                             joke, setJoke,
         }}>{children}</MainContext.Provider>

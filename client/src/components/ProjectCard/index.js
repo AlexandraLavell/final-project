@@ -26,7 +26,9 @@ const ProjectCard = (props) => {
     const [projectEmployees, setProjectEmployees] = useState();
 
      // consume context
-    const { setErrorMessage } = useContext(MainContext);
+    const { setErrorMessage,
+            renderFlag,
+            } = useContext(MainContext);
 
     // set up useHistory
     const history = useHistory();
@@ -47,7 +49,7 @@ const ProjectCard = (props) => {
                                 setErrorMessage(err);
                                 history.push("/error");
                             });        
-    }, []);    
+    }, [renderFlag]);    
 
     if (!projectEmployees){  return (
         <CircularProgressWrapper>
