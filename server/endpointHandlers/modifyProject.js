@@ -44,16 +44,16 @@ const modifyProject = async (req, res) =>  {
         const projectFound = await db.collection("projects")
                                         .findOne({_id}); 
         
-        // check for updated information
-        const newName = projectFound.project_name !== project_name ? project_name : projectFound.project_name;
-        const newApproval = projectFound.approval !== approval ? approval : projectFound.approval;
-        const newDescription = projectFound.description !== description ? description : projectFound.description;
-        const newRequested_budget = projectFound.requested_budget !== requested_budget ? requested_budget : projectFound.requested_budget;
-        const newActual_budget = projectFound.actual_budget !== actual_budget ? actual_budget : projectFound.actual_budget;
-        const newStatus = projectFound.status !== status ? status : projectFound.status;
-        const newFinal_report = projectFound.final_report !== final_report ? final_report : projectFound.final_report;
+        // check for updated information        
+        const newName = (!!project_name && (projectFound.project_name !== project_name)) ? project_name : projectFound.project_name;
+        const newApproval = (!!approval && (projectFound.approval !== approval)) ? approval : projectFound.approval;
+        const newDescription = (!!description && (projectFound.description !== description)) ? description : projectFound.description;
+        const newRequested_budget = (!!requested_budget && (projectFound.requested_budget !== requested_budget)) ? requested_budget : projectFound.requested_budget;
+        const newActual_budget = (!!actual_budget && (projectFound.actual_budget !== actual_budget)) ? actual_budget : projectFound.actual_budget;
+        const newStatus = (!!status && (projectFound.status !== status)) ? status : projectFound.status;
+        const newFinal_report = (!!final_report && (projectFound.final_report !== final_report)) ? final_report : projectFound.final_report;
         
-        // update all employee info except projects
+        // update project info
         const filterProjects = {"_id":_id};
         
         const updateProjectInfo = {$set: {

@@ -42,44 +42,33 @@ const modifyEmployee = async (req, res) =>  {
                                         .findOne({_id}); 
         
         // check for updated information
-        const newFirstName = employeeFound.firstName !== firstName ? firstName : employeeFound.firstName;
-        console.log("last name conditional: ",  (employeeFound.lastName !== lastName));
-        const newLastName = employeeFound.lastName !== lastName ? lastName : employeeFound.lastName;
-        console.log("email conditional: ",  (employeeFound.email !== email));
-        const newEmail = employeeFound.email !== email ? email : employeeFound.email;
-        console.log("phone conditional: ",  (employeeFound.phone !== phone));
-        const newPhone = employeeFound.phone !== phone ? phone : employeeFound.phone;
+        const newFirstName = (!!firstName && (employeeFound.firstName !== firstName)) ? firstName : employeeFound.firstName;
+        const newLastName = (!!lastName && (employeeFound.lastName !== lastName)) ? lastName : employeeFound.lastName;
+        const newEmail = (!!email && (employeeFound.email !== email)) ? email : employeeFound.email;
+        const newPhone = (!!phone && (employeeFound.phone !== phone)) ? phone : employeeFound.phone;
 
         const newProjects = employeeFound.projects;
 
-        // console.log("NEW PROJECTS ONE: ", newProjects);
-        // console.log("PROJECTS ONE: ", projects);
-        // console.log("NEW PROJECTS KEYS: ", Object.keys(employeeFound.projects) );
+        console.log("PROJECTS: ", projects);
+        console.log("IS ARRAY?: ", Array.isArray(projects));
 
         // remove the projects that have been deleted
-        Object.keys(employeeFound.projects).forEach((key) => {
-            // console.log("INSIDE");
+        // Object.keys(employeeFound.projects).forEach((key) => {
             
-            if (Array.isArray(projects)){            
-                if(!projects.includes(key)){
-                    // console.log("INSIDE 2", employeeFound.projects[key]);
-                    delete employeeFound.projects[key];
-                }
-            } else {
-                if(!Object.keys(projects).includes(key)){
-                    // console.log("INSIDE 2", employeeFound.projects[key]);
-                    delete employeeFound.projects[key];
-                }
-            }
-                    // console.log(employeeFound.projects);
-        })
-
-        console.log("AFTER DELETE: ", employeeFound.projects);
+        //     if (Array.isArray(projects)){            
+        //         if(!projects.includes(key)){
+        //             delete employeeFound.projects[key];
+        //         }
+        //     } else {
+        //         if(!Object.keys(projects).includes(key)){
+        //             delete employeeFound.projects[key];
+        //         }
+        //     }
+        // })
 
         // add the new projects
         if (Array.isArray(projects)){            
             projects.forEach((prj) => {
-                console.log("INSIDE NEXT CHECK");
                 const randomDate = () => { return (Date(Date.now() + Math.round(Math.random()*31556952000)))}
                 if(!Object.keys(employeeFound.projects).includes(prj)){
                 newProjects[prj] = [randomDate()];
@@ -87,20 +76,14 @@ const modifyEmployee = async (req, res) =>  {
             });
         } else {
             Object.keys(projects).forEach((prj) => {
-                console.log("INSIDE OTHER CHECK");
                 const randomDate = () => { return (Date(Date.now() + Math.round(Math.random()*31556952000)))}
                 if(!Object.keys(employeeFound.projects).includes(prj)){
                 newProjects[prj] = [randomDate()];
                 }
             });
-        }
-        
+        } 
 
-        console.log("NEW PROJECTS: ", newProjects);
-
-
-
-        // update all employee info except projects
+        // update all employee info
         const filterEmployees = {"_id":_id};
 
         const updateEmployeeInfo = {$set: {
@@ -111,13 +94,9 @@ const modifyEmployee = async (req, res) =>  {
                                             "projects": newProjects
                                             }};
 
-        
-
         // update
         const updatedEmployee = await db.collection("employees")
                                         .updateOne(filterEmployees, updateEmployeeInfo);  
-
-        
 
         //close the collection
         client.close();

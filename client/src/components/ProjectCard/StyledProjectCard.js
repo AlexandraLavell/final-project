@@ -15,7 +15,7 @@ export const CardWrapper = styled.div`
     justify-content: space-between;
     padding: 15px 25px;
     color: black;
-    cursor: pointer;
+    cursor: grab;
     margin-bottom: 15px;
     border: 1px solid black;
     height: 6em;

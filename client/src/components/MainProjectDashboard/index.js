@@ -106,6 +106,7 @@ const MainProjectDashboard = (props) => {
     const handleDeleteProject = (prj) => {
         window.alert(`Are you sure you want to delete ${prj}`);
         deleteProject(prj);
+        setModify(!modify);
     }
 
     const handleSubmit = async (ev) => {
@@ -132,6 +133,8 @@ const MainProjectDashboard = (props) => {
                 "projects": [currentProjectDash._id]
             })
         })
+
+        setModify(!modify);
     }   
 
     // start of main return
@@ -187,7 +190,7 @@ const MainProjectDashboard = (props) => {
                 <FormTextArea   value={modify ? prjFinalReport : (currentProjectDash ? currentProjectDash.final_report : "")} 
                                 onChange={(ev)=>setPrjFinalReport(ev.target.value)}
                                 placeholder={!!currentProjectDash ? currentProjectDash.final_report : "Final report"}
-                                required>
+                                >
                                 </FormTextArea>                           
                 {/* display update and delete buttons when the user is modifying the form, toggled with modify button */}
                 {currentProject && modify && <FormInput  type="submit" 
@@ -199,17 +202,17 @@ const MainProjectDashboard = (props) => {
                             value="Delete"
                             onClick={(ev)=>{  handleDeleteProject(currentProjectDash._id)}}>
                             </FormInput>} 
-                {currentProject && modify && <FormInput    type="button" 
-                                                className={"pointer"}
-                                                value="Cancel"
-                                                onClick={()=>{setModify(!modify)}}>
-                                                </FormInput>} 
+                {currentProject && modify && <FormInput type="button" 
+                                                        className={"pointer"}
+                                                        value="Cancel"
+                                                        onClick={()=>{setModify(!modify)}}>
+                                                        </FormInput>} 
                 {/* modify button toggles with update button */}
-                {currentProject && !modify && <FormInput  type="button"
-                            className={"pointer"}
-                            value="Modify"
-                            onClick={() => {setModify(!modify)}}>
-                            </FormInput>}   
+                {currentProject && !modify && <FormInput    type="button"
+                                                            className={"pointer"}
+                                                            value="Modify"
+                                                            onClick={() => {setModify(!modify)}}>
+                                                            </FormInput>}   
         </ProjectDashForm>
         {/* space for the cards to be dropped */}
         { props.children }          

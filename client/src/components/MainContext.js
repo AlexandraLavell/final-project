@@ -105,7 +105,7 @@ export const MainContextProvider = ({children}) => {
                             setErrorMessage(err);
                             history.push("/error");
                         });
-    },[]);
+    },[renderFlag]);
 
     // submit a project
     useEffect(() => {
@@ -301,12 +301,6 @@ export const MainContextProvider = ({children}) => {
                     history.push("/error");
                 });                             
     } 
-
-    
-
-    
-        
-
 
     if(
         !employeeList

@@ -72,10 +72,20 @@ const MainEmployeeDashboard = (props) => {
     const handleDeleteEmployee = (emp) => {
         window.alert(`Are you sure you want to delete ${emp}`);
         deleteEmployee(emp);
+        setModify(!modify);
     }
 
     const handleSubmit = (ev) => {
         ev.preventDefault();
+
+        console.log({
+            "_id": currentEmployeeDash._id,
+            "firstName": empFirstName,
+            "lastName": empLastName,
+            "email": empEmail,
+            "phone": empPhone,
+            "projects": empProjects,
+        });
                 
         updateEmployee({
                         "_id": currentEmployeeDash._id,
@@ -85,6 +95,8 @@ const MainEmployeeDashboard = (props) => {
                         "phone": empPhone,
                         "projects": empProjects,
                     }); 
+
+        setModify(!modify);
     }   
 
     // start of main return
