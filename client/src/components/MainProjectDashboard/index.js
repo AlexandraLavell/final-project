@@ -13,14 +13,14 @@ import {    ProjectDashWrapper,
         }  from "./StyledMainProjectDashboard";
 
 
-// MAIN EXPORTED FUNCTION
+// MAIN FUNCTION
 const MainProjectDashboard = (props) => {
 
     // local state variables to toggle for modifying a project
     const [ modify, setModify ] = useState(false);
 
     // local state variable for generating a list of employees on a partiular project
-    const [projectEmployees, setProjectEmployees] = useState();
+    const [projectEmployees, setProjectEmployees] = useState([]);
 
     // local state variable for update form submission    
     const [ prjName, setPrjName ] = useState();
@@ -36,6 +36,7 @@ const MainProjectDashboard = (props) => {
     const { currentProject, setCurrentProject,
             currentProjectDash, setCurrentProjectDash,
             updateProject,
+            updateEmployee,
             deleteProject,
             setErrorMessage, 
             } = useContext(MainContext);
@@ -70,14 +71,7 @@ const MainProjectDashboard = (props) => {
         const card_class = ev.dataTransfer.getData("card_class");
 
         // use includes instead of "===" because the class name also has automatic extra junk
-        if (card_class.includes("employeeCard")){
-
-            const card= document.getElementById(card_id);
-
-            card.style.display = "block";
-
-            ev.target.appendChild(card);
-        } else if (card_class.includes("projectCard")){
+        if (card_class.includes("projectCard")){
             
             setCurrentProjectDash();
             setCurrentProject(card_id);
@@ -90,6 +84,17 @@ const MainProjectDashboard = (props) => {
             // card.style.display = "block";
 
             // ev.target.appendChild(card);
+        } else if (card_class.includes("employeeCard")){
+
+                if(!projectEmployees.includes(card_id)){
+                    setProjectEmployees([...projectEmployees, card_id]);
+                }
+    
+                // const card= document.getElementById(card_id);
+    
+                // card.style.display = "block";
+    
+                // ev.target.appendChild(card);
         }
     }
 
@@ -116,6 +121,13 @@ const MainProjectDashboard = (props) => {
                         "status": prjStatus,
                         "final_report": prjFinalReport,
                     }); 
+
+        projectEmployees.forEach((emp) => {
+            updateEmployee({
+                "_id": emp,
+                "projects": currentProjectDash._id
+            })
+        })
     }   
 
     // start of main return
@@ -163,15 +175,12 @@ const MainProjectDashboard = (props) => {
                             placeholder={!!currentProjectDash ? currentProjectDash.status : "Status"}
                             required>
                             </FormInput>
-                <FormInput  type="text" 
-                            value={modify ? projectEmployees : (!!currentProjectDash ? projectEmployees : "")} 
-                            // onChange={(ev)=>setPrjStatus(ev.target.value)}
-                            placeholder={!!currentProjectDash ? projectEmployees : "Employees on the project"}
-                            required>
-                            </FormInput>
-                <FormTextArea   type="text" 
-                                spellCheck
-                                value={modify ? prjFinalReport : (currentProjectDash ? currentProjectDash.final_report : "")} 
+                <FormTextArea   value={modify ? projectEmployees : (!!currentProjectDash ? projectEmployees : "")} 
+                                // onChange={(ev)=>setPrjStatus(ev.target.value)}
+                                placeholder={!!currentProjectDash ? projectEmployees : "Employees on the project"}
+                                required>
+                                </FormTextArea>
+                <FormTextArea   value={modify ? prjFinalReport : (currentProjectDash ? currentProjectDash.final_report : "")} 
                                 onChange={(ev)=>setPrjFinalReport(ev.target.value)}
                                 placeholder={!!currentProjectDash ? currentProjectDash.final_report : "Final report"}
                                 required>

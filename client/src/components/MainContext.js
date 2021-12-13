@@ -14,7 +14,6 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 //style
 import styled from "styled-components";
 
-
 // main context
 export const MainContext = React.createContext(null);
 
@@ -280,7 +279,7 @@ export const MainContextProvider = ({children}) => {
     };
 
 
-     // update project INPROGRESS
+     // update project
     const updateProject = (prj) => {
             console.log("Project ID: ", prj._id);
         

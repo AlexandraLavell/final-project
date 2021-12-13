@@ -13,3 +13,15 @@ export const AdminDashWrapper = styled.div`
     font-family: var(--font-main);
     /* border-top: 1px solid black; */
 `;
+
+export const SubsectionHeader = styled.div`    
+    height: fit-content;
+    display: flex; 
+    justify-content: space-between;
+    color:black;
+    font-family: var(--font-main);
+    width: 100%;
+    padding: 15px;
+    background: var(--color-main-yellow);
+    /* border: 1px solid black; */
+`;
