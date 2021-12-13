@@ -5,21 +5,19 @@ import styled from "styled-components";
 
 
 export const SignInWrapper = styled.div`
-    position: relative;
+    position: absolute;
     display: flex;
     flex-direction: column;
-    height: 99vh;
+    height: 100%;
     width: 100%;
     padding: 2%;
     background-color: var(--color-main-yellow);
-
 `;
 
 export const Greeting = styled.div`
     font-family: "Courier New";
     font-size: 256px;
     font-weight: bold;
-
 `;
 
 export const GoToButton = styled(NavLink) `

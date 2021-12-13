@@ -133,26 +133,31 @@ const MainEmployeeDashboard = (props) => {
                             required>
                             </FormInput>                
                 {/* display update and delete buttons when the user is modifying the form, toggled with modify button */}
-                {currentEmployee && modify && <FormInput  type="submit" 
-                            className={"pointer"}
-                            value="Update">
-                            </FormInput>}                 
-                {currentEmployee && modify && <FormInput  type="reset" 
-                            className={"pointer"}
-                            value="Delete"
-                            onClick={()=>{handleDeleteEmployee(currentEmployeeDash._id)}}>
-                            </FormInput>} 
+                {currentEmployee && modify && <FormInput    type="submit" 
+                                                            className={"pointer"}
+                                                            value="Update">
+                                                            </FormInput>}                 
+                {currentEmployee && modify && <FormInput    type="reset" 
+                                                            className={"pointer"}
+                                                            value="Delete"
+                                                            onClick={()=>{handleDeleteEmployee(currentEmployeeDash._id)}}>
+                                                            </FormInput>} 
+                {currentEmployee && modify && <FormInput    type="button" 
+                                                            className={"pointer"}
+                                                            value="Cancel"
+                                                            onClick={()=>{setModify(!modify)}}>
+                                                            </FormInput>} 
                 {/* modify button toggles with update button */}
                 {currentEmployee && !modify && <FormInput  type="submit"
-                            className={"pointer"}
-                            value="Modify"
-                            onClick={() => {    setModify(!modify);
-                                                setEmpNumber(currentEmployeeDash._id)
-                                                setEmpFirstName(currentEmployeeDash.firstName);
-                                                setEmpLastName(currentEmployeeDash.lastName);
-                                                setEmpEmail(currentEmployeeDash.email);
-                                                setEmpPhone(currentEmployeeDash.phone);
-                                                setEmpProjects(Object.keys(currentEmployeeDash.projects));}}>
+                        className={"pointer"}
+                        value="Modify"
+                        onClick={() => {    setModify(!modify);
+                                            setEmpNumber(currentEmployeeDash._id)
+                                            setEmpFirstName(currentEmployeeDash.firstName);
+                                            setEmpLastName(currentEmployeeDash.lastName);
+                                            setEmpEmail(currentEmployeeDash.email);
+                                            setEmpPhone(currentEmployeeDash.phone);
+                                            setEmpProjects(Object.keys(currentEmployeeDash.projects));}}>
                             </FormInput>}   
         </EmployeeDashForm>
             {/* space for the cards to be dropped */}

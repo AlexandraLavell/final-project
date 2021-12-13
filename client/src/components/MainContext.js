@@ -254,7 +254,7 @@ export const MainContextProvider = ({children}) => {
                         }  
     }
 
-    // update employee IN PROGRESS
+    // update employee
     const updateEmployee = (emp) => {
 
         console.log(emp);

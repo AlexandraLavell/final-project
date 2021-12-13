@@ -24,7 +24,7 @@ const modifyEmployee = async (req, res) =>  {
                     lastName,
                     email, 
                     phone,
-                    // projects,
+                    projects,
                 } = req.body;
 
         // create a new client
@@ -47,14 +47,24 @@ const modifyEmployee = async (req, res) =>  {
         const newEmail = employeeFound.email !== email ? email : employeeFound.email;
         const newPhone = employeeFound.phone !== phone ? phone : employeeFound.phone;
 
-        // const currentProjects = Object.keys(employeeFound.projects);
-        // const newProjects = Object.keys(projects);
+        const newProjects = employeeFound.projects;
 
-        // newProjects = newProjects.filter((prj) => {
-        //     return !currentProjects.includes(prj);
-        // })
+        // remove the projects that have been deleted
+        Object.keys(employeeFound.projects).forEach((key) => {
+            if(!projects.includes(key)){
+                delete employeeFound.projects[key];
+            }
+        })
 
-        // console.log(newProjects);
+        // add the new projects
+        projects.forEach((prj) => {
+            const randomDate = () => { return (Date(Date.now() + Math.round(Math.random()*31556952000)))}
+            if(!Object.keys(employeeFound.projects).includes(prj)){
+            newProjects[prj] = [randomDate()];
+            }
+        });
+
+
 
         // update all employee info except projects
         const filterEmployees = {"_id":_id};
@@ -63,7 +73,8 @@ const modifyEmployee = async (req, res) =>  {
                                             "firstName": newFirstName,
                                             "lastName" : newLastName,
                                             "email" : newEmail,
-                                            "phone" : newPhone
+                                            "phone" : newPhone,
+                                            "projects": newProjects
                                             }};
 
         
