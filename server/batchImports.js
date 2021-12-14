@@ -28,6 +28,7 @@ const batchImport = async () => {
     // add the batch of data to the collection
     await db.collection("employees").insertMany(employees);
     await db.collection("projects").insertMany(projects);
+    await db.collection("users").insertMany(users);
     
     // close the collection
     client.close();
