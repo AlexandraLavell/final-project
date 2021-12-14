@@ -75,11 +75,10 @@ const MainProjectDashboard = (props) => {
 
             // block a new project from being added to the dash
             // if the current project is being modified
-            if(!modify){
-            
-            setCurrentProjectDash();
-            setCurrentProject(card_id);
-            getProjectEmployees(card_id);
+            if(!modify){            
+                setCurrentProjectDash();
+                setCurrentProject(card_id);
+                getProjectEmployees(card_id);
             }
 
             // const card= document.getElementById(card_id);
@@ -155,42 +154,43 @@ const MainProjectDashboard = (props) => {
                 <FormInput  type="text" 
                             value={modify ? prjName : (currentProjectDash ? currentProjectDash.project_name : "")} 
                             onChange={(ev)=>setPrjName(ev.target.value)}
-                            placeholder={!!currentProjectDash ? currentProjectDash.project_name : "First name"}
+                            placeholder="Project name"
                             required>
                             </FormInput>
                 <FormInput  type="text" 
                             spellCheck
                             value={modify ? prjDescription : (currentProjectDash ? currentProjectDash.description : "")} 
                             onChange={(ev)=>setPrjDescription(ev.target.value)}
-                            placeholder={!!currentProjectDash ? currentProjectDash.description : "Description"}
+                            placeholder="Description"
                             required>
                             </FormInput>
                 <FormInput  type="number" 
                             value={modify ? prjRequestedBudget : (currentProjectDash ? currentProjectDash.requested_budget : "")}  
                             onChange={(ev)=>setPrjRequestedBudget(ev.target.value)}
-                            placeholder={!!currentProjectDash ? currentProjectDash.requested_budget : "Requested budget"}
+                            placeholder="Requested budget"
                             required>
                             </FormInput>
                 <FormInput  type="number" 
                             value={modify ? prjActualBudget : (currentProjectDash ? currentProjectDash.actual_budget : "")} 
                             onChange={(ev)=>setPrjActualBudget(ev.target.value)}
-                            placeholder={!!currentProjectDash ? currentProjectDash.actual_budget : "Actual budget"}
+                            placeholder="Actual budget"
                             required>
                             </FormInput> 
                 <FormInput  type="text" 
                             value={modify ? prjStatus : (currentProjectDash ? currentProjectDash.status : "")} 
                             onChange={(ev)=>setPrjStatus(ev.target.value)}
-                            placeholder={!!currentProjectDash ? currentProjectDash.status : "Status"}
+                            placeholder="Status"
                             required>
                             </FormInput>
-                <FormTextArea   value={modify ? projectEmployees : (!!currentProjectDash ? projectEmployees : "")} 
-                                // onChange={(ev)=>setPrjStatus(ev.target.value)}
-                                placeholder={!!currentProjectDash ? projectEmployees : "Employees on the project"}
-                                required>
-                                </FormTextArea>
+                <FormInput  type="text"
+                            value={modify ? projectEmployees : (!!currentProjectDash ? projectEmployees : "")} 
+                            // onChange={(ev)=>setPrjStatus(ev.target.value)}
+                            placeholder="Employees on the project"
+                            required>
+                            </FormInput>
                 <FormTextArea   value={modify ? prjFinalReport : (currentProjectDash ? currentProjectDash.final_report : "")} 
                                 onChange={(ev)=>setPrjFinalReport(ev.target.value)}
-                                placeholder={!!currentProjectDash ? currentProjectDash.final_report : "Final report"}
+                                placeholder="Final report"
                                 >
                                 </FormTextArea>                           
                 {/* display update and delete buttons when the user is modifying the form, toggled with modify button */}
