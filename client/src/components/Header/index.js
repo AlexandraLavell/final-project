@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 
-import { HeaderWrapper } from "./StyledHeader";
+import {    HeaderWrapper,
+            HeaderNavLink,
+        } from "./StyledHeader";
 
 
 const Header = () => {
@@ -26,7 +29,7 @@ const Header = () => {
     // start of main return
     return (
         <HeaderWrapper className={show && "blue"}>
-            <p>Good Morning.</p>
+            <HeaderNavLink exact to="/">Good Morning.</HeaderNavLink>
         </HeaderWrapper>
 
     ) //end of main return

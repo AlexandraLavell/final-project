@@ -26,8 +26,8 @@ const MainEmployeeDashboard = (props) => {
     // consume context
     const { currentEmployee, setCurrentEmployee,
             currentEmployeeDash, setCurrentEmployeeDash,
-            updateEmployee,
-            deleteEmployee,
+            updateEmployee, deleteEmployee,
+            admPermission,
             } = useContext(MainContext);
 
     const drop = async (ev) => {      
@@ -75,6 +75,7 @@ const MainEmployeeDashboard = (props) => {
         window.alert(`Are you sure you want to delete ${emp}`);
         deleteEmployee(emp);
         setModify(!modify);
+        setCurrentEmployeeDash();        
     }
 
     const handleSubmit = (ev) => {
@@ -103,36 +104,39 @@ const MainEmployeeDashboard = (props) => {
             <EmployeeDashForm onSubmit={handleSubmit}>
                 <SubsectionHeader>{currentEmployee ? currentEmployee : "Drag employee card here"}</SubsectionHeader>
                 <FormInput  type="text" 
-                            value={currentEmployeeDash?._id} 
+                            value={currentEmployeeDash ? currentEmployeeDash._id : ""} 
                             placeholder="Employee number">                                    
                     </FormInput>
                 <FormInput  type="text" 
-                            value={modify ? empFirstName : currentEmployeeDash?.firstName} 
+                            // clears value when employee deleted
+                            value={modify ? empFirstName : (currentEmployeeDash ? currentEmployeeDash.firstName : "")} 
                             onChange={(ev)=>setEmpFirstName(ev.target.value)}
                             placeholder="First name"
                             required>
                             </FormInput>
                 <FormInput  type="text" 
-                            value={modify ? empLastName : currentEmployeeDash?.lastName} 
+                            // clears value when employee deleted
+                            value={modify ? empLastName : (currentEmployeeDash ? currentEmployeeDash.lastName : "")}
                             onChange={(ev)=>setEmpLastName(ev.target.value)}
                             placeholder="Last name"
                             required>
                             </FormInput>
                 <FormInput  type="email" 
-                            value={modify ? empEmail : currentEmployeeDash?.email}  
+                            // clears value when employee deleted
+                            value={modify ? empEmail : (currentEmployeeDash ? currentEmployeeDash.email : "")}  
                             onChange={(ev)=>setEmpEmail(ev.target.value)}
                             placeholder="Email"
                             required>
                             </FormInput>
                 <FormInput  type="tel" 
-                            value={modify ? empPhone : currentEmployeeDash?.phone} 
+                            // clears value when employee deleted
+                            value={modify ? empPhone : (currentEmployeeDash ? currentEmployeeDash.phone : "")} 
                             onChange={(ev)=>setEmpPhone(ev.target.value)}
                             placeholder="Phone"
                             required>
                             </FormInput>   
                 <FormInput  type="text" 
-                            value={modify ? empProjects : 
-                                (empProjects.length > 0 ? empProjects : (currentEmployeeDash && Object.keys(currentEmployeeDash.projects)))} 
+                            value={modify ? empProjects :(currentEmployeeDash ? Object.keys(currentEmployeeDash.projects) : "")} 
                             // onChange={(ev)=>setEmpProjects(ev.target.value)}
                             placeholder="Projects"
                             required>
@@ -155,7 +159,7 @@ const MainEmployeeDashboard = (props) => {
                                                             onClick={()=>{setModify(!modify)}}>
                                                             </FormInput>} 
                 {/* modify button toggles with update button */}
-                {currentEmployee && !modify && <FormInput  type="button"
+                {admPermission && currentEmployee && !modify && <FormInput  type="button"
                         className={"pointer"}
                         value="Modify"
                         onClick={() => {    setModify(!modify);

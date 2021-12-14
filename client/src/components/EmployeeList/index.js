@@ -24,7 +24,9 @@ import { FiPlus } from "react-icons/fi"
 const EmployeeList = (props) => {
 
     // consume context
-    const { employeeList } = useContext(MainContext);
+    const { employeeList,
+            admPermission,
+        } = useContext(MainContext);
     
     const drop = (ev) => {        
         ev.preventDefault();
@@ -51,31 +53,18 @@ const EmployeeList = (props) => {
 
     const dragLeave = (ev) => {        
         ev.preventDefault();
-
-        // const card_id = ev.dataTransfer.getData("card_id");
-        // const card_class = ev.dataTransfer.getData("card_class");
-
-        // // use includes instead of "===" because the class name also has automatic extra junk
-        // if (card_class.includes("employeeCard")){
-
-        //     const employeeCard= document.getElementById(card_id);
-
-        //     employeeCard.style.display = "block";
-
-        //     ev.target.appendChild(employeeCard);
-        // }
-
     }
 
-    const handleClick = () => {
-        
+
+    // do i need this?
+    const handleClick = () => {      
 
     }
 
     // start of main return
     return (
         <EmployeeContainerWrapper>
-            <SubsectionHeader>Employees<AddNav exact to="/addEmployee"><FiPlus/></AddNav></SubsectionHeader>
+            <SubsectionHeader>Employees{admPermission && <AddNav exact to="/addEmployee"><FiPlus/></AddNav>}</SubsectionHeader>
             <EmployeeListWrapper
                         _id={props.id}
                         onDrop={drop}
@@ -92,11 +81,7 @@ const EmployeeList = (props) => {
                     
                                         keyList.forEach((key) => {
                                             
-                                            emp.projects[key].forEach((keyDate) => {
-                                                
-                                                // console.log(((new Date(keyDate)).getDay() === (new Date()).getDay()) 
-                                                // && ((new Date(keyDate)).getMonth() === (new Date()).getMonth())
-                                                // && ((new Date(keyDate)).getFullYear() === (new Date()).getFullYear()));
+                                            emp.projects[key].forEach((keyDate) => {                                                
 
                                                 if(((new Date(keyDate)).getDay() === (new Date()).getDay()) 
                                                 && ((new Date(keyDate)).getMonth() === (new Date()).getMonth())
