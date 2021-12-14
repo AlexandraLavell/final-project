@@ -30,6 +30,11 @@ const { modifyProject } = require("./endpointHandlers/modifyProject");
 const { deleteProjectById } = require("./endpointHandlers/deleteProjectById");
 const { deleteAllProjects } = require("./endpointHandlers/deleteAllProjects");
 
+// user handlers
+const { getAllUsers } = require("./endpointHandlers/getAllUsers");
+const { getUserById } = require("./endpointHandlers/getUserById");
+const { deleteAllUsers } = require("./endpointHandlers/deleteAllUsers");
+
 // whimsy handlers
 const { handleJoke } = require("./endpointHandlers/handleJoke");
 
@@ -76,7 +81,16 @@ app.delete("/projects/:_id", deleteProjectById);
 // delete all projects - FOR DEVELOPMENT
 app.delete("/projects", deleteAllProjects);
 
-////////////////////
+///////////////////
+//USER ENDPOINTS//
+//////////////////
+// get all users
+app.get("/users", getAllUsers);
+// get an user by userName
+app.get("/users/:_id", getUserById);
+// delete all users - FOR DEVELOPMENT
+app.delete("/users", deleteAllUsers);
+
 //WHIMSY ENDPOINTS//
 ///////////////////
 app.get("/joke", handleJoke)
