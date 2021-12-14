@@ -48,10 +48,7 @@ const modifyEmployee = async (req, res) =>  {
         const newPhone = (!!phone && (employeeFound.phone !== phone)) ? phone : employeeFound.phone;
 
         const newProjects = employeeFound.projects;
-
-        console.log("PROJECTS: ", projects);
-        console.log("IS ARRAY?: ", Array.isArray(projects));
-
+        
         // remove the projects that have been deleted
         // Object.keys(employeeFound.projects).forEach((key) => {
             
@@ -69,14 +66,14 @@ const modifyEmployee = async (req, res) =>  {
         // add the new projects
         if (Array.isArray(projects)){            
             projects.forEach((prj) => {
-                const randomDate = () => { return (Date(Date.now() + Math.round(Math.random()*31556952000)))}
+                const randomDate = () => { return (new Date(Date.now() + Math.round(Math.random()*31556952000))).toString()}
                 if(!Object.keys(employeeFound.projects).includes(prj)){
                 newProjects[prj] = [randomDate()];
                 }
             });
         } else {
             Object.keys(projects).forEach((prj) => {
-                const randomDate = () => { return (Date(Date.now() + Math.round(Math.random()*31556952000)))}
+                const randomDate = () => { return (new Date(Date.now() + Math.round(Math.random()*31556952000))).toString}
                 if(!Object.keys(employeeFound.projects).includes(prj)){
                 newProjects[prj] = [randomDate()];
                 }

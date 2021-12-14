@@ -73,16 +73,7 @@ const MainEmployeeDashboard = (props) => {
 
     const handleSubmit = (ev) => {
         ev.preventDefault();
-
-        console.log({
-            "_id": currentEmployeeDash._id,
-            "firstName": empFirstName,
-            "lastName": empLastName,
-            "email": empEmail,
-            "phone": empPhone,
-            "projects": empProjects,
-        });
-                
+        
         updateEmployee({
                         "_id": currentEmployeeDash._id,
                         "firstName": empFirstName,

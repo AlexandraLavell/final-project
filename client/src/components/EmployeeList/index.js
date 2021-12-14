@@ -51,7 +51,6 @@ const EmployeeList = (props) => {
 
     const dragLeave = (ev) => {        
         ev.preventDefault();
-        console.log("LEAVING");
 
         // const card_id = ev.dataTransfer.getData("card_id");
         // const card_class = ev.dataTransfer.getData("card_class");
@@ -85,14 +84,33 @@ const EmployeeList = (props) => {
                         className={props.className}
                         >
                 { props.children }
-                {employeeList.map((emp) => {                
-                    // this generates a list of projects the employee is working on today
+                {employeeList.map((emp) => {     
+                    console.log("EMP:", emp);           
+                    // // this generates a list of projects the employee is working on today
                     const keyList = Object.keys(emp.projects);
-                    const todaysProjects = keyList.filter((key) => {
-                        return ( emp.projects[key].filter((keyDate) => {
-                            return Date(keyDate) === Date();})    
-                        )}                
-                    )      
+                    console.log("KEY LIST: ", keyList);
+                    
+                    const todaysProjects = [];
+                    
+                                        keyList.forEach((key) => {
+                                            
+                                            emp.projects[key].forEach((keyDate) => {
+                                                
+                                                console.log(((new Date(keyDate)).getDay() === (new Date()).getDay()) 
+                                                && ((new Date(keyDate)).getMonth() === (new Date()).getMonth())
+                                                && ((new Date(keyDate)).getFullYear() === (new Date()).getFullYear()));
+
+                                                if(((new Date(keyDate)).getDay() === (new Date()).getDay()) 
+                                                && ((new Date(keyDate)).getMonth() === (new Date()).getMonth())
+                                                && ((new Date(keyDate)).getFullYear() === (new Date()).getFullYear()))
+                                                {
+                                                    todaysProjects.push(key);
+                                                }
+                                            })
+                                        })
+                                                                            
+                    
+
                     return  (                            
                                 <EmployeeCard _id={emp._id} className="employeeCard" draggable="true" >                                
                                     <TippyWrapper content={<div><p>Today: </p><TippyContent>{todaysProjects.toString()}</TippyContent></div>}>

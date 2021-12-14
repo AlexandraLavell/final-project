@@ -115,15 +115,15 @@ const projects = [
     }
 ]
 
-// const users = [
+// const global = [
 //     {
-//         _id: "u1110",
+//         _id: "gg0001",
 //         type: "admin",
 //         userName: "admin",
 //         password: "admin",
 //     },
 //     {
-//         _id: "u1111",
+//         _id: "g00002",
 //         type: "employee",
 //         userName: "employee",
 //         password: "employee",
