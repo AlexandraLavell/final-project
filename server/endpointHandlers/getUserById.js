@@ -18,6 +18,8 @@ const getUserById = async (req, res) =>  {
         // get the user id from the request parameters
         const { _id } = req.params;
 
+        const { password } = req.body;
+
         // create a new client
         const client = new MongoClient(MONGO_URI, options);
 
@@ -31,6 +33,9 @@ const getUserById = async (req, res) =>  {
         // find the user
         const userFound = await db.collection("users")
                                         .findOne({_id}); 
+        
+        // if the password sent equals the password found send back true otherwise false
+        const returnPermission = (userFound.password === password);        
 
         //close the collection
         client.close();
@@ -42,7 +47,7 @@ const getUserById = async (req, res) =>  {
             // SUCCESS return
             res.status(200).json({
                 status: 200,
-                data: userFound,
+                data: returnPermission,
             })
         ) 
     } catch (err) {

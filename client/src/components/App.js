@@ -44,7 +44,7 @@ const App = () => {
           <DashWrapper>
             <DashNavigation />
               <Switch>          
-                <Route path="/">            
+                <Route exact path="/dash">            
                   <MainAdminDashBoard />
                 </Route>
                 <Route exact path="/employee">            
