@@ -39,10 +39,12 @@ const MainEmployeeDashboard = (props) => {
         // use includes instead of "===" because the class name also has automatic extra junk
         if (card_class.includes("employeeCard")){
 
-            setCurrentEmployeeDash();
-            setCurrentEmployee(card_id);
-            
-        
+            // block a new employee from being added to the dash
+            // if the current employee is being modified
+            if(!modify){
+                setCurrentEmployeeDash();
+                setCurrentEmployee(card_id);            
+            }
 
             // const card= document.getElementById(card_id);
             // card.style.display = "block";
@@ -50,6 +52,7 @@ const MainEmployeeDashboard = (props) => {
 
         } else if (card_class.includes("projectCard")){
 
+             // add project only after "modify" has been selected
             if(!empProjects.includes(card_id) && modify){
                 setEmpProjects([...empProjects, card_id]);
             }
