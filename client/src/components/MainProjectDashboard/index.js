@@ -35,9 +35,9 @@ const MainProjectDashboard = (props) => {
     // consume context
     const { currentProject, setCurrentProject,
             currentProjectDash, setCurrentProjectDash,
-            updateProject,
+            updateProject, deleteProject,
             updateEmployee,
-            deleteProject,
+            admPermission,            
             setErrorMessage, 
             } = useContext(MainContext);
 
@@ -151,31 +151,61 @@ const MainProjectDashboard = (props) => {
                             value={currentProjectDash ? currentProjectDash._id : ""} 
                             placeholder={!!currentProjectDash ? currentProjectDash._id : "Project number"}>                                    
                     </FormInput>
-                <FormInput  type="text" 
+                {/* conditional rendering based on permission level */}
+                {admPermission ?                 
+                    (<><FormInput  type="text" 
+                                value={modify ? prjName : (currentProjectDash ? currentProjectDash.project_name : "")} 
+                                onChange={(ev)=>setPrjName(ev.target.value)}
+                                placeholder="Project name"
+                                required>
+                                </FormInput>
+                    <FormInput  type="text" 
+                                spellCheck
+                                value={modify ? prjDescription : (currentProjectDash ? currentProjectDash.description : "")} 
+                                onChange={(ev)=>setPrjDescription(ev.target.value)}
+                                placeholder="Description"
+                                required>
+                                </FormInput>
+                    <FormInput  type="number" 
+                                value={modify ? prjRequestedBudget : (currentProjectDash ? currentProjectDash.requested_budget : "")}  
+                                // onChange={(ev)=>setPrjRequestedBudget(ev.target.value)}
+                                placeholder="Requested budget"
+                                required>
+                                </FormInput>
+                    <FormInput  type="number" 
+                                value={modify ? prjActualBudget : (currentProjectDash ? currentProjectDash.actual_budget : "")} 
+                                onChange={(ev)=>setPrjActualBudget(ev.target.value)}
+                                placeholder="Actual budget"
+                                required>
+                                </FormInput></>)                                
+                // second half of conditional
+                    :(<><FormInput  type="text" 
                             value={modify ? prjName : (currentProjectDash ? currentProjectDash.project_name : "")} 
-                            onChange={(ev)=>setPrjName(ev.target.value)}
+                            // onChange={(ev)=>setPrjName(ev.target.value)}
                             placeholder="Project name"
                             required>
                             </FormInput>
-                <FormInput  type="text" 
-                            spellCheck
-                            value={modify ? prjDescription : (currentProjectDash ? currentProjectDash.description : "")} 
-                            onChange={(ev)=>setPrjDescription(ev.target.value)}
-                            placeholder="Description"
-                            required>
-                            </FormInput>
-                <FormInput  type="number" 
-                            value={modify ? prjRequestedBudget : (currentProjectDash ? currentProjectDash.requested_budget : "")}  
-                            onChange={(ev)=>setPrjRequestedBudget(ev.target.value)}
-                            placeholder="Requested budget"
-                            required>
-                            </FormInput>
-                <FormInput  type="number" 
-                            value={modify ? prjActualBudget : (currentProjectDash ? currentProjectDash.actual_budget : "")} 
-                            onChange={(ev)=>setPrjActualBudget(ev.target.value)}
-                            placeholder="Actual budget"
-                            required>
-                            </FormInput> 
+                        <FormInput  type="text" 
+                                    spellCheck
+                                    value={modify ? prjDescription : (currentProjectDash ? currentProjectDash.description : "")} 
+                                    // onChange={(ev)=>setPrjDescription(ev.target.value)}
+                                    placeholder="Description"
+                                    required>
+                                    </FormInput>
+                        <FormInput  type="number" 
+                                    value={modify ? prjRequestedBudget : (currentProjectDash ? currentProjectDash.requested_budget : "")}  
+                                    // onChange={(ev)=>setPrjRequestedBudget(ev.target.value)}
+                                    placeholder="Requested budget"
+                                    required>
+                                    </FormInput>
+                        <FormInput  type="number" 
+                                    value={modify ? prjActualBudget : (currentProjectDash ? currentProjectDash.actual_budget : "")} 
+                                    // onChange={(ev)=>setPrjActualBudget(ev.target.value)}
+                                    placeholder="Actual budget"
+                                    required>
+                                    </FormInput></>)
+                            } 
+                            {/* //end of conditional */}
                 <FormInput  type="text" 
                             value={modify ? prjStatus : (currentProjectDash ? currentProjectDash.status : "")} 
                             onChange={(ev)=>setPrjStatus(ev.target.value)}
@@ -198,7 +228,7 @@ const MainProjectDashboard = (props) => {
                             className={"pointer"}
                             value="Update">
                             </FormInput>}                 
-                {currentProject && modify && <FormInput  type="reset" 
+                {admPermission && currentProject && modify && <FormInput  type="reset" 
                             className={"pointer"}
                             value="Delete"
                             onClick={(ev)=>{  handleDeleteProject(currentProjectDash._id)}}>

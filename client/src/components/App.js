@@ -30,12 +30,12 @@ import MainContext from "./MainContext";
 const App = () => {
 
   // consume context
-  const { permission } = useContext(MainContext);
+  const { permission, empPermission, admPermission } = useContext(MainContext);
 
   return (
     
     <MyRouter>  
-    {!permission ?
+    {!(permission && (empPermission || admPermission)) ?
     <SignIn /> :
     <AppContainer>
       <Header />            

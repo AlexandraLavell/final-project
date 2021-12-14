@@ -16,7 +16,7 @@ import {    EmployeeFormWrapper,
 const AddEmployeeForm = () => {
 
     // consume context
-    const { setNewEmployee } = useContext(MainContext);
+    const { setNewEmployee, admPermission } = useContext(MainContext);
 
     // history for move after submit
     const history = useHistory();
@@ -74,9 +74,9 @@ const AddEmployeeForm = () => {
                                 placeholder="Phone Number"
                                 required>
                                 </FormInput>                 
-            <FormInput  type="submit" 
+            {admPermission && <FormInput  type="submit" 
                                 value="Submit">
-                                </FormInput>   
+                                </FormInput>}   
         </EmployeeFormWrapper>
 
 

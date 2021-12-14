@@ -1,3 +1,6 @@
+import React from "react";
+import { NavLink } from "react-router-dom";
+
 // style
 import styled from "styled-components";
 
@@ -23,5 +26,9 @@ export const HeaderWrapper = styled.div`
     &.blue {
         opacity: .3;
     }    
+`;
+
+export const HeaderNavLink = styled(NavLink)`
+    color: black;
 `;
 

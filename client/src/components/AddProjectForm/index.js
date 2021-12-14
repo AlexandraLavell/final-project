@@ -17,7 +17,8 @@ const AddProjectForm = () => {
 
     // consume context
     const { projectList,
-            setProjectSubmission } = useContext(MainContext);  
+            setProjectSubmission,
+            admPermission } = useContext(MainContext);  
     
     const history = useHistory();
 
@@ -73,10 +74,10 @@ const AddProjectForm = () => {
                         placeholder="Requested budget"
                         required>
                         </FormInput>                         
-            <FormInput  type="submit" 
+            {admPermission && <FormInput  type="submit" 
                         value="Submit"
                         className="submit">
-                        </FormInput> 
+                        </FormInput>} 
         </ProjectFormWrapper>
     ) // end of main return
 

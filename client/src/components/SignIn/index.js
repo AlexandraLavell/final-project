@@ -20,7 +20,9 @@ const SignIn = () => {
 
     // consume context
     const { signInPage, setSignInPage,
-            setPermission,
+            permission, setPermission,
+            setAdmPermission,
+            setEmpPermission,
             setErrorMessage
             } = useContext(MainContext);
 
@@ -55,7 +57,14 @@ const SignIn = () => {
             .catch((err) => {
                                 setErrorMessage(err);
                                 history.push("/error");
-                            });               
+                            });   
+                            
+            if (permission && username === "adm"){
+                setAdmPermission(true);
+            }
+            if (permission && username === "emp"){
+                setEmpPermission(true);
+            }
     }
 
     // main return
