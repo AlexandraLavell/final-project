@@ -77,11 +77,8 @@ const MainProjectDashboard = (props) => {
             setCurrentProject(card_id);
             getProjectEmployees(card_id);
 
-            
-
             // const card= document.getElementById(card_id);
 
-            // console.log("ELEMENT BY ID ", card);
 
             // card.style.display = "block";
 
@@ -113,9 +110,6 @@ const MainProjectDashboard = (props) => {
 
     const handleSubmit = async (ev) => {
         ev.preventDefault();
-
-        console.log("PROJ EMPLOYEES IN SUBMIT: ", projectEmployees);
-        console.log("PROJ ID IN SUBMIT: ", currentProjectDash._id);
         
         await updateProject({
                         "_id": currentProjectDash._id,
@@ -129,7 +123,6 @@ const MainProjectDashboard = (props) => {
                     }); 
 
         projectEmployees.forEach((emp) => {
-            console.log("EMP: ", emp);
             updateEmployee({
                 "_id": emp,
                 "projects": [currentProjectDash._id]

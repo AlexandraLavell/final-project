@@ -76,7 +76,6 @@ const ProjectCard = (props) => {
 
     // changes style back to block when dropped. Used for drops outside of dropzone
     const dragEnd = (ev) => {
-        console.log("DROPPED");
 
         const target = ev.target;        
         

@@ -1,66 +1,41 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+
+// context
+import MainContext from "../MainContext";
+
 
 // style
 import {    AdminDashWrapper,
             SubsectionHeader 
         }  from "./StyledMainAdminDashboard";
 
+// pie charts
+import { PieChart } from "react-minimal-pie-chart";
+
+// MAIN FUNCTION
 const MainAdminDashboard = (props) => {
 
-    const drop = (ev) => {        
+    // local state
+    const [budget, setBudget] = useState(300000);
 
-        // if (ev.target.className === "employeeCard_id"){
-        ev.preventDefault();
-
-        console.log("DROP ON MAIN DASH", ev.target.className);
-
-        const card_id = ev.dataTransfer.getData("card_id");
-        const card_class = ev.dataTransfer.getData("card_class");
-
-        console.log("GET CLASS DATA", card_class);
-        console.log("GET ID DATA ", card_id);
-
-        // use includes instead of "===" because the class name also has automatic extra junk
-        if (card_class.includes("employeeCard")){
-
-            const card= document.getElementById(card_id);
-
-            console.log("ELEMENT BY ID ", card);
-
-            card.style.display = "block";
-
-            ev.target.appendChild(card);
-        } else if (card_class.includes("projectCard")){
-
-            const card= document.getElementById(card_id);
-
-            console.log("ELEMENT BY ID ", card);
-
-            card.style.display = "block";
-
-            ev.target.appendChild(card);
-        }
-
-    }
-
-    const dragOver = (ev) => {
-        // allows the card to appear on drop. Default is to disappear.
-        ev.preventDefault();
-    }
-
-
-
+    // consume state
+    const { projectList, employeeList } = useContext(MainContext);
+    
+    const todaysProjects = employeeList.map((emp) => {
+        return emp.projects;
+    })
 
     // start of main return
     return (
-        <AdminDashWrapper
-                    id={props.id}
-                    onDrop={drop}
-                    onDragOver={dragOver}
-                    className={props.className}
-                    >
+        <AdminDashWrapper>
             { props.children }
             <SubsectionHeader>Main admin dash</SubsectionHeader>
+            <PieChart 
+                data={[
+                        {title: "One", value: 30, color: "lightBlue"},
+                        {title: "Two", value: 15, color: "#e38627"},
+                        {title: "Three", value: 20, color: "#e38627"}
+                    ]} />
         </AdminDashWrapper>
 
 

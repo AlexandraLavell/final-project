@@ -32,6 +32,7 @@ const AddEmployeeForm = () => {
         ev.preventDefault();
         
         setNewEmployee({
+                        "_id": empNumber,
                         "firstName": empFirstName,
                         "lastName": empLastName,
                         "email": empEmail,
