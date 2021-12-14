@@ -24,7 +24,8 @@ export const MainContextProvider = ({children}) => {
     const history = useHistory();
 
     // global state variables
-    const [signInPage, setSignInPage ] = usePersistedState("sign-in", true); //for keeping the use logged in
+    const [signInPage, setSignInPage] = useState(false); //usePersistedState("sign-in", true); //for viewing the signin form
+    const [permission, setPermission] = usePersistedState("permission", false); // permissison level adm or emp
     const [employeeList, setEmployeeList] = useState(); // list of all employees
     const [projectList, setProjectList] = useState(); // list of all projects 
     const [joke, setJoke] = useState();
@@ -316,6 +317,7 @@ export const MainContextProvider = ({children}) => {
 
     return <MainContext.Provider value={{
                                             signInPage, setSignInPage,
+                                            permission, setPermission,
                                             currentEmployee, setCurrentEmployee,
                                             currentEmployeeDash, setCurrentEmployeeDash,
                                             updateEmployee, deleteEmployee,

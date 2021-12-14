@@ -20,14 +20,71 @@ export const Greeting = styled.div`
     font-weight: bold;
 `;
 
-export const GoToButton = styled(NavLink) `
-    height: 1.2em;
-    padding: 3px;
-    background-color: black;
+export const GoToButton = styled.input`
     position: absolute;
     bottom: 5px;
     right: 15px;
-    font-size: .2em;
+    height: 1.2em;
+    width: 15%;
+    padding: 4px;
+    background-color: black;   
+    font-size: 0.2em;
+    font-weight: bold;
     text-decoration: none;
+    border-radius: 0;
     color: var(--color-main-yellow);
+    &.pointer{
+        cursor: pointer;
+    }
+    &.go{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        right:0;
+        bottom: 0;
+        height: 1.2em;
+        width: 100%;
+        margin: 3% 0 0 0;
+        font-size: 0.2em;
+        background: var(--color-main-yellow);
+        color: black;
+    }
+`;
+
+export const FormInput = styled.input`
+    position: relative;
+    height: 4em;
+    display: flex;
+    border: 1px solid var(--color-main-yellow);
+    background: black;
+    border-radius: 0px;
+    font-family: var(--font-main);
+    color: var(--color-main-yellow);
+    font-size: 0.2em;
+`;
+
+export const FormLabel = styled.div`
+    position: relative;
+    display: flex;  
+    flex-direction: column; 
+    align-items: center; 
+    font-size: 0.2em;
+`
+
+export const SignInForm = styled.form`
+    position: absolute;
+    bottom: 5px;
+    right: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+    width: 15%;
+    padding: 4px;
+    background-color: black;    
+    /* font-size: .2em; */
+    color: var(--color-main-yellow);
+    /* border-top: 1px solid black; */
 `;

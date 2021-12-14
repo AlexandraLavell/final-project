@@ -15,7 +15,7 @@ const DashNavigation = () => {
     // main return
     return (
         <NavigationWrapper>
-        <DashLink activeClassName="active" exact to="/dash">
+        <DashLink activeClassName="active" exact to="/">
             <p>Dash</p>
         </DashLink>          
         <DashLink activeClassName="active" exact to="/employee">

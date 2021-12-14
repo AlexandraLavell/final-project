@@ -30,12 +30,12 @@ import MainContext from "./MainContext";
 const App = () => {
 
   // consume context
-  const { signInPage, setSignInPage } = useContext(MainContext);
+  const { permission } = useContext(MainContext);
 
   return (
     
     <MyRouter>  
-    {signInPage ?
+    {!permission ?
     <SignIn /> :
     <AppContainer>
       <Header />            
@@ -44,7 +44,7 @@ const App = () => {
           <DashWrapper>
             <DashNavigation />
               <Switch>          
-                <Route exact path="/dash">            
+                <Route path="/">            
                   <MainAdminDashBoard />
                 </Route>
                 <Route exact path="/employee">            
