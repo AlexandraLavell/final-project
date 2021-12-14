@@ -92,13 +92,7 @@ const MainProjectDashboard = (props) => {
                 // add employees only after "modify" has been selected
                 if(!projectEmployees.includes(card_id) && modify){
                     setProjectEmployees([...projectEmployees, card_id]);
-                }
-    
-                // const card= document.getElementById(card_id);
-    
-                // card.style.display = "block";
-    
-                // ev.target.appendChild(card);
+                }               
         }
     }
 
@@ -206,9 +200,10 @@ const MainProjectDashboard = (props) => {
                                     </FormInput></>)
                             } 
                             {/* //end of conditional */}
-                <FormInput  type="text" 
+                <FormInput  type="radio"
                             value={modify ? prjStatus : (currentProjectDash ? currentProjectDash.status : "")} 
                             onChange={(ev)=>setPrjStatus(ev.target.value)}
+                            name="status"                            
                             placeholder="Status"
                             required>
                             </FormInput>
