@@ -20,15 +20,13 @@ const MainAdminDashboard = (props) => {
     const [budget, setBudget] = useState(300);
 
     // consume state
-    const { projectList, employeeList } = useContext(MainContext);
-    
+    const { projectList, employeeList } = useContext(MainContext);    
 
     const todaysProjects = [];
 
     employeeList.map((emp) => {            
         // // this generates a list of projects the employee is working on today
-        const keyList = Object.keys(emp.projects); 
-        
+        const keyList = Object.keys(emp.projects);         
                     
         keyList.forEach((key) => {           
             
@@ -59,9 +57,7 @@ const MainAdminDashboard = (props) => {
     });
 
     pieChartArray.push({"title":"remaining", "value":(Math.round(100 * totalRemaining/budget)), "color": "black"});
-    console.log(pieChartArray);
-
-
+    
     // start of main return
     return (
         <AdminDashWrapper>

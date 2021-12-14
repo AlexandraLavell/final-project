@@ -87,7 +87,7 @@ app.delete("/projects", deleteAllProjects);
 // get all users
 app.get("/users", getAllUsers);
 // get an user by userName
-app.get("/users/:_id", getUserById);
+app.post("/users/:_id", getUserById);
 // delete all users - FOR DEVELOPMENT
 app.delete("/users", deleteAllUsers);
 
