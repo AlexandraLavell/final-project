@@ -3,6 +3,9 @@
 //require Mongodb
 const { MongoClient } = require("mongodb");
 
+// NOT IMPLEMENTED require mailer for sending email
+const nodemailer = require("nodemailer");
+
 //get URI
 require("dotenv").config({path:"./.env"});
 const { MONGO_URI } = process.env;
@@ -12,8 +15,35 @@ const options = {
     useUnifiedTopology: true,
 }
 
+// NOT IMPLEMENTED
+const transporter = nodemailer.createTransport({
+    port: 465,
+    host: "stmp.gmail.com",
+        auth:{
+                user: "AAAAAAAAAAAAAAAA",
+                pass: "xxxxxxxxxxxxx",
+                },
+    secure: true,
+})
+
+// NOT IMPLEMENTED
+const mailData = {
+    from: "SENDER EMAIL",
+    to: "RECIPIENT EMAIL",
+    subject: "SUBJECT",
+    text: "MESSAGE",
+    html: "MESSAGE WITH TAGS",
+    attachments : [
+        {
+            filename: "file.txt",
+            path: "path",
+        }
+    ]
+};
+
 // get all items from the database
 const addProject = async (req, res) =>  {
+
     try {
          // get project details from the body, default values listed
         const { _id = "pr" + Date.now(),
@@ -51,6 +81,9 @@ const addProject = async (req, res) =>  {
         // close the collection
         client.close();
         console.log("DISCONNECTED");
+
+        // NOT IMPLEMENTED upon sucessful submit send an email to the admin
+        // transporter.sendMail(mailOptions);
 
         // return the json object and status
         return (
