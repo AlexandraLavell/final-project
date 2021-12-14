@@ -30,7 +30,7 @@ const MainEmployeeDashboard = (props) => {
             deleteEmployee,
             } = useContext(MainContext);
 
-    const drop = (ev) => {      
+    const drop = async (ev) => {      
         ev.preventDefault();
 
         const card_id = ev.dataTransfer.getData("card_id");
@@ -42,8 +42,11 @@ const MainEmployeeDashboard = (props) => {
             // block a new employee from being added to the dash
             // if the current employee is being modified
             if(!modify){
+                //  clears the dash from the previous employee
                 setCurrentEmployeeDash();
-                setCurrentEmployee(card_id);            
+
+                // sends new employee information triggering dash update
+                setCurrentEmployee(card_id);         
             }
 
             // const card= document.getElementById(card_id);
@@ -100,38 +103,38 @@ const MainEmployeeDashboard = (props) => {
             <EmployeeDashForm onSubmit={handleSubmit}>
                 <SubsectionHeader>{currentEmployee ? currentEmployee : "Drag employee card here"}</SubsectionHeader>
                 <FormInput  type="text" 
-                            value={ currentEmployeeDash?._id || ""} 
-                            // onChange={(ev)=>setEmpNumber(ev.target.value)}
-                            placeholder={currentEmployeeDash?._id || "Employee number"}>                                    
+                            value={currentEmployeeDash?._id} 
+                            placeholder="Employee number">                                    
                     </FormInput>
                 <FormInput  type="text" 
-                            value={modify ? empFirstName : (currentEmployeeDash ? currentEmployeeDash.firstName : "")} 
+                            value={modify ? empFirstName : currentEmployeeDash?.firstName} 
                             onChange={(ev)=>setEmpFirstName(ev.target.value)}
-                            placeholder={currentEmployeeDash?.firstName || "First name"}
+                            placeholder="First name"
                             required>
                             </FormInput>
                 <FormInput  type="text" 
-                            value={modify ? empLastName : (currentEmployeeDash ? currentEmployeeDash.lastName : "")} 
+                            value={modify ? empLastName : currentEmployeeDash?.lastName} 
                             onChange={(ev)=>setEmpLastName(ev.target.value)}
-                            placeholder={currentEmployeeDash?.lastName || "Last name"}
+                            placeholder="Last name"
                             required>
                             </FormInput>
                 <FormInput  type="email" 
-                            value={modify ? empEmail : (currentEmployeeDash ? currentEmployeeDash.email : "")}  
+                            value={modify ? empEmail : currentEmployeeDash?.email}  
                             onChange={(ev)=>setEmpEmail(ev.target.value)}
-                            placeholder={currentEmployeeDash?.email || "Email"}
+                            placeholder="Email"
                             required>
                             </FormInput>
                 <FormInput  type="tel" 
-                            value={modify ? empPhone : (currentEmployeeDash ? currentEmployeeDash.phone : "")} 
+                            value={modify ? empPhone : currentEmployeeDash?.phone} 
                             onChange={(ev)=>setEmpPhone(ev.target.value)}
-                            placeholder={currentEmployeeDash?.phone || "Phone"}
+                            placeholder="Phone"
                             required>
                             </FormInput>   
                 <FormInput  type="text" 
-                            value={modify ? empProjects : (currentEmployeeDash ? Object.keys(currentEmployeeDash.projects) : "")} 
-                            // onChange={(ev)=>setEmpProjects(ev.target.value)} //REVIEW THIS
-                            placeholder={!!currentEmployeeDash ? Object.keys(currentEmployeeDash.projects) : "Projects"}
+                            value={modify ? empProjects : 
+                                (empProjects.length > 0 ? empProjects : (currentEmployeeDash && Object.keys(currentEmployeeDash.projects)))} 
+                            // onChange={(ev)=>setEmpProjects(ev.target.value)}
+                            placeholder="Projects"
                             required>
                             </FormInput> 
                  {/* space for the cards to be dropped */}
