@@ -84,11 +84,9 @@ const EmployeeList = (props) => {
                         className={props.className}
                         >
                 { props.children }
-                {employeeList.map((emp) => {     
-                    console.log("EMP:", emp);           
+                {employeeList.map((emp) => {            
                     // // this generates a list of projects the employee is working on today
                     const keyList = Object.keys(emp.projects);
-                    console.log("KEY LIST: ", keyList);
                     
                     const todaysProjects = [];
                     
@@ -96,9 +94,9 @@ const EmployeeList = (props) => {
                                             
                                             emp.projects[key].forEach((keyDate) => {
                                                 
-                                                console.log(((new Date(keyDate)).getDay() === (new Date()).getDay()) 
-                                                && ((new Date(keyDate)).getMonth() === (new Date()).getMonth())
-                                                && ((new Date(keyDate)).getFullYear() === (new Date()).getFullYear()));
+                                                // console.log(((new Date(keyDate)).getDay() === (new Date()).getDay()) 
+                                                // && ((new Date(keyDate)).getMonth() === (new Date()).getMonth())
+                                                // && ((new Date(keyDate)).getFullYear() === (new Date()).getFullYear()));
 
                                                 if(((new Date(keyDate)).getDay() === (new Date()).getDay()) 
                                                 && ((new Date(keyDate)).getMonth() === (new Date()).getMonth())
@@ -107,9 +105,7 @@ const EmployeeList = (props) => {
                                                     todaysProjects.push(key);
                                                 }
                                             })
-                                        })
-                                                                            
-                    
+                                        })    
 
                     return  (                            
                                 <EmployeeCard _id={emp._id} className="employeeCard" draggable="true" >                                
