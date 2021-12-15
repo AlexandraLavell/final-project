@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, PureComponent } from "react";
 
 // context
 import MainContext from "../MainContext";
@@ -11,7 +11,15 @@ import {    AdminDashWrapper,
         }  from "./StyledMainAdminDashboard";
 
 // pie charts
-import { PieChart } from "react-minimal-pie-chart";
+import {FunnelChart, 
+        Funnel,
+        LabelList,
+        Label,
+        PieChart,
+        Pie,
+        Sector,
+        Cell,
+        ResponsiveContainer, } from "recharts";
 
 // MAIN FUNCTION
 const MainAdminDashboard = (props) => {
@@ -53,26 +61,60 @@ const MainAdminDashboard = (props) => {
 
         totalRemaining = totalRemaining - prj.actual_budget;
 
-        return {"title":prj._id, "value":(Math.round(100 * prj.actual_budget/budget)), "color": randomColor}
+        return {"name":prj._id, "value":(Math.round(100 * prj.actual_budget/budget)), "fill":randomColor}
     });
 
-    pieChartArray.push({"title":"remaining", "value":(Math.round(100 * totalRemaining/budget)), "color": "black"});
-    
+    pieChartArray.push({"name":"remaining","value":(Math.round(100 * totalRemaining/budget)),"fill": "orange"});
+
+    const data = pieChartArray;
+
+    const RADIAN = Math.PI / 180;
+    const customLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index, name }) => {
+        const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+        const x = cx + radius * Math.cos(-midAngle * RADIAN);
+        const y = cy + radius * Math.sin(-midAngle * RADIAN);
+        
+        return (
+            <>
+            <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+                {`${(percent * 100).toFixed(0)}% \n`}
+            </text>        
+            </>
+        );
+    };
+                
     // start of main return
     return (
         <AdminDashWrapper>
             { props.children }
             <SubsectionHeader>Main admin dash</SubsectionHeader>
-            <PieChartWrapper>
-                <PieChart 
-                    data={pieChartArray}
-                    radius={10}
-                    lineWidth={50}
-                    label={({ dataEntry }) => dataEntry.value + "%"}
-                    labelPosition={80}
-                    labelStyle={{fontSize:"2px", fontFamily:"Courier Prime", fill:"lemonchiffon"}}
-                    />
-            </PieChartWrapper>
+            <ResponsiveContainer width="75%" height="75%">
+                <PieChart width={800} height={400}>                
+                <Pie
+                    data={data}
+                    cx={120}
+                    cy={200}
+                    innerRadius={60}
+                    outerRadiue={80}
+                    fill="#8884d8"
+                    paddingAngle={2}
+                    dataKey="value" 
+                    labelLine={false}                   
+                    label={customLabel}                                                 
+                >
+                <Label
+                value={"budget"}
+                position="center"
+                fill="black"
+                style={{
+                    fontSize: "32px",
+                    fontWeight: "bold",
+                    fontFamily: "Courier Prime"
+                }}/> 
+                </Pie> 
+                
+                </PieChart>              
+            </ResponsiveContainer>
             <div>Todays Projects {todaysProjects}</div>
             <div>Projects waiting for approval</div>
         </AdminDashWrapper>

@@ -199,12 +199,12 @@ const MainProjectDashboard = (props) => {
                                     required>
                                     </FormInput></>)
                             } 
-                            {/* //end of conditional */}
-                <FormInput  type="radio"
+                            {/* //end of conditional */}  
+                <FormInput type="text"
                             value={modify ? prjStatus : (currentProjectDash ? currentProjectDash.status : "")} 
                             onChange={(ev)=>setPrjStatus(ev.target.value)}
                             name="status"                            
-                            placeholder="Status"
+                            placeholder="Status - not started, in progress, complete"
                             required>
                             </FormInput>
                 <FormInput  type="text"

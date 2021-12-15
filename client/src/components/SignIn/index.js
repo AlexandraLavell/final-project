@@ -23,7 +23,7 @@ const SignIn = () => {
             permission, setPermission,
             setAdmPermission,
             setEmpPermission,
-            setErrorMessage
+            setErrorMessage,
             } = useContext(MainContext);
 
     // history for error page
@@ -65,6 +65,7 @@ const SignIn = () => {
             if (permission && username === "emp"){
                 setEmpPermission(true);
             }
+    
     }
 
     // main return
@@ -73,6 +74,7 @@ const SignIn = () => {
             <Greeting>
                 <p>Good</p>
                 <p>Morning.</p>
+            </Greeting>
                 {!signInPage && <GoToButton type="button" 
                             onClick={() => setSignInPage(true)}
                             value="ready"
@@ -93,8 +95,7 @@ const SignIn = () => {
                                 value="go"
                                 className="pointer go"
                     />
-                </SignInForm>}
-            </Greeting>
+                </SignInForm>}            
         </SignInWrapper>
     ) // end of main return
 
