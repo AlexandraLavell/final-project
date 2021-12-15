@@ -31,7 +31,9 @@ export const SubsectionHeader = styled.div`
 // pie charts
 export const PieChartWrapper = styled.div`
     position: relative;
-    height:100%;
-    width:100%;    
+    border-radius: 0 0 10% 0;
+    height:25%;
+    width:50%; 
+    border: 1px solid black;   
 
 `;

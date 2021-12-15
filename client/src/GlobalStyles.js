@@ -1,11 +1,12 @@
+import React from "react";
 
-// import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+// import 'https://fonts.googleapis.com/css?family=Readex+Pro';
 
 import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
     :root {
-        --color-main-yellow: rgba(255, 250, 205, 0.2); 
+        --color-main-yellow: rgba(255, 255, 255, 0.2); //rgba(255, 250, 205, 0.2); 
         --color-font-yellow: lemonchiffon;//rgba(4, 93, 28, 1);//#009B77; //lemonchiffon;//#f9f77d; 
         --color-dark-yellow: #F7F44D;
         --color-compliment-green: #056B36;
@@ -15,6 +16,12 @@ export default createGlobalStyle`
         --font-body: 'Kosugi', Arial, Helvetica, sans-serif;
         --padding-page: 24px;
     }
+
+    /* @fontface {
+        font-family: "Readex Pro";
+        font-style: normal;
+        src: url('https://fonts.googleapis.com/css?family=Readex+Pro');
+    } */
 
     /* http://meyerweb.com/eric/tools/css/reset/
         v2.0 | 20110126
@@ -41,6 +48,7 @@ export default createGlobalStyle`
         font-size: 100%;
         vertical-align: baseline;
         text-decoration: none;
+        font-family: var(--font-main);
     }
     /* HTML5 display-role reset for older browsers */
     article, aside, details, figcaption, figure,

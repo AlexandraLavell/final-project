@@ -15,12 +15,12 @@ export const FooterWrapper = styled.div`
     display: flex;
     height: 5vh;
     width: 100%;
-    background: lemonchiffon;
+    background: black;
     font-family: var(--font-main);
-    /* color: lemonchiffon; */
+    color: white;
     /* font-size: 1.2em; */
     font-weight: bold;
-    border-top: 1px solid lemonchiffon;
+    border-top: 1px solid white;
 `;
 
 export const SignoutNavLink = styled(NavLink)`
@@ -31,13 +31,13 @@ export const SignoutNavLink = styled(NavLink)`
     height: 1.5em;
     width: 10%;
     padding: 4px;
-    background-color: black; 
+    background-color: white; 
     box-shadow:0 0 100px #fffacd;
     /* font-size: 3em; */
     font-weight: bold;
     text-decoration: none;
     border-radius: 0;
-    color: lemonchiffon;
+    color: black;
     &.pointer{
         cursor: pointer;
     }

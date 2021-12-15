@@ -2,7 +2,7 @@
 import styled from "styled-components";
 
 export const EmployeeDashWrapper = styled.div`
-   position: relative;
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -12,7 +12,6 @@ export const EmployeeDashWrapper = styled.div`
     background: var(--color-main-yellow);    
     /* border-top: 1px solid black; */
 `;
-
 export const EmployeeDashForm = styled.form`
     position: relative;
     display: flex;
@@ -24,7 +23,6 @@ export const EmployeeDashForm = styled.form`
     background: var(--color-main-yellow);
     /* border-top: 1px solid black; */
 `;
-
 export const SubsectionHeader = styled.div`    
     height: fit-content;
     display: flex; 
@@ -36,7 +34,6 @@ export const SubsectionHeader = styled.div`
     background: var(--color-main-yellow);
     /* border: 1px solid black; */
 `;
-
 export const FormInput = styled.input`
     position: relative;
     display: flex;
@@ -46,6 +43,22 @@ export const FormInput = styled.input`
     border-radius: 0px;
     &.pointer{
         cursor: pointer;
+        &:hover{
+            color: lemonchiffon;
+            background: black;
+            font-weight: bold;
+            transition: 2s;
+        }
     }
 `;
+export const FormLabel = styled.div`
+    position: relative;
+    align-self: flex-start;
+    display: flex;  
+    flex-direction: column; 
+    align-items: center; 
+    font-size: 1em;
+    margin-left: 15px;
+    transition: 1s;
+`
 

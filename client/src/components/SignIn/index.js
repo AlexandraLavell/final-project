@@ -1,6 +1,10 @@
 import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 
+
+// context
+import MainContext from "../MainContext";
+
 //  style
 import styled from "styled-components";
 
@@ -8,17 +12,15 @@ import styled from "styled-components";
 import {    SignInWrapper,
             Greeting,
             ShadowPopSpan,
+            DotSpan,
             GoToButton,
             SignInForm,
+            CloseButton,
             FormInput,
             FormLabel  } from "./StyledSignIn";
 
-// context
-import MainContext from "../MainContext";
-
-
-// circular progress
-import CircularProgress from "@material-ui/core/CircularProgress";
+// assets
+import { FiMinus } from "react-icons/fi"
 
 // main component
 const SignIn = () => {
@@ -71,34 +73,15 @@ const SignIn = () => {
             .catch((err) => {
                                 setErrorMessage(err);
                                 history.push("/error");
-                            });   
-                            
-            // if (permission && username === "adm"){
-            //     setAdmPermission(true);
-            // }
-            // if (permission && username === "emp"){
-            //     setEmpPermission(true);
-            // }
-
-            if(
-                !permission
-                || !empPermission
-                || !admPermission
-            ){  return (
-                            <CircularProgressWrapper>
-                                <CircularProgress color="primary"/>
-                            </CircularProgressWrapper>                    
-                        )                    
-            }
-    
-    }
+                            });                               
+        }
 
     // main return
     return (
         <SignInWrapper>
             <Greeting>
                 <p><ShadowPopSpan>Go</ShadowPopSpan>od</p>
-                <p><ShadowPopSpan>Mor</ShadowPopSpan>ning.</p>
+                <p><ShadowPopSpan>Mor</ShadowPopSpan><span>ning<DotSpan>.</DotSpan></span></p>
             </Greeting>
                 {!signInPage && <GoToButton type="button" 
                             onClick={(ev) => {
@@ -109,6 +92,7 @@ const SignIn = () => {
                             className="pointer"
                 />}
                 {signInPage && <SignInForm onSubmit={handleSubmit}>
+                    <CloseButton onClick={()=>{setSignInPage(false)}}><FiMinus/></CloseButton>
                     <FormLabel><p>username</p>
                         <FormInput  type="text" 
                                     value={username}
@@ -128,14 +112,5 @@ const SignIn = () => {
     ) // end of main return
 
 }
-
-const CircularProgressWrapper = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    width: 100%;
-`;
-
 
 export default SignIn;
