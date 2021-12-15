@@ -10,7 +10,7 @@ export const EmployeeFormWrapper = styled.form`
     width: 100%;
     padding: 15px;
     background: lemonchiffon;
-    border-top: 1px solid black;
+    /* border-top: 1px solid black; */
 `;
 
 export const SubsectionHeader = styled.div`    
