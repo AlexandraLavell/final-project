@@ -5,7 +5,7 @@ import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
     :root {
-        --color-main-yellow: transparent 
+        --color-main-yellow: rgba(255, 250, 205, 0.2); 
         --color-font-yellow: lemonchiffon;//rgba(4, 93, 28, 1);//#009B77; //lemonchiffon;//#f9f77d; 
         --color-dark-yellow: #F7F44D;
         --color-compliment-green: #056B36;

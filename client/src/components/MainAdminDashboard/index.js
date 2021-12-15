@@ -8,19 +8,12 @@ import MainContext from "../MainContext";
 import {    AdminDashWrapper,
             SubsectionHeader,
             PieChartWrapper, 
-            PieResponsiveContainer,
         }  from "./StyledMainAdminDashboard";
 
 // pie charts
-import {FunnelChart, 
-        Funnel,
-        LabelList,
-        Label,
-        PieChart,
-        Pie,
-        Sector,
-        Cell,
-        ResponsiveContainer, } from "recharts";
+import {    Treemap,
+            ResponsiveContainer, 
+        } from "recharts";
 
 // MAIN FUNCTION
 const MainAdminDashboard = (props) => {
@@ -55,67 +48,48 @@ const MainAdminDashboard = (props) => {
 
     var totalRemaining = 300;
 
-    const pieChartArray = projectList.map((prj) => {
+    const pieChartArray = projectList?.map((prj) => {
         
         // random color for the piece of pie
         const randomColor = "#" + Math.floor(Math.random()*16777215).toString(16);
 
         totalRemaining = totalRemaining - prj.actual_budget;
 
-        return {"name":prj._id, "value":(Math.round(100 * prj.actual_budget/budget)), "fill":randomColor}
+        const labelName = prj._id + " " + "$" + prj.actual_budget;
+
+        return {"name":labelName, "size":(Math.round(100 * prj.actual_budget/budget)), "fill": randomColor}
     });
 
-    pieChartArray.push({"name":"remaining","value":(Math.round(100 * totalRemaining/budget)),"fill": "orange"});
+    const leftoverBudgetLabel = "remaining: $" + totalRemaining
 
-    const data = pieChartArray;
+    pieChartArray.push({"name":leftoverBudgetLabel,"size":(Math.round(100 * totalRemaining/budget)), "fill": "transparent"});
 
-    const RADIAN = Math.PI / 180;
-    const customLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index, name }) => {
-        const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-        const x = cx + radius * Math.cos(-midAngle * RADIAN);
-        const y = cy + radius * Math.sin(-midAngle * RADIAN);
-        
-        return (
-            <>
-            <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
-                {`${(percent * 100).toFixed(0)}% ${name}`}
-            </text>        
-            </>
-        );
-    };
+    console.log(pieChartArray);
+
+    const data = [{
+                    "name": "budget",
+                    "children": pieChartArray,
+    }];
+
                 
     // start of main return
     return (
         <AdminDashWrapper>
             { props.children }
-            <SubsectionHeader>Main admin dash</SubsectionHeader>
-            <ResponsiveContainer width="100%" height="100%" >
-                <PieChart width={300} height={300}>                
-                <Pie
-                    data={data}
-                    cx={400}
-                    cy={100}
-                    innerRadius={40}
-                    outerRadius={80}
-                    fill="#8884d8"
-                    paddingAngle={2}
-                    dataKey="value" 
-                    labelLine={false}                   
-                    label={customLabel}                                                 
-                >
-                <Label
-                value={"budget"}
-                position="center"
-                fill="black"
-                style={{
-                    fontSize: "32px",
-                    fontWeight: "bold",
-                    fontFamily: "Courier Prime"
-                }}/> 
-                </Pie> 
-                
-                </PieChart>              
+            {/* <SubsectionHeader>Main admin dash</SubsectionHeader> */}
+            <PieChartWrapper>
+            <ResponsiveContainer width="50%" height="25%" >
+            <Treemap
+                width={400}
+                height={200}
+                data={data}
+                dataKey="size"
+                ratio={2 / 1}
+                stroke="black"
+                fill="transparent"               
+                />                    
             </ResponsiveContainer>
+            </PieChartWrapper>
             <div>Todays Projects {todaysProjects}</div>
             <div>Projects waiting for approval</div>
         </AdminDashWrapper>

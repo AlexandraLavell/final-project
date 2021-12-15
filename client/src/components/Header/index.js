@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
 
+// styled components
 import {    HeaderWrapper,
             HeaderNavLink,
         } from "./StyledHeader";
@@ -8,7 +8,9 @@ import {    HeaderWrapper,
 
 const Header = () => {
 
+    // local state variables
     const [show, setShow] = useState(false)
+
 
     // causes header to go transparent on scroll down
     const handleScroll = () => {
@@ -28,7 +30,7 @@ const Header = () => {
 
     // start of main return
     return (
-        <HeaderWrapper className={show && "blue"}>
+        <HeaderWrapper className={show && "blue"}>            
             <HeaderNavLink exact to="/">Good Morning.</HeaderNavLink>
         </HeaderWrapper>
 
