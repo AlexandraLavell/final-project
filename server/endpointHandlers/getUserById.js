@@ -16,9 +16,9 @@ const options = {
 const getUserById = async (req, res) =>  {
     try {
         // get the user id from the request parameters
-        const { _id } = req.params;
+        const { _id="" } = req.params;
 
-        const { password } = req.body;
+        const { password="" } = req.body;
 
         // create a new client
         const client = new MongoClient(MONGO_URI, options);
@@ -56,6 +56,7 @@ const getUserById = async (req, res) =>  {
         res.status(400).json({
             status: 400,
             message: err.message,
+            data: false,
         })
     }
 }
