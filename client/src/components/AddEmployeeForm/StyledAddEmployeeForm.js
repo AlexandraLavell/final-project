@@ -9,8 +9,7 @@ export const EmployeeFormWrapper = styled.form`
     height: 100%;
     width: 100%;
     padding: 15px;
-    background: lemonchiffon;
-    /* border-top: 1px solid black; */
+    background: var(--color-main-yellow);
 `;
 
 export const SubsectionHeader = styled.div`    

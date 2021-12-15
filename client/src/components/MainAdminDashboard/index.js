@@ -89,7 +89,7 @@ const MainAdminDashboard = (props) => {
         <AdminDashWrapper>
             { props.children }
             <SubsectionHeader>Main admin dash</SubsectionHeader>
-            {/* <ResponsiveContainer width="100%" height="100%" >
+            <ResponsiveContainer width="100%" height="100%" >
                 <PieChart width={300} height={300}>                
                 <Pie
                     data={data}
@@ -115,7 +115,7 @@ const MainAdminDashboard = (props) => {
                 </Pie> 
                 
                 </PieChart>              
-            </ResponsiveContainer> */}
+            </ResponsiveContainer>
             <div>Todays Projects {todaysProjects}</div>
             <div>Projects waiting for approval</div>
         </AdminDashWrapper>

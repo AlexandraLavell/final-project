@@ -15,7 +15,7 @@ export const ProjectContainerWrapper = styled.div`
 `;
 
 export const SubsectionHeader = styled.div`    
-    height: 3%;
+    min-height: 50px;
     display: flex; 
     justify-content: space-between;
     color:black;
@@ -23,7 +23,7 @@ export const SubsectionHeader = styled.div`
     width: 100%;
     padding: 15px;
     background: var(--color-main-yellow);
-    /* border: 1px solid black; */
+    border-bottom: 1px solid black;
 `;
 
 export const AddNav = styled(NavLink)`

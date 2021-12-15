@@ -11,7 +11,14 @@ export const SignInWrapper = styled.div`
     height: 100%;
     width: 100%;
     padding: 2%;
-    background-color: var(--color-main-yellow);
+    background-image: url("montreal_sunrise.jpg");
+    background-size: 100% 100%;  
+    /* background-color: black; */
+`;
+
+export const ShadowPopSpan = styled.span`
+    text-shadow: 0 0 100px #fffacd;
+    /* -3px 7px 42px #fffacd; */
 `;
 
 export const Greeting = styled.div`
@@ -25,14 +32,15 @@ export const GoToButton = styled.input`
     bottom: 15px;
     right: 15px;
     height: 1.5em;
-    width: 15%;
+    width: 17%;
     padding: 4px;
-    background-color: black;   
+    background-color: black; 
+    box-shadow:0 0 100px #fffacd;
     font-size: 3em;
     font-weight: bold;
     text-decoration: none;
     border-radius: 0;
-    color: var(--color-main-yellow);
+    color: lemonchiffon;
     &.pointer{
         cursor: pointer;
     }
@@ -48,22 +56,24 @@ export const GoToButton = styled.input`
         padding: 0;
         margin: 3% 0 0 0;
         font-size: 3em;
-        background: var(--color-main-yellow);
+        background: lemonchiffon;
+        box-shadow: none;
         color: black;
     }
 `;
 
 export const FormInput = styled.input`
     position: relative;
-    height: 1em;
+    height: 1.1em;
     width: 80%;
+    margin: 2px;
     display: flex;
-    border: 1px solid var(--color-main-yellow);
+    border: 1px solid lemonChiffon;
     background: black;
     border-radius: 0px;
     font-family: var(--font-main);
-    color: var(--color-main-yellow);
-    font-size: 1em;
+    color: lemonChiffon;
+    font-size: 0.8em;
     text-align: center;    
 `;
 
@@ -84,10 +94,11 @@ export const SignInForm = styled.form`
     align-items: center;
     justify-content: center;
     height: fit-content;
-    width: 15%;
-    padding: 4px;
-    background-color: black;    
+    width: 17%;
+    padding: 4px; 
+    background-color: black;       
+    box-shadow:0 0 100px #fffacd;    
     /* font-size: .2em; */
-    color: var(--color-main-yellow);
+    color: lemonChiffon;
     /* border-top: 1px solid black; */
 `;

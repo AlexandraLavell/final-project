@@ -20,7 +20,7 @@ export const ProjectDashForm = styled.form`
     height: 100%;
     width: 100%;
     padding: 15px;
-    background: lemonchiffon;
+    background: var(--color-main-yellow);
     /* border-top: 1px solid black; */
 `;
 

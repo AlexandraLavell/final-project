@@ -19,7 +19,7 @@ export const CardWrapper = styled.div`
     margin-bottom: 15px;
     border: 1px solid black;
     height: 6em;
-    /* box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 3px 10px 0 rgba(0, 0, 0, 0.09); */
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 3px 10px 0 rgba(0, 0, 0, 0.09);
 `;
 
 export const TippyWrapper = styled(Tippy)`
@@ -32,7 +32,7 @@ export const TippyWrapper = styled(Tippy)`
     width: fit-content;
     font-family: var(--font-main);
     font-weight: bold;
-    color: var(--color-main-yellow);
+    color: lemonchiffon;
     border-radius: 0;
 `;
 

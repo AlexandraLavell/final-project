@@ -10,7 +10,6 @@ export const ProjectFormWrapper = styled.form`
     width: 100%;
     padding: 15px;
     background: var(--color-main-yellow);
-    border-top: 1px solid black;
 `;
 export const SubsectionHeader = styled.div`    
     height: fit-content;
