@@ -78,7 +78,7 @@ const MainAdminDashboard = (props) => {
             { props.children }
             {/* <SubsectionHeader>Main admin dash</SubsectionHeader> */}
             <PieChartWrapper>
-            <ResponsiveContainer width="50%" height="25%" >
+            <ResponsiveContainer width="100%" height="100%">
             <Treemap
                 width={400}
                 height={200}
@@ -86,7 +86,7 @@ const MainAdminDashboard = (props) => {
                 dataKey="size"
                 ratio={2 / 1}
                 stroke="black"
-                fill="transparent"               
+                fill="transparent"    
                 />                    
             </ResponsiveContainer>
             </PieChartWrapper>

@@ -8,6 +8,7 @@ import {    EmployeeDashWrapper,
             SubsectionHeader,
             EmployeeDashForm,
             FormInput,
+            FormLabel,
         }  from "./StyledMainEmployeeDashboard";
 
 const MainEmployeeDashboard = (props) => {
@@ -105,11 +106,13 @@ const MainEmployeeDashboard = (props) => {
                     className={props.className}
                     >
             <EmployeeDashForm onSubmit={handleSubmit}>
-                <SubsectionHeader>{currentEmployee ? currentEmployee : "Drag employee card here"}</SubsectionHeader>
+                <SubsectionHeader>{!currentEmployee ? "Drag employee card here" : " "}</SubsectionHeader>
+                <FormLabel>{currentEmployee ? "Employee number" : " "}</FormLabel>
                 <FormInput  type="text" 
                             value={empNumber} 
                             placeholder="Employee number">                                    
                     </FormInput>
+                <FormLabel>{currentEmployee ? "First name" : " "}</FormLabel>                
                 <FormInput  type="text" 
                             // clears value when employee deleted
                             value={empFirstName} 
@@ -117,6 +120,7 @@ const MainEmployeeDashboard = (props) => {
                             placeholder="First name"
                             required>
                             </FormInput>
+                <FormLabel>{currentEmployee ? "Last name" : " "}</FormLabel>
                 <FormInput  type="text" 
                             // clears value when employee deleted
                             value={empLastName}
@@ -124,6 +128,7 @@ const MainEmployeeDashboard = (props) => {
                             placeholder="Last name"
                             required>
                             </FormInput>
+                <FormLabel>{currentEmployee ? "Email" : " "}</FormLabel>
                 <FormInput  type="email" 
                             // clears value when employee deleted
                             value={empEmail}  
@@ -131,13 +136,15 @@ const MainEmployeeDashboard = (props) => {
                             placeholder="Email"
                             required>
                             </FormInput>
+                <FormLabel>{currentEmployee ? "Phone" : " "}</FormLabel>
                 <FormInput  type="tel" 
                             // clears value when employee deleted
                             value={empPhone} 
                             onChange={(ev)=>(modify && setEmpPhone(ev.target.value))}
                             placeholder="Phone"
                             required>
-                            </FormInput>   
+                            </FormInput>
+                <FormLabel>{currentEmployee ? "Projects" : " "}</FormLabel>   
                 <FormInput  type="text" 
                             value={empProjects} 
                             // onChange={(ev)=>setEmpProjects(ev.target.value)}

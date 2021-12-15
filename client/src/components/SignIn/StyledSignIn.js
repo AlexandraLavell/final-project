@@ -21,6 +21,11 @@ export const ShadowPopSpan = styled.span`
     /* -3px 7px 42px #fffacd; */
 `;
 
+export const DotSpan = styled.span`
+    margin-left: -10px;
+    
+`;
+
 export const Greeting = styled.div`
     font-family: "Courier New";
     font-size: 256px;
@@ -32,7 +37,7 @@ export const GoToButton = styled.input`
     bottom: 15px;
     right: 15px;
     height: 1.5em;
-    width: 17%;
+    min-width: 17%;
     padding: 4px;
     background-color: black; 
     box-shadow:0 0 100px #fffacd;
@@ -41,6 +46,10 @@ export const GoToButton = styled.input`
     text-decoration: none;
     border-radius: 0;
     color: lemonchiffon;
+    &:hover{
+        color: pink;
+        transition: 2s;
+    }
     &.pointer{
         cursor: pointer;
     }
@@ -59,6 +68,10 @@ export const GoToButton = styled.input`
         background: lemonchiffon;
         box-shadow: none;
         color: black;
+        &:hover{
+        background: pink;
+        transition: 2s;
+    }
     }
 `;
 
@@ -84,7 +97,6 @@ export const FormLabel = styled.div`
     align-items: center; 
     font-size: 3em;
 `
-
 export const SignInForm = styled.form`
     position: absolute;
     bottom: 5px;
@@ -101,4 +113,19 @@ export const SignInForm = styled.form`
     /* font-size: .2em; */
     color: lemonChiffon;
     /* border-top: 1px solid black; */
+`;
+export const CloseButton = styled.button`
+    justify-self: flex-start;
+    align-self: flex-end;
+    max-height: 10%;
+    max-width: 20%;
+    background: transparent;
+    border: none;
+    padding: none;
+    margin: none;
+    cursor: pointer;
+    &:hover{
+        color: pink;
+        transition: 2s;
+    }
 `;

@@ -80,7 +80,7 @@ const AppContainer = styled.div`
   display: flex;
   min-height: 150vh;
   width: 100%;
-  /* background-image: url("background.jpg"); */
+  background-image: url("background.jpg");
   /* background-color: var(--color-main-yellow);  */
   background-position: bottom;
   background-repeat: no-repeat;

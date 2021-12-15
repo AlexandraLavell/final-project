@@ -8,6 +8,7 @@ import MainContext from "../MainContext";
 import {    ProjectDashWrapper,
             SubsectionHeader,
             ProjectDashForm,
+            FormLabel,
             FormInput,
             FormTextArea,
         }  from "./StyledMainProjectDashboard";
@@ -140,19 +141,23 @@ const MainProjectDashboard = (props) => {
                     className={props.className}
                     >
             <ProjectDashForm onSubmit={handleSubmit}>
-                <SubsectionHeader>{currentProject ? currentProject : "Drag project card here"}</SubsectionHeader>
+                <SubsectionHeader>{currentProject ? " " : "Drag project card here"}</SubsectionHeader>
+                <FormLabel>{currentProject ? "Project number" : " "}</FormLabel>
                 <FormInput  type="text" 
                             value={currentProjectDash ? currentProjectDash._id : ""} 
                             placeholder={!!currentProjectDash ? currentProjectDash._id : "Project number"}>                                    
                     </FormInput>
                 {/* conditional rendering based on permission level */}
                 {admPermission ?                 
-                    (<><FormInput  type="text" 
+                    (<>
+                    <FormLabel>{currentProject ? "Project name" : " "}</FormLabel>
+                    <FormInput  type="text" 
                                 value={modify ? prjName : (currentProjectDash ? currentProjectDash.project_name : "")} 
                                 onChange={(ev)=>setPrjName(ev.target.value)}
                                 placeholder="Project name"
                                 required>
                                 </FormInput>
+                    <FormLabel>{currentProject ? "Description" : " "}</FormLabel>
                     <FormInput  type="text" 
                                 spellCheck
                                 value={modify ? prjDescription : (currentProjectDash ? currentProjectDash.description : "")} 
@@ -160,46 +165,50 @@ const MainProjectDashboard = (props) => {
                                 placeholder="Description"
                                 required>
                                 </FormInput>
+                    <FormLabel>{currentProject ? "Requested budget" : " "}</FormLabel>
                     <FormInput  type="number" 
                                 value={modify ? prjRequestedBudget : (currentProjectDash ? currentProjectDash.requested_budget : "")}  
                                 // onChange={(ev)=>setPrjRequestedBudget(ev.target.value)}
                                 placeholder="Requested budget"
                                 required>
                                 </FormInput>
+                    <FormLabel>{currentProject ? "Approved budget" : " "}</FormLabel>
                     <FormInput  type="number" 
                                 value={modify ? prjActualBudget : (currentProjectDash ? currentProjectDash.actual_budget : "")} 
                                 onChange={(ev)=>setPrjActualBudget(ev.target.value)}
-                                placeholder="Actual budget"
+                                placeholder="Approved budget"
                                 required>
                                 </FormInput></>)                                
                 // second half of conditional
-                    :(<><FormInput  type="text" 
-                            value={modify ? prjName : (currentProjectDash ? currentProjectDash.project_name : "")} 
-                            // onChange={(ev)=>setPrjName(ev.target.value)}
-                            placeholder="Project name"
-                            required>
-                            </FormInput>
+                    :(<>
+                        <FormLabel>{currentProject ? "Project name" : " "}</FormLabel>
+                        <FormInput  type="text" 
+                                value={(currentProjectDash ? currentProjectDash.project_name : "")} 
+                                placeholder="Project name"
+                                required>
+                                </FormInput>
+                        <FormLabel>{currentProject ? "Description" : " "}</FormLabel>
                         <FormInput  type="text" 
                                     spellCheck
-                                    value={modify ? prjDescription : (currentProjectDash ? currentProjectDash.description : "")} 
-                                    // onChange={(ev)=>setPrjDescription(ev.target.value)}
+                                    value={(currentProjectDash ? currentProjectDash.description : "")} 
                                     placeholder="Description"
                                     required>
                                     </FormInput>
+                        <FormLabel>{currentProject ? "Requested budget" : " "}</FormLabel>
                         <FormInput  type="number" 
-                                    value={modify ? prjRequestedBudget : (currentProjectDash ? currentProjectDash.requested_budget : "")}  
-                                    // onChange={(ev)=>setPrjRequestedBudget(ev.target.value)}
+                                    value={(currentProjectDash ? currentProjectDash.requested_budget : "")}  
                                     placeholder="Requested budget"
                                     required>
                                     </FormInput>
+                        <FormLabel>{currentProject ? "Approved budget" : " "}</FormLabel>
                         <FormInput  type="number" 
-                                    value={modify ? prjActualBudget : (currentProjectDash ? currentProjectDash.actual_budget : "")} 
-                                    // onChange={(ev)=>setPrjActualBudget(ev.target.value)}
-                                    placeholder="Actual budget"
+                                    value={(currentProjectDash ? currentProjectDash.actual_budget : "")} 
+                                    placeholder="Approved budget"
                                     required>
                                     </FormInput></>)
                             } 
                             {/* //end of conditional */}  
+                <FormLabel>{currentProject ? "Status" : " "}</FormLabel>
                 <FormInput type="text"
                             value={modify ? prjStatus : (currentProjectDash ? currentProjectDash.status : "")} 
                             onChange={(ev)=>setPrjStatus(ev.target.value)}
@@ -207,12 +216,14 @@ const MainProjectDashboard = (props) => {
                             placeholder="Status - not started, in progress, complete"
                             required>
                             </FormInput>
+                <FormLabel>{currentProject ? "Emloyees on this project" : " "}</FormLabel>
                 <FormInput  type="text"
                             value={modify ? projectEmployees : (!!currentProjectDash ? projectEmployees : "")} 
                             // onChange={(ev)=>setPrjStatus(ev.target.value)}
                             placeholder="Employees on the project"
                             required>
                             </FormInput>
+                <FormLabel>{currentProject ? "Final report" : " "}</FormLabel>
                 <FormTextArea   value={modify ? prjFinalReport : (currentProjectDash ? currentProjectDash.final_report : "")} 
                                 onChange={(ev)=>setPrjFinalReport(ev.target.value)}
                                 placeholder="Final report"
@@ -221,7 +232,8 @@ const MainProjectDashboard = (props) => {
                 {/* display update and delete buttons when the user is modifying the form, toggled with modify button */}
                 {currentProject && modify && <FormInput  type="submit" 
                             className={"pointer"}
-                            value="Update">
+                            value="Update"
+                            >
                             </FormInput>}                 
                 {admPermission && currentProject && modify && <FormInput  type="reset" 
                             className={"pointer"}
