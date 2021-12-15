@@ -1,14 +1,12 @@
 // style
 import styled from "styled-components";
 
-// pie charts
-import { PieChart } from "react-minimal-pie-chart";
 
 export const AdminDashWrapper = styled.div`
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     height: 100%;
     width: 100%;
