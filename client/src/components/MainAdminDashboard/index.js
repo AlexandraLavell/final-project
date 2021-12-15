@@ -8,6 +8,7 @@ import MainContext from "../MainContext";
 import {    AdminDashWrapper,
             SubsectionHeader,
             PieChartWrapper, 
+            PieResponsiveContainer,
         }  from "./StyledMainAdminDashboard";
 
 // pie charts
@@ -77,7 +78,7 @@ const MainAdminDashboard = (props) => {
         return (
             <>
             <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
-                {`${(percent * 100).toFixed(0)}% \n`}
+                {`${(percent * 100).toFixed(0)}% ${name}`}
             </text>        
             </>
         );
@@ -88,14 +89,14 @@ const MainAdminDashboard = (props) => {
         <AdminDashWrapper>
             { props.children }
             <SubsectionHeader>Main admin dash</SubsectionHeader>
-            <ResponsiveContainer width="75%" height="75%">
-                <PieChart width={800} height={400}>                
+            <ResponsiveContainer width="100%" height="100%" >
+                <PieChart width={300} height={300}>                
                 <Pie
                     data={data}
-                    cx={120}
-                    cy={200}
-                    innerRadius={60}
-                    outerRadiue={80}
+                    cx={400}
+                    cy={100}
+                    innerRadius={40}
+                    outerRadius={80}
                     fill="#8884d8"
                     paddingAngle={2}
                     dataKey="value" 
