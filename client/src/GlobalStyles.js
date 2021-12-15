@@ -5,7 +5,8 @@ import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
     :root {
-        --color-main-yellow: lemonchiffon;//rgba(4, 93, 28, 1);//#009B77; //lemonchiffon;//#f9f77d; 
+        --color-main-yellow: transparent 
+        --color-font-yellow: lemonchiffon;//rgba(4, 93, 28, 1);//#009B77; //lemonchiffon;//#f9f77d; 
         --color-dark-yellow: #F7F44D;
         --color-compliment-green: #056B36;
         --color-compliment-blue: #020442;
@@ -40,7 +41,6 @@ export default createGlobalStyle`
         font-size: 100%;
         vertical-align: baseline;
         text-decoration: none;
-        font-weight: bold;
     }
     /* HTML5 display-role reset for older browsers */
     article, aside, details, figcaption, figure,
