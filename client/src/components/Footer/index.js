@@ -5,13 +5,19 @@ import React, {useContext} from "react";
 import MainContext from "../MainContext";
 
 // style
-import { FooterWrapper } from "./StyledFooter";
+import {    FooterWrapper,
+            SignoutNavLink,
+        } from "./StyledFooter";
 
 
 const Footer = () => {
 
-    // consume context
-    const { joke } = useContext(MainContext)
+     // consume context
+     const {    joke,
+                setPermission,
+                setAdmPermission,
+                setEmpPermission,
+            } = useContext(MainContext);
 
 
     // start of main return
@@ -19,6 +25,12 @@ const Footer = () => {
         <FooterWrapper>
 
             <p>{joke}</p>
+            <SignoutNavLink onClick={()=>{
+                                            setPermission(false);
+                                            setAdmPermission(false);
+                                            setEmpPermission(false);
+                                            }}
+                            exact to="/">signout</SignoutNavLink>
 
         </FooterWrapper>
 

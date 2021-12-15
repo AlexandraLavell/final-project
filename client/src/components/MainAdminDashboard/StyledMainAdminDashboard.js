@@ -30,9 +30,8 @@ export const SubsectionHeader = styled.div`
 
 // pie charts
 export const PieChartWrapper = styled.div`
-    position: absolute;
-    top: 0px;
-    padding: 0;
-    margin: 0;
+    position: relative;
+    height:100%;
+    width:100%;    
 
 `;

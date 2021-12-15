@@ -50,8 +50,6 @@ const SignIn = () => {
     const handleSubmit = (ev) => {
         ev.preventDefault();
 
-        console.log("IN HANDLE SUBMIT");
-
         fetch(`/users/${username}`, {
             method: "POST",
             headers: {
@@ -62,7 +60,6 @@ const SignIn = () => {
             })
             .then(res => res.json())
             .then(data => {
-                            console.log(data.data);
                             setPermission(data.data);
                             if (data.data && username === "adm"){
                                 setAdmPermission(true);

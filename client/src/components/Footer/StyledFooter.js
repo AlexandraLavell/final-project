@@ -1,3 +1,8 @@
+import React from "react";
+import { NavLink } from "react-router-dom";
+
+
+
 // style
 import styled from "styled-components";
 
@@ -10,8 +15,32 @@ export const FooterWrapper = styled.div`
     display: flex;
     height: 5vh;
     width: 100%;
-    background: var(--color-main-yellow);
+    background: lemonchiffon;
     font-family: var(--font-main);
-    border: 1px solid black;
+    /* color: lemonchiffon; */
+    /* font-size: 1.2em; */
+    font-weight: bold;
+    border-top: 1px solid lemonchiffon;
 `;
+
+export const SignoutNavLink = styled(NavLink)`
+    position: absolute;    
+    right: 5%;
+    display: flex;
+    justify-content: center;
+    height: 1.5em;
+    width: 10%;
+    padding: 4px;
+    background-color: black; 
+    box-shadow:0 0 100px #fffacd;
+    /* font-size: 3em; */
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 0;
+    color: lemonchiffon;
+    &.pointer{
+        cursor: pointer;
+    }
+`;
+
 

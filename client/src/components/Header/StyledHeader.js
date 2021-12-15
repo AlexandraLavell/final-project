@@ -8,9 +8,8 @@ export const HeaderWrapper = styled.div`
     position: fixed;
     top: 0;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-end;
+    justify-content: flex-end;
+    align-items: center;
     padding: 2%;
     height: 100px;
     width: 100%;
@@ -27,7 +26,6 @@ export const HeaderWrapper = styled.div`
         opacity: .3;
     }    
 `;
-
 export const HeaderNavLink = styled(NavLink)`
     color: black;
 `;
