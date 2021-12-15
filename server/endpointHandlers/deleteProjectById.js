@@ -28,6 +28,34 @@ const deleteProjectById = async (req, res) =>  {
         const db = client.db("goodmorning");
         console.log("CONNECTED");
 
+        // start by finding the id's of all the employees who are working
+        // on this project
+        const queryString = "projects." + _id;
+
+        // find all employees who are working on the project
+        const employeesOnTheProject = await db.collection("employees").find({[queryString]:{$exists:true}}, 
+                                                                        { projection: {_id:1}}).toArray(); 
+
+        
+
+        // now map through the employees and delete the project from their file
+        employeesOnTheProject.forEach(async (emp) => {
+
+            console.log("EMP", emp);
+            console.log("QUERY STRING", queryString);
+            // update all employee info
+            const filterEmployees = {"_id":emp._id};
+
+            const updateEmployeeInfo = {$unset:{[queryString]:""}};         
+
+            // update
+            const updatedEmployee = await db.collection("employees")
+                                        .updateOne(filterEmployees, updateEmployeeInfo);  
+
+
+        })
+        
+
         // delete one project by id
         const oneProjectDeleted = await db.collection("projects")
                                         .deleteOne({_id}); 
