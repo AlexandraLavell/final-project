@@ -24,6 +24,7 @@ export const HeaderWrapper = styled.div`
     transition: 0.5s;
     &.blue {
         opacity: .3;
+        z-index: -1;
     }    
 `;
 export const HeaderNavLink = styled(NavLink)`

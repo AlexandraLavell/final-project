@@ -1,4 +1,4 @@
-import React, { useContext, useState, PureComponent } from "react";
+import React, { useContext, useState, PureComponent, useEffect } from "react";
 
 // context
 import MainContext from "../MainContext";
@@ -13,6 +13,11 @@ import {    AdminDashWrapper,
 // pie charts
 import {    Treemap,
             ResponsiveContainer, 
+            PieChart,
+            Pie,
+            RadialBarChart,
+            RadialBar,
+            Legend,
         } from "recharts";
 
 // MAIN FUNCTION
@@ -46,6 +51,36 @@ const MainAdminDashboard = (props) => {
         })    
     });
 
+    // project summary
+    const approvedProjects = [];
+    const waitingProjects = [];
+    const inprogressProjects = [];
+    const notstartedProjects = [];
+    const completedProjects = [];
+
+    
+        projectList.forEach((prj) => {
+
+            if (prj.approval === "pending"){
+                waitingProjects.push(prj._id);
+            }
+            if (prj.approval === "approved"){
+                approvedProjects.push(prj._id);
+            }
+            if (prj.status === "not started"){
+                notstartedProjects.push(prj._id);
+            }
+            if (prj.status === "in progress"){
+                inprogressProjects.push(prj._id);
+            }
+            if (prj.status === "complete"){
+                completedProjects.push(prj._id);
+            }
+        });
+
+    
+
+    // budget treemap
     var totalRemaining = 300;
 
     const pieChartArray = projectList?.map((prj) => {
@@ -71,24 +106,73 @@ const MainAdminDashboard = (props) => {
                     "children": pieChartArray,
     }];
 
+    // project completion status pie graph
+
+    const statusData = [
+        {
+            "name": "Complete",
+            "uv": completedProjects.length,
+            "pv": 80,
+            "fill":  "#" + Math.floor(Math.random()*16777215).toString(16)
+        },
+        {
+            "name": "In progress",
+            "uv": inprogressProjects.length,
+            "pv": completedProjects.length + inprogressProjects.length + notstartedProjects.length,
+            "fill":  "#" + Math.floor(Math.random()*16777215).toString(16)
+        },
+        {
+            "name": "Not started",
+            "uv": notstartedProjects.length,
+            "pv": completedProjects.length + inprogressProjects.length + notstartedProjects.length,
+            "fill":  "#" + Math.floor(Math.random()*16777215).toString(16)
+        }
+    ];
+
+    console.log(statusData);
                 
     // start of main return
     return (
         <AdminDashWrapper>
             { props.children }
-            {/* <SubsectionHeader>Main admin dash</SubsectionHeader> */}
+            <SubsectionHeader>Budget</SubsectionHeader>
             <PieChartWrapper>
-            <ResponsiveContainer width="100%" height="100%">
-            <Treemap
-                width={400}
-                height={200}
-                data={data}
-                dataKey="size"
-                ratio={2 / 1}
-                stroke="black"
-                fill="transparent"    
-                />                    
-            </ResponsiveContainer>
+                <ResponsiveContainer width="100%" height="100%">
+                <Treemap
+                    width={400}
+                    height={200}
+                    data={data}
+                    dataKey="size"
+                    ratio={2 / 1}
+                    stroke="black"
+                    fill="transparent"    
+                    />                    
+                </ResponsiveContainer>
+            </PieChartWrapper>
+            <SubsectionHeader>Project status</SubsectionHeader>
+            <PieChartWrapper>
+                <ResponsiveContainer width="100%" height="100%">
+                <RadialBarChart width={730} 
+                                height={250} 
+                                innerRadius="45%" 
+                                outerRadius="100%" 
+                                data={statusData} 
+                                startAngle={0} 
+                                endAngle={360}>
+                <RadialBar
+                    minAngle={60} 
+                    label={{ fill: '#fff', position: 'insideStart' }} 
+                    background clockWise={true} 
+                    dataKey='uv'    
+                    />
+                    <Legend iconSize={10} 
+                            width={120} 
+                            height={140} 
+                            layout='vertical' 
+                            verticalAlign='middle' 
+                            align="right" />
+                </RadialBarChart>                   
+                </ResponsiveContainer>
             </PieChartWrapper>
             <div>Todays Projects {todaysProjects}</div>
             <div>Projects waiting for approval</div>

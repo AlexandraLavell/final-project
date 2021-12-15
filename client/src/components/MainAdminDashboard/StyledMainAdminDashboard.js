@@ -34,6 +34,8 @@ export const PieChartWrapper = styled.div`
     border-radius: 0 0 10% 0;
     height:25%;
     width:50%; 
-    border: 1px solid black;   
+    border: 1px solid black;
+    padding:0;
+    background:transparent;
 
 `;
