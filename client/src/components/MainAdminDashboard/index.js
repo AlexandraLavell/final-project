@@ -3,7 +3,6 @@ import React, { useContext, useState } from "react";
 // context
 import MainContext from "../MainContext";
 
-
 // style
 import {    AdminDashWrapper,
             SubsectionHeader,
@@ -22,9 +21,8 @@ import {    Treemap,
             RadialBar,
             Legend,
         } from "recharts";
-import { List } from "@material-ui/core";
 
-// MAIN FUNCTION
+// main component
 const MainAdminDashboard = (props) => {
 
     // local state

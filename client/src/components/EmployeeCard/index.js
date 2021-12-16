@@ -1,24 +1,15 @@
-import React, {useContext} from "react";
-
-//context
-import MainContext from "../MainContext";
+import React from "react";
 
 // styled components
 import { CardWrapper } from "./StyledEmployeeCard";
 
-const EmployeeCard = (props) => {
-
-    // consume context
-    const { employeeList } = useContext(MainContext);
+// main component
+const EmployeeCard = (props) => {    
 
     const dragStart = (ev) => {
         const target = ev.target;
         ev.dataTransfer.setData("card_id", target.id);
         ev.dataTransfer.setData("card_class", target.className);
-
-        // setTimeout(() =>{
-        //     target.style.display = "none";
-        // },0);
     }
 
     // prevents extra card pickup
@@ -34,7 +25,6 @@ const EmployeeCard = (props) => {
 
     // start of main return
     return (
-
         <CardWrapper
             id={props._id}
             className={props.className}

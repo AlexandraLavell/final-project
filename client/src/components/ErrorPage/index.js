@@ -8,8 +8,7 @@ import {    ErrorWrapper,
             MessageWrapper,
         }  from "./StyledErrorPage";
 
-
-
+// main component
 const ErrorPage = () => {
 
     // consume context

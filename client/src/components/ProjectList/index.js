@@ -19,6 +19,7 @@ import { FiPlus } from "react-icons/fi";
 import { IoAlert } from "react-icons/io5";
 
 
+// main component
 const ProjectList = (props) => {
     
     // consume context

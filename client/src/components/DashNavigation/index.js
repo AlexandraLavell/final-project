@@ -1,15 +1,11 @@
 import React from "react";
 
-// assets
-//assets
-import { FaBell, FaBookmark, FaUser, FaHome } from "react-icons/fa";
-
 // styled components
 import {    NavigationWrapper,
             DashLink } 
             from "./SyledDashNavigation";
 
-
+// main component
 const DashNavigation = () => {
 
     // main return
@@ -25,11 +21,8 @@ const DashNavigation = () => {
             <p>Project</p>
         </DashLink>
         </NavigationWrapper>
-    )
-
+    ) // end of main return
 }
-
-
 
 export default DashNavigation;
 

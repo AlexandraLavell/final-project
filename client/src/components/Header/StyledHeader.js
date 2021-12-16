@@ -28,6 +28,7 @@ export const HeaderWrapper = styled.div`
         z-index: -1;
     }    
 `;
+
 export const HeaderNavLink = styled(NavLink)`
     color: black;
 `;

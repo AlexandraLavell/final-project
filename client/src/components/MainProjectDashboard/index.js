@@ -14,7 +14,7 @@ import {    ProjectDashWrapper,
         }  from "./StyledMainProjectDashboard";
 
 
-// MAIN FUNCTION
+// main component
 const MainProjectDashboard = (props) => {
 
     // local state variables to toggle for modifying a project
@@ -30,8 +30,7 @@ const MainProjectDashboard = (props) => {
     const [ prjRequestedBudget, setPrjRequestedBudget ] = useState();
     const [ prjActualBudget, setPrjActualBudget ] = useState();
     const [ prjStatus, setPrjStatus ] = useState();
-    const [ prjFinalReport, setPrjFinalReport ] = useState();
-    
+    const [ prjFinalReport, setPrjFinalReport ] = useState();    
 
     // consume context
     const { currentProject, setCurrentProject,
@@ -41,7 +40,6 @@ const MainProjectDashboard = (props) => {
             admPermission,            
             setErrorMessage, 
             } = useContext(MainContext);
-
 
     // set up useHistory for the fetch
     const history = useHistory();
@@ -82,12 +80,6 @@ const MainProjectDashboard = (props) => {
                 getProjectEmployees(card_id);
             }
 
-            // const card= document.getElementById(card_id);
-
-
-            // card.style.display = "block";
-
-            // ev.target.appendChild(card);
         } else if (card_class.includes("employeeCard")){
 
                 // add employees only after "modify" has been selected
@@ -222,7 +214,7 @@ const MainProjectDashboard = (props) => {
                                     </FormInput> 
                             </>)
                             } 
-                            {/* //end of conditional */}  
+                            {/* //end of conditional   */}
                 <FormLabel>{currentProject ? "Status" : " "}</FormLabel>
                 <FormInput type="text"
                             value={modify ? prjStatus : (currentProjectDash ? currentProjectDash.status : "")} 

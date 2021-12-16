@@ -3,12 +3,10 @@ import {
       BrowserRouter as Router,
       Route,
       Switch,
-      NavLink,
 } from "react-router-dom";
 
 // style
 import styled from "styled-components";
-
 
 // components
 import SignIn from "./SignIn";

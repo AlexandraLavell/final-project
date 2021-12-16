@@ -1,12 +1,11 @@
 import React, { useState, 
                 useEffect, 
-                useReducer 
             } from "react";
+
 import { useHistory } from "react-router-dom";
 
 // persisted state hook
 import usePersistedState from "./PersistedStateHook.js";
-
 
 // circular progress
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -284,7 +283,6 @@ export const MainContextProvider = ({children}) => {
 
      // update project
     const updateProject = (prj) => {
-            console.log("Project ID: ", prj._id);
         
             fetch(`/projects/${prj._id}`, {
                 method: "PATCH",
@@ -316,7 +314,6 @@ export const MainContextProvider = ({children}) => {
                 )                    
     }
 
-
     return <MainContext.Provider value={{
                                             signInPage, setSignInPage,
                                             permission, setPermission,
@@ -341,7 +338,6 @@ export const MainContextProvider = ({children}) => {
         }}>{children}</MainContext.Provider>
 }
 
-
 const CircularProgressWrapper = styled.div`
     display: flex;
     align-items: center;
@@ -349,7 +345,6 @@ const CircularProgressWrapper = styled.div`
     height: 100vh;
     width: 100%;
 `;
-
 
 export default MainContext;
 

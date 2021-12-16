@@ -1,7 +1,5 @@
 import React from "react";
 
-// import 'https://fonts.googleapis.com/css?family=Readex+Pro';
-
 import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
@@ -17,16 +15,6 @@ export default createGlobalStyle`
         --padding-page: 24px;
     }
 
-    /* @fontface {
-        font-family: "Readex Pro";
-        font-style: normal;
-        src: url('https://fonts.googleapis.com/css?family=Readex+Pro');
-    } */
-
-    /* http://meyerweb.com/eric/tools/css/reset/
-        v2.0 | 20110126
-        License: none (public domain)
-    */
 
     html, body, div, span, applet, object, iframe,
     h1, h2, h3, h4, h5, h6, p, blockquote, pre,
