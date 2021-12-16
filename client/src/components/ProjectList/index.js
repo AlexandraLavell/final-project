@@ -7,13 +7,16 @@ import MainContext from "../MainContext";
 import {    ProjectContainerWrapper,
             SubsectionHeader,
             AddNav,
-            ProjectListWrapper } from "./StyledProjectList";
+            ProjectListWrapper,
+            AlertMark,
+        } from "./StyledProjectList";
 
 // components
 import ProjectCard from "../ProjectCard";
 
 // assets
-import { FiPlus } from "react-icons/fi"
+import { FiPlus } from "react-icons/fi";
+import { IoAlert } from "react-icons/io5";
 
 
 const ProjectList = (props) => {
@@ -55,10 +58,11 @@ const ProjectList = (props) => {
                         >
                 { props.children }
                 {projectList.map((prj) => {
-                    return  (<ProjectCard _id={prj._id} className="projectCard" draggable="true" alertFlag={prj.approval==="pending"} >
+                    return  (<ProjectCard _id={prj._id} className="projectCard" draggable="true" >
                                 <p>{prj._id}</p>
                                 <p>{prj.project_name}</p>
                                 <p>{prj.approval}</p>
+                                {prj.approval === "pending" && <AlertMark><IoAlert/></AlertMark>}
                             </ProjectCard>)
                 })}
             </ProjectListWrapper>

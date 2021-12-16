@@ -18,12 +18,13 @@ export const HeaderWrapper = styled.div`
     color: black;
     font-weight: bold;
     font-size: 6em;
-    border: 1px solid black;
+    border-bottom: 1px solid black;
     z-index: 10;
     transition-timing-function: ease-in;
     transition: 0.5s;
     &.blue {
         opacity: .3;
+        border: none;
         z-index: -1;
     }    
 `;

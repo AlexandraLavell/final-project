@@ -122,7 +122,7 @@ export const CloseButton = styled.button`
     background: transparent;
     border: none;
     padding: none;
-    margin: none;
+    margin-right: 15px;
     cursor: pointer;
     &:hover{
         color: pink;

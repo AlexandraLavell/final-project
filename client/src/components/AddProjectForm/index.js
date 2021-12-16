@@ -74,10 +74,10 @@ const AddProjectForm = () => {
                         placeholder="Requested budget"
                         required>
                         </FormInput>                         
-            {admPermission && <FormInput  type="submit" 
+            <FormInput  type="submit" 
                         value="Submit"
                         className="submit">
-                        </FormInput>} 
+                        </FormInput> 
         </ProjectFormWrapper>
     ) // end of main return
 
