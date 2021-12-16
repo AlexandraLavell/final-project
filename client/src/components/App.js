@@ -80,11 +80,11 @@ const AppContainer = styled.div`
   display: flex;
   min-height: 150vh;
   width: 100%;
-  background-image: url("background.jpg");
+  /* background-image: url("background.jpg"); */
   /* background-color: var(--color-main-yellow);  */
   background-position: bottom;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
 `;
 
 const ComponentContainer = styled.div`
@@ -92,7 +92,6 @@ const ComponentContainer = styled.div`
   display: flex;
   justify-content: space-between;
   row-gap: 5px;
-  /* background-color: yellow; */
   width: 100%;
   margin: 10% 5%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);

@@ -55,7 +55,7 @@ const ProjectList = (props) => {
                         >
                 { props.children }
                 {projectList.map((prj) => {
-                    return  (<ProjectCard _id={prj._id} className="projectCard" draggable="true" >
+                    return  (<ProjectCard _id={prj._id} className="projectCard" draggable="true" alertFlag={prj.approval==="pending"} >
                                 <p>{prj._id}</p>
                                 <p>{prj.project_name}</p>
                                 <p>{prj.approval}</p>

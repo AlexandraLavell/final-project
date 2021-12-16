@@ -7,35 +7,59 @@ export const AdminDashWrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    flex-wrap: wrap;
     align-items: center;
     height: 100%;
     width: 100%;
     padding: 15px;
     background: var(--color-main-yellow);
-    font-family: var(--font-main);
-    /* border-top: 1px solid black; */
 `;
 
 export const SubsectionHeader = styled.div`    
     height: fit-content;
+    width: fit-content;
     display: flex; 
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center
     color:black;
-    font-family: var(--font-main);
-    width: 100%;
-    padding: 15px;
+    font-size: 1.2em
+    font-family: var(--font-main);    
+    padding: 8px;
     background: var(--color-main-yellow);
-    /* border: 1px solid black; */
 `;
-
+// pie charts
+export const TreeChartWrapper = styled.div`
+    position: relative;   
+    height:30%;
+    width:100%;  
+`;
 // pie charts
 export const PieChartWrapper = styled.div`
     position: relative;
-    border-radius: 0 0 10% 0;
-    height:25%;
-    width:50%; 
-    border: 1px solid black;
-    padding:0;
-    background:transparent;
-
+    height:30%;
+    width:60%;  
+`;
+export const MultipleListContainer = styled.div`
+    position: relative;
+    display: flex;
+    justify-content: space-around;    
+    width: 100%;
+`;
+export const ListWrapper = styled.div`
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 40%;
+`;
+export const ItemList = styled.div`  
+    padding: 3px;
+    margin: 3px;
+`;
+export const ListNumber = styled.div`
+    padding: 3px;
+    margin: 3px;
+    font-size: 1.5em;    
 `;

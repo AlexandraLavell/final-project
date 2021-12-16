@@ -1,4 +1,4 @@
-import React, { useContext, useState, PureComponent, useEffect } from "react";
+import React, { useContext, useState } from "react";
 
 // context
 import MainContext from "../MainContext";
@@ -8,17 +8,21 @@ import MainContext from "../MainContext";
 import {    AdminDashWrapper,
             SubsectionHeader,
             PieChartWrapper, 
+            TreeChartWrapper,
+            MultipleListContainer,
+            ListWrapper,
+            ItemList,
+            ListNumber,
         }  from "./StyledMainAdminDashboard";
 
 // pie charts
 import {    Treemap,
             ResponsiveContainer, 
-            PieChart,
-            Pie,
             RadialBarChart,
             RadialBar,
             Legend,
         } from "recharts";
+import { List } from "@material-ui/core";
 
 // MAIN FUNCTION
 const MainAdminDashboard = (props) => {
@@ -76,9 +80,7 @@ const MainAdminDashboard = (props) => {
             if (prj.status === "complete"){
                 completedProjects.push(prj._id);
             }
-        });
-
-    
+        });    
 
     // budget treemap
     var totalRemaining = 300;
@@ -92,63 +94,57 @@ const MainAdminDashboard = (props) => {
 
         const labelName = prj._id + " " + "$" + prj.actual_budget;
 
-        return {"name":labelName, "size":(Math.round(100 * prj.actual_budget/budget)), "fill": randomColor}
+        return {"name":labelName, 
+                "size":(Math.round(100 * prj.actual_budget/budget)), 
+                "fill": randomColor}
     });
 
     const leftoverBudgetLabel = "remaining: $" + totalRemaining
 
     pieChartArray.push({"name":leftoverBudgetLabel,"size":(Math.round(100 * totalRemaining/budget)), "fill": "transparent"});
 
-    console.log(pieChartArray);
-
     const data = [{
                     "name": "budget",
                     "children": pieChartArray,
     }];
 
-    // project completion status pie graph
-
+    // project completion status bar pie graph
     const statusData = [
         {
             "name": "Complete",
             "uv": completedProjects.length,
-            "pv": 80,
             "fill":  "#" + Math.floor(Math.random()*16777215).toString(16)
         },
         {
             "name": "In progress",
             "uv": inprogressProjects.length,
-            "pv": completedProjects.length + inprogressProjects.length + notstartedProjects.length,
             "fill":  "#" + Math.floor(Math.random()*16777215).toString(16)
         },
         {
             "name": "Not started",
             "uv": notstartedProjects.length,
-            "pv": completedProjects.length + inprogressProjects.length + notstartedProjects.length,
             "fill":  "#" + Math.floor(Math.random()*16777215).toString(16)
         }
     ];
 
-    console.log(statusData);
-                
     // start of main return
     return (
         <AdminDashWrapper>
             { props.children }
             <SubsectionHeader>Budget</SubsectionHeader>
-            <PieChartWrapper>
-                <ResponsiveContainer width="100%" height="100%">
+            <TreeChartWrapper>
+                <ResponsiveContainer width="100%" height="100%" margin={{ top: 0, right: 0, bottom: 0, left: 0 }}>
                 <Treemap
                     width={400}
                     height={200}
                     data={data}
                     dataKey="size"
-                    ratio={2 / 1}
+                    ratio={4 / 3}
                     stroke="black"
-                    fill="transparent"    
+                    fill="transparent"                        
                     />                    
                 </ResponsiveContainer>
-            </PieChartWrapper>
+            </TreeChartWrapper>
             <SubsectionHeader>Project status</SubsectionHeader>
             <PieChartWrapper>
                 <ResponsiveContainer width="100%" height="100%">
@@ -158,7 +154,8 @@ const MainAdminDashboard = (props) => {
                                 outerRadius="100%" 
                                 data={statusData} 
                                 startAngle={0} 
-                                endAngle={360}>
+                                endAngle={360}
+                                >
                 <RadialBar
                     minAngle={60} 
                     label={{ fill: '#fff', position: 'insideStart' }} 
@@ -174,17 +171,19 @@ const MainAdminDashboard = (props) => {
                 </RadialBarChart>                   
                 </ResponsiveContainer>
             </PieChartWrapper>
-            <div>Todays Projects {todaysProjects}</div>
-            <div>Projects waiting for approval</div>
+            <MultipleListContainer>
+                <ListWrapper>
+                    <SubsectionHeader><p>Todays Project's</p></SubsectionHeader>
+                    <ItemList>{todaysProjects.map((prj)=>{return <ListNumber>{prj}</ListNumber>})}</ItemList>                
+                </ListWrapper>
+                <ListWrapper>
+                    <SubsectionHeader><p>Projects waiting for approval</p></SubsectionHeader>
+                    <ItemList>{waitingProjects.map((prj)=>{return <ListNumber>{prj}</ListNumber>})}</ItemList>
+                </ListWrapper>
+            </MultipleListContainer>
+            
         </AdminDashWrapper>
-
-
     ) // end of main return
-
-
-
-
-
 }
 
 export default MainAdminDashboard;

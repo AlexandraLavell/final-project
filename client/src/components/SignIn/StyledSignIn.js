@@ -117,8 +117,8 @@ export const SignInForm = styled.form`
 export const CloseButton = styled.button`
     justify-self: flex-start;
     align-self: flex-end;
-    max-height: 10%;
-    max-width: 20%;
+    max-height: 5%;
+    max-width: 10%;
     background: transparent;
     border: none;
     padding: none;
