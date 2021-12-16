@@ -40,7 +40,7 @@ const AddProjectForm = () => {
                         "description": prjDescription,
                         "requested_budget": prjBudgetRequest,
                         "actual_budget": "",
-                        "status": "not startd",
+                        "status": "not started",
                         "final_report": "" 
                     }); 
         history.push("/project");
