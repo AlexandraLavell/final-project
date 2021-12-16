@@ -49,19 +49,6 @@ const modifyEmployee = async (req, res) =>  {
 
         const newProjects = employeeFound.projects;
         
-        // remove the projects that have been deleted
-        // Object.keys(employeeFound.projects).forEach((key) => {
-            
-        //     if (Array.isArray(projects)){            
-        //         if(!projects.includes(key)){
-        //             delete employeeFound.projects[key];
-        //         }
-        //     } else {
-        //         if(!Object.keys(projects).includes(key)){
-        //             delete employeeFound.projects[key];
-        //         }
-        //     }
-        // })
 
         // add the new projects
         if (Array.isArray(projects)){            
