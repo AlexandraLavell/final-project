@@ -10,7 +10,7 @@ export const FooterWrapper = styled.div`
     position: absolute;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     bottom: 0;
     display: flex;
     height: 5vh;

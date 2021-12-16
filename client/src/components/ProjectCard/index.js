@@ -4,10 +4,6 @@ import { useHistory } from "react-router-dom";
 // context 
 import MainContext from "../MainContext";
 
-// Tippy
-import Tippy from "@tippyjs/react";
-import "tippy.js/dist/tippy.css";
-
 // circular progress
 import CircularProgress from "@material-ui/core/CircularProgress";
 

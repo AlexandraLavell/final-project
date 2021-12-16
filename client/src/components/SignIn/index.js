@@ -1,12 +1,8 @@
 import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 
-
 // context
 import MainContext from "../MainContext";
-
-//  style
-import styled from "styled-components";
 
 // styled components
 import {    SignInWrapper,
