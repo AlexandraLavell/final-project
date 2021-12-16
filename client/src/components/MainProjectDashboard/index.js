@@ -178,7 +178,15 @@ const MainProjectDashboard = (props) => {
                                 onChange={(ev)=>setPrjActualBudget(ev.target.value)}
                                 placeholder="Approved budget"
                                 required>
-                                </FormInput></>)                                
+                                </FormInput>
+                    <FormLabel>{currentProject ? "Approval status" : " "}</FormLabel>
+                    <FormInput  type="text" 
+                                value={modify ? prjApproval : (currentProjectDash ? currentProjectDash.approval : "")} 
+                                onChange={(ev)=>setPrjApproval(ev.target.value)}
+                                placeholder="Approval status - pending, approved"
+                                required>
+                                </FormInput>                                
+                    </>)                                
                 // second half of conditional
                     :(<>
                         <FormLabel>{currentProject ? "Project name" : " "}</FormLabel>
@@ -205,7 +213,14 @@ const MainProjectDashboard = (props) => {
                                     value={(currentProjectDash ? currentProjectDash.actual_budget : "")} 
                                     placeholder="Approved budget"
                                     required>
-                                    </FormInput></>)
+                                    </FormInput>
+                        <FormLabel>{currentProject ? "Approval status" : " "}</FormLabel>
+                        <FormInput  type="text" 
+                                    value={modify ? prjApproval : (currentProjectDash ? currentProjectDash.approval : "")} 
+                                    placeholder="Approval status - pending, approved"
+                                    required>
+                                    </FormInput> 
+                            </>)
                             } 
                             {/* //end of conditional */}  
                 <FormLabel>{currentProject ? "Status" : " "}</FormLabel>
