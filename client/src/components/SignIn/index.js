@@ -59,11 +59,14 @@ const SignIn = () => {
             .then(res => res.json())
             .then(data => {
                             setPermission(data.data);
-                            if (data.data && username === "adm"){
+                            if (data.data && (username === "adm")){
                                 setAdmPermission(true);
                             }
-                            if (data.data && username === "emp"){
+                            if (data.data && (username === "emp")){
                                 setEmpPermission(true);
+                            }
+                            if(!data.data){
+                                window.alert("Please try again");
                             }
             })
             .catch((err) => {
@@ -88,7 +91,10 @@ const SignIn = () => {
                             className="pointer"
                 />}
                 {signInPage && <SignInForm onSubmit={handleSubmit}>
-                    <CloseButton onClick={()=>{setSignInPage(false)}}><FiMinus/></CloseButton>
+                    <CloseButton onClick={()=>{setSignInPage(false);
+                                                setUsername();
+                                                setPassword();
+                                                }}><FiMinus/></CloseButton>
                     <FormLabel><p>username</p>
                         <FormInput  type="text" 
                                     value={username}
