@@ -21,6 +21,7 @@ import EmployeeCard from "../EmployeeCard";
 // assets
 import { FiPlus } from "react-icons/fi"
 
+// main component
 const EmployeeList = (props) => {
 
     // consume context
@@ -36,14 +37,10 @@ const EmployeeList = (props) => {
 
         // use includes instead of "===" because the class name also has automatic extra junk
         if (card_class.includes("employeeCard")){
-
             const employeeCard= document.getElementById(card_id);
-
             employeeCard.style.display = "block";
-
             ev.target.appendChild(employeeCard);
         }
-
     }
 
     const dragOver = (ev) => {
@@ -53,12 +50,6 @@ const EmployeeList = (props) => {
 
     const dragLeave = (ev) => {        
         ev.preventDefault();
-    }
-
-
-    // do i need this?
-    const handleClick = () => {      
-
     }
 
     // start of main return
@@ -90,8 +81,7 @@ const EmployeeList = (props) => {
                                                     todaysProjects.push(key);
                                                 }
                                             })
-                                        })    
-
+                                        })   
                     return  (                            
                                 <EmployeeCard _id={emp._id} className="employeeCard" draggable="true" >                                
                                     <TippyWrapper content={<div><p>Today: </p><TippyContent>{todaysProjects.toString()}</TippyContent></div>}>

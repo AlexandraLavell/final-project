@@ -1,8 +1,5 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
-// import DatePicker from "react-datepicker";
-
-// import "react-datepicker/dist/react-datepicker.css";
 
 // context
 import MainContext from "../MainContext"
@@ -13,6 +10,7 @@ import {    ProjectFormWrapper,
             SubsectionHeader,  
             } from "./StyledAddProjectForm";
 
+// main component
 const AddProjectForm = () => {
 
     // consume context
@@ -31,6 +29,7 @@ const AddProjectForm = () => {
     const [ prjDescription, setPrjDescription ] = useState();   
     const [ prjBudgetRequest, setPrjBudgetRequest ] = useState();
 
+    // submit new project form
     const handleSubmit = (ev) => {
         ev.preventDefault();
         
@@ -80,9 +79,6 @@ const AddProjectForm = () => {
                         </FormInput> 
         </ProjectFormWrapper>
     ) // end of main return
-
-
-
 }
 
 export default AddProjectForm;

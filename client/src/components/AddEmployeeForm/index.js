@@ -1,8 +1,5 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
-// import DatePicker from "react-datepicker";
-
-// import "react-datepicker/dist/react-datepicker.css";
 
 // context
 import MainContext from "../MainContext";
@@ -13,6 +10,7 @@ import {    EmployeeFormWrapper,
             SubsectionHeader,
         } from "./StyledAddEmployeeForm";
 
+// main component
 const AddEmployeeForm = () => {
 
     // consume context
@@ -28,6 +26,7 @@ const AddEmployeeForm = () => {
     const [ empPhone, setEmpPhone ] = useState();
     const [ empEmail, setEmpEmail ] = useState();   
 
+    // submit add employee form
     const handleSubmit = (ev) => {
         ev.preventDefault();
         
@@ -78,14 +77,7 @@ const AddEmployeeForm = () => {
                                 value="Submit">
                                 </FormInput>}   
         </EmployeeFormWrapper>
-
-
-
-
     ) // end of main return
-
-
-
 }
 
 export default AddEmployeeForm;

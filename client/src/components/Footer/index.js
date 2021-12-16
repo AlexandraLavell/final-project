@@ -1,6 +1,5 @@
 import React, {useContext} from "react";
 
-
 // context
 import MainContext from "../MainContext";
 
@@ -9,11 +8,11 @@ import {    FooterWrapper,
             SignoutNavLink,
         } from "./StyledFooter";
 
-
+// main component
 const Footer = () => {
 
-     // consume context
-     const {    joke,
+    // consume context
+    const {    joke,
                 setPermission,
                 setAdmPermission,
                 setEmpPermission,
@@ -23,7 +22,6 @@ const Footer = () => {
     // start of main return
     return (
         <FooterWrapper>
-
             <p>{joke}</p>
             <SignoutNavLink onClick={()=>{
                                             setPermission(false);
@@ -33,10 +31,7 @@ const Footer = () => {
                             exact to="/">signout</SignoutNavLink>
 
         </FooterWrapper>
-
     )
-
-
 }
 
 export default Footer;

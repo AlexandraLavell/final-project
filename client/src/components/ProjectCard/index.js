@@ -15,6 +15,7 @@ import {    CardWrapper,
 
 import styled from "styled-components";
 
+// main component
 const ProjectCard = (props) => {
 
     // local state variable
@@ -102,6 +103,5 @@ const CircularProgressWrapper = styled.div`
     height: 100vh;
     width: 100%;
 `;
-
 
 export default ProjectCard;

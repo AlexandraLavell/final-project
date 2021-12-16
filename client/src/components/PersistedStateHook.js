@@ -1,6 +1,5 @@
 import {useState, useEffect} from "react";
 
-
 const usePersistedState = (name, defaultValue) => {
 
         //checks the local storage to retrieve the last value, if there is nothing there it uses the default value
@@ -8,7 +7,6 @@ const usePersistedState = (name, defaultValue) => {
         return persistParam !== null ? JSON.parse(persistParam) : defaultValue;
 
     });
-
 
     useEffect(() => {
         //updates every time the parameter or it's name changes

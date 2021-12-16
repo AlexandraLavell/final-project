@@ -18,6 +18,7 @@ export const EmployeeContainerWrapper = styled.div`
     background: var(--color-main-yellow);
     border: 1px solid black;
 `;
+
 export const SubsectionHeader = styled.div`    
     min-height: 50px;
     display: flex; 
@@ -42,6 +43,7 @@ export const AddNav = styled(NavLink)`
     color: black;
     cursor: pointer;
 `;
+
 export const EmployeeListWrapper = styled.div`
     position: relative;
     display: flex;    
@@ -51,8 +53,8 @@ export const EmployeeListWrapper = styled.div`
     width: 100%;
     padding: 15px;
     background: var(--color-main-yellow);
-    /* border: 1px solid black; */
 `;
+
 export const TippyWrapper = styled(Tippy)`
     display: flex;
     flex-direction: column;
@@ -63,7 +65,7 @@ export const TippyWrapper = styled(Tippy)`
     width: fit-content;
     font-family: var(--font-main);
     font-weight: bold;
-    color: lemonchiffon;
+    color: white;
     border-radius: 0;
 `;
 
@@ -72,5 +74,4 @@ export const TippyContent = styled.div`
     word-break: break-all;
     /* width displays two employee numbers per line */
     width: 8em;
-    
 `;

@@ -15,16 +15,16 @@ export const ErrorWrapper = styled.div`
 `;
 
 export const MessageWrapper = styled.div`
-    position: relative;
+    position: absolute;
+    top: 20%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background: black;
-    color: var(--color-main-yellow);
+    color: white;
     font-family: var(--font-main);
-    font-size: 24px;
+    font-size: 2em;
     font-weight: bold;
     padding: 5px;
-
 `;

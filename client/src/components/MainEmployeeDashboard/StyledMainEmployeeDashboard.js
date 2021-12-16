@@ -12,6 +12,7 @@ export const EmployeeDashWrapper = styled.div`
     background: var(--color-main-yellow);    
     /* border-top: 1px solid black; */
 `;
+
 export const EmployeeDashForm = styled.form`
     position: relative;
     display: flex;
@@ -21,8 +22,8 @@ export const EmployeeDashForm = styled.form`
     width: 100%;
     padding: 15px;
     background: var(--color-main-yellow);
-    /* border-top: 1px solid black; */
 `;
+
 export const SubsectionHeader = styled.div`    
     height: fit-content;
     display: flex; 
@@ -34,6 +35,7 @@ export const SubsectionHeader = styled.div`
     background: var(--color-main-yellow);
     /* border: 1px solid black; */
 `;
+
 export const FormInput = styled.input`
     position: relative;
     display: flex;
@@ -51,6 +53,7 @@ export const FormInput = styled.input`
         }
     }
 `;
+
 export const FormLabel = styled.div`
     position: relative;
     align-self: flex-start;

@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 // style 
 import styled from "styled-components";
 
-
 export const SignInWrapper = styled.div`
     position: absolute;
     display: flex;
@@ -12,18 +11,15 @@ export const SignInWrapper = styled.div`
     width: 100%;
     padding: 2%;
     background-image: url("montreal_sunrise.jpg");
-    background-size: 100% 100%;  
-    /* background-color: black; */
+    background-size: 100% 100%; 
 `;
 
 export const ShadowPopSpan = styled.span`
     text-shadow: 0 0 100px #fffacd;
-    /* -3px 7px 42px #fffacd; */
 `;
 
 export const DotSpan = styled.span`
-    margin-left: -10px;
-    
+    margin-left: -10px;    
 `;
 
 export const Greeting = styled.div`
@@ -96,7 +92,8 @@ export const FormLabel = styled.div`
     flex-direction: column; 
     align-items: center; 
     font-size: 3em;
-`
+`;
+
 export const SignInForm = styled.form`
     position: absolute;
     bottom: 5px;
@@ -114,6 +111,7 @@ export const SignInForm = styled.form`
     color: lemonChiffon;
     /* border-top: 1px solid black; */
 `;
+
 export const CloseButton = styled.button`
     justify-self: flex-start;
     align-self: flex-end;

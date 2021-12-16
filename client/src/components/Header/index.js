@@ -1,16 +1,15 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 
 // styled components
 import {    HeaderWrapper,
             HeaderNavLink,
         } from "./StyledHeader";
 
-
+// main component
 const Header = () => {
 
     // local state variables
-    const [show, setShow] = useState(false)
-
+    const [show, setShow] = useState(false);
 
     // causes header to go transparent on scroll down
     const handleScroll = () => {
@@ -20,6 +19,7 @@ const Header = () => {
             setShow(false);
         }
     }
+
     // sets event listener to for scrolling for transparent header
     useEffect(()=>{
         window.addEventListener("scroll", handleScroll)

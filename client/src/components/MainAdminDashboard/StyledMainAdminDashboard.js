@@ -1,7 +1,6 @@
 // style
 import styled from "styled-components";
 
-
 export const AdminDashWrapper = styled.div`
     position: relative;
     display: flex;
@@ -28,24 +27,28 @@ export const SubsectionHeader = styled.div`
     padding: 8px;
     background: var(--color-main-yellow);
 `;
-// pie charts
+
+// tree chart
 export const TreeChartWrapper = styled.div`
     position: relative;   
     height:30%;
     width:100%;  
 `;
+
 // pie charts
 export const PieChartWrapper = styled.div`
     position: relative;
     height:30%;
     width:60%;  
 `;
+
 export const MultipleListContainer = styled.div`
     position: relative;
     display: flex;
     justify-content: space-around;    
     width: 100%;
 `;
+
 export const ListWrapper = styled.div`
     position: relative;
     display: flex;
@@ -54,10 +57,12 @@ export const ListWrapper = styled.div`
     flex-wrap: wrap;
     max-width: 40%;
 `;
+
 export const ItemList = styled.div`  
     padding: 3px;
     margin: 3px;
 `;
+
 export const ListNumber = styled.div`
     padding: 3px;
     margin: 3px;

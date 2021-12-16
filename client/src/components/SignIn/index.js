@@ -112,7 +112,6 @@ const SignIn = () => {
                 </SignInForm>}            
         </SignInWrapper>
     ) // end of main return
-
 }
 
 export default SignIn;

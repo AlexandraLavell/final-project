@@ -18,8 +18,6 @@ const deleteEmployeeById = async (req, res) =>  {
          // get the employee id number from the request parameters
         const { _id } = req.params;
 
-        console.log(_id);
-
         // create a new client
         const client = new MongoClient(MONGO_URI, options);
 

@@ -21,7 +21,6 @@ export const SubsectionHeader = styled.div`
     width: 100%;
     padding: 15px;
     background: var(--color-main-yellow);
-    /* border: 1px solid black; */
 `;
 
 export const FormInput = styled.input`
@@ -35,10 +34,3 @@ export const FormInput = styled.input`
         cursor: pointer;
     }
 `;
-
-
-
-export const DateWrapper = styled.div``;
-
-export const ProjectDates = styled.input``;
-
