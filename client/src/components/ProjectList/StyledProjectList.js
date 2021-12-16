@@ -13,7 +13,6 @@ export const ProjectContainerWrapper = styled.div`
     background: var(--color-main-yellow);
     border: 1px solid black;
 `;
-
 export const SubsectionHeader = styled.div`    
     min-height: 50px;
     display: flex; 
@@ -25,7 +24,6 @@ export const SubsectionHeader = styled.div`
     background: var(--color-main-yellow);
     border-bottom: 1px solid black;
 `;
-
 export const AddNav = styled(NavLink)`
     position: relative;
     display: flex;
@@ -38,7 +36,6 @@ export const AddNav = styled(NavLink)`
     color: black;
     cursor: pointer;
 `;
-
 export const ProjectListWrapper = styled.div`
     position: relative;
     display: flex;    
@@ -49,4 +46,15 @@ export const ProjectListWrapper = styled.div`
     padding: 15px;
     background: var(--color-main-yellow);
     /* border: 1px solid black; */
+`;
+export const AlertMark = styled.div`
+    position: absolute;
+    right: 0;
+    bottom: 1em;
+    color: DeepPink;
+    height: 25%;
+    width: 25%;
+    font-size: 2em;
+    justify-self: flex-end;
+    align-self: flex-end;
 `;

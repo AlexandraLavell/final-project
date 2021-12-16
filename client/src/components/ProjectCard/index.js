@@ -7,7 +7,6 @@ import MainContext from "../MainContext";
 // circular progress
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-
 // styled components
 import {    CardWrapper, 
             TippyWrapper,

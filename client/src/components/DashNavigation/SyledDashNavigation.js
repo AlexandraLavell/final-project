@@ -31,7 +31,7 @@ export const DashLink = styled(NavLink)`
     /* border-width: 1px 1px 1px 1px; */
     &.active{
         background: black;
-        color: lemonchiffon;
+        color: white;
         font-weight: bold;
     }
 `;
