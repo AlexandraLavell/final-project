@@ -122,6 +122,7 @@ const MainProjectDashboard = (props) => {
         })
 
         setModify(!modify);
+        setCurrentProjectDash();
     }   
 
     // start of main return
@@ -236,6 +237,8 @@ const MainProjectDashboard = (props) => {
                                 placeholder="Final report"
                                 >
                                 </FormTextArea>                           
+                
+                {/* Buttons */}
                 {/* display update and delete buttons when the user is modifying the form, toggled with modify button */}
                 {currentProject && modify && <FormInput  type="submit" 
                             className={"pointer"}
@@ -245,7 +248,7 @@ const MainProjectDashboard = (props) => {
                 {admPermission && currentProject && modify && <FormInput  type="reset" 
                             className={"pointer"}
                             value="Delete"
-                            onClick={(ev)=>{  handleDeleteProject(currentProjectDash._id)}}>
+                            onClick={(ev)=>{handleDeleteProject(currentProjectDash._id)}}>
                             </FormInput>} 
                 {currentProject && modify && <FormInput type="button" 
                                                         className={"pointer"}

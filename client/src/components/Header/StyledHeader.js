@@ -20,16 +20,23 @@ export const HeaderWrapper = styled.div`
     font-size: 6em;
     border-bottom: 1px solid black;
     z-index: 10;
-    transition-timing-function: ease-in;
-    transition: 0.5s;
+    transition-timing-function: ease-in-out; 
+    transition: opacity 1s;
     &.blue {
-        opacity: .3;
+        opacity: 0.3;
         border: none;
-        z-index: -1;
+        transition-timing-function: ease-in-out; 
+        transition: opacity 1s;
     }    
 `;
 
 export const HeaderNavLink = styled(NavLink)`
     color: black;
+`;
+
+export const MinimizedContentSpan = styled.span`
+    &.vert {
+        display: none;
+    }
 `;
 

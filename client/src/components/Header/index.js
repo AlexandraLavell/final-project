@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 // styled components
 import {    HeaderWrapper,
             HeaderNavLink,
+            MinimizedContentSpan,
         } from "./StyledHeader";
 
 // main component
@@ -13,7 +14,7 @@ const Header = () => {
 
     // causes header to go transparent on scroll down
     const handleScroll = () => {
-        if (window.scrollY > 50){
+        if (window.scrollY > 150){
             setShow(true);
         } else {
             setShow(false);
@@ -31,7 +32,7 @@ const Header = () => {
     // start of main return
     return (
         <HeaderWrapper className={show && "blue"}>            
-            <HeaderNavLink exact to="/">Good Morning.</HeaderNavLink>
+            <HeaderNavLink exact to="/">G<MinimizedContentSpan className={show && "vert"}>ood</MinimizedContentSpan> M<MinimizedContentSpan className={show && "vert"}>orning.</MinimizedContentSpan></HeaderNavLink>
         </HeaderWrapper>
 
     ) //end of main return
