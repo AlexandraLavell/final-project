@@ -171,7 +171,7 @@ const MainAdminDashboard = (props) => {
             </PieChartWrapper>
             <MultipleListContainer>
                 <ListWrapper>
-                    <SubsectionHeader><p>Todays Project's</p></SubsectionHeader>
+                    <SubsectionHeader><p>Today's Projects</p></SubsectionHeader>
                     <ItemList>{todaysProjects.map((prj)=>{return <ListNumber>{prj}</ListNumber>})}</ItemList>                
                 </ListWrapper>
                 <ListWrapper>

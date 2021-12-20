@@ -27,7 +27,7 @@ const modifyProject = async (req, res) =>  {
                 actual_budget,
                 status,
                 final_report,
-                project_employees,
+                project_employees, // handled on the client side as part of the onSubmit function
                 } = req.body;
 
         // create a new client

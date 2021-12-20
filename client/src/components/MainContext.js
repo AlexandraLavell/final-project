@@ -255,7 +255,7 @@ export const MainContextProvider = ({children}) => {
                         }  
     }
 
-    // update employee
+    // update employee - variable number of fields to update
     const updateEmployee = (emp) => {
 
         console.log(emp);
@@ -266,7 +266,7 @@ export const MainContextProvider = ({children}) => {
                 Accept: "application/json",// response type
                 "Content-Type": "application/json", //send type of the body                
             },
-            body: JSON.stringify(emp),//UPDATE HERE 
+            body: JSON.stringify(emp),
             })
             .then(res => res.json())
             .then(data => {                    
