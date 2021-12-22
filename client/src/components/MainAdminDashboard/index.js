@@ -31,6 +31,8 @@ const MainAdminDashboard = (props) => {
     // consume state
     const { projectList, employeeList } = useContext(MainContext);    
 
+
+    // TODO: LIFT TO CONTEXT
     const todaysProjects = [];
 
     employeeList.map((emp) => {            
@@ -53,7 +55,7 @@ const MainAdminDashboard = (props) => {
         })    
     });
 
-    // project summary
+    // project summary TODO - LIFT TO CONTEXT
     const approvedProjects = [];
     const waitingProjects = [];
     const inprogressProjects = [];

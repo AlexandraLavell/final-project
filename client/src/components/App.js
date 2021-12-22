@@ -30,9 +30,9 @@ const App = () => {
   // consume context
   const { permission, empPermission, admPermission } = useContext(MainContext);
 
-  return (
-    
-    <MyRouter>  
+  return (    
+    <MyRouter> 
+     {/* permission to enter and level of permission (employee or administrator)  */}
     {!(permission && (empPermission || admPermission)) ?
     <SignIn /> :
     <AppContainer>
@@ -79,7 +79,7 @@ const AppContainer = styled.div`
   min-height: 150vh;
   width: 100%;
   /* background-image: url("background.jpg"); */
-  /* background-color: var(--color-main-yellow);  */
+  background-color:rgba(223,211,79,0.2); 
   background-position: bottom;
   background-repeat: no-repeat;
   background-size: cover;

@@ -44,10 +44,11 @@ const SignIn = () => {
         setPassword(ev.target.value);
     }
 
-    // local fetch to check username and password
+    
     const handleSubmit = (ev) => {
         ev.preventDefault();
 
+        // local fetch to check username and password
         fetch(`/users/${username}`, {
             method: "POST",
             headers: {
@@ -74,6 +75,15 @@ const SignIn = () => {
                                 history.push("/error");
                             });                               
         }
+
+        const handleKeypress = (ev) => {      
+            // keyCode 13 is the enter key 
+            // ref: https://www.freecodecamp.org/news/javascript-keycode-list-keypress-event-key-codes/   
+            if (ev.keyCode === 13) {      
+                // pass the event to handleSubmit
+                handleSubmit(ev);    
+            }  
+        };
 
     // main return
     return (
@@ -103,7 +113,9 @@ const SignIn = () => {
                     <FormLabel><p>password</p>
                         <FormInput  type="password" 
                                     value={password}
-                                    onChange={handlePasswordChange}/>
+                                    onChange={handlePasswordChange}
+                                    onKeyDown={handleKeypress}
+                                    />
                     </FormLabel>
                     <GoToButton type="submit"                             
                                 value="go"
