@@ -36,7 +36,7 @@ export const HeaderNavLink = styled(NavLink)`
 
 export const MinimizedContentSpan = styled.span`
     &.vert {
-        display: none;
+        /* display: none; */
     }
 `;
 
