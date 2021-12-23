@@ -22,8 +22,6 @@ It allows a manager and/or employee quickly see:
     * Employees can view employees and projects, propose new projects, make certain modifications to existing projects.
 * Jokes from "Dad jokes" api, to lighten your day [icanhazdadjoke](https://icanhazdadjoke.com/ )
 
-## Installation
-Use batchImports.js to add dummy data to your MongoDB to populate the application
 
 ## Images:
 Sign in page
