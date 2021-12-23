@@ -32,7 +32,6 @@ const getProjectById = async (req, res) =>  {
         const projectFound = await db.collection("projects")
                                         .findOne({_id}); 
 
-        console.log(projectFound);
         //close the collection
         client.close();
         console.log("DISCONNECTED");

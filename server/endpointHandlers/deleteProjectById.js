@@ -39,8 +39,6 @@ const deleteProjectById = async (req, res) =>  {
         // now map through the employees and delete the project from their file
         employeesOnTheProject.forEach(async (emp) => {
 
-            console.log("EMP", emp);
-            console.log("QUERY STRING", queryString);
             // update all employee info
             const filterEmployees = {"_id":emp._id};
 
