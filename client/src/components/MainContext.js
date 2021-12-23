@@ -125,8 +125,7 @@ export const MainContextProvider = ({children}) => {
                 })
                 .then(res => res.json())
                 .then(data => {                                
-                                setRenderFlag(!renderFlag);
-                                console.log(data);                                
+                                setRenderFlag(!renderFlag);                       
                 })
                 .catch(err => {
                     console.log(err);
@@ -152,8 +151,7 @@ export const MainContextProvider = ({children}) => {
                 })
                 .then(res => res.json())
                 .then(data => {                    
-                                setRenderFlag(!renderFlag);
-                                console.log(data);                                
+                                setRenderFlag(!renderFlag);                     
                 })
                 .catch(err => {
                     console.log(err);
@@ -222,7 +220,6 @@ export const MainContextProvider = ({children}) => {
                                 setCurrentEmployeeDash();
                                 setCurrentEmployee();
                                 setRenderFlag(!renderFlag);
-                                console.log(data.data);
                 })
                 .catch((err) => {
                                     setErrorMessage(err);
@@ -246,7 +243,6 @@ export const MainContextProvider = ({children}) => {
                                 setCurrentProjectDash();
                                 setCurrentProject();                                
                                 setRenderFlag(!renderFlag);
-                                console.log(data.data);
                 })
                 .catch((err) => {
                                     setErrorMessage(err);
@@ -257,8 +253,6 @@ export const MainContextProvider = ({children}) => {
 
     // update employee - variable number of fields to update
     const updateEmployee = (emp) => {
-
-        console.log(emp);
         
         fetch(`/employees/${emp._id}`, {
             method: "PATCH",
@@ -270,8 +264,7 @@ export const MainContextProvider = ({children}) => {
             })
             .then(res => res.json())
             .then(data => {                    
-                            setRenderFlag(!renderFlag);
-                            console.log(data);                                
+                            setRenderFlag(!renderFlag);                  
             })
             .catch(err => {
                 console.log(err);
@@ -294,8 +287,7 @@ export const MainContextProvider = ({children}) => {
                 })
                 .then(res => res.json())
                 .then(data => {                    
-                                setRenderFlag(!renderFlag);
-                                console.log(data);                                
+                                setRenderFlag(!renderFlag);                 
                 })
                 .catch(err => {
                     console.log(err);
