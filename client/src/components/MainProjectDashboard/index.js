@@ -196,13 +196,13 @@ const MainProjectDashboard = (props) => {
                                     required>
                                     </FormInput>
                         <FormLabel>{currentProject ? "Requested budget" : " "}</FormLabel>
-                        <FormInput  type="number" 
+                        <FormInput  type="text" 
                                     value={(currentProjectDash ? currentProjectDash.requested_budget : "")}  
                                     placeholder="Requested budget"
                                     required>
                                     </FormInput>
                         <FormLabel>{currentProject ? "Approved budget" : " "}</FormLabel>
-                        <FormInput  type="number"
+                        <FormInput  type="text"
                                     value={(currentProjectDash ? currentProjectDash.actual_budget : "")} 
                                     placeholder="Approved budget"
                                     required>
