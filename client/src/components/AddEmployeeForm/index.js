@@ -74,6 +74,7 @@ const AddEmployeeForm = () => {
                                 required>
                                 </FormInput>                 
             {admPermission && <FormInput  type="submit" 
+                                className="submit"
                                 value="Submit">
                                 </FormInput>}   
         </EmployeeFormWrapper>
