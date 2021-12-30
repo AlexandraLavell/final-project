@@ -24,13 +24,19 @@ export const SubsectionHeader = styled.div`
 `;
 
 export const FormInput = styled.input`
-    postion: relative;
+    position: relative;
     display: flex;
     border: 1px solid black;
     background: transparent;
     margin: 10px 15px;
     border-radius: 0px;
     &.submit{
-        cursor: pointer;
-    }
+        cursor: pointer;  
+        &:hover{
+        background: black;
+        color: lemonchiffon;
+        transition: 0.75s;
+        font-weight: bold;
+        }      
+    }   
 `;

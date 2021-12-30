@@ -31,7 +31,13 @@ export const FormInput = styled.input`
     margin: 10px 15px;
     border-radius: 0px;
     &.submit{
-        cursor: pointer;
-    }
+        cursor: pointer;  
+        &:hover{
+        background: black;
+        color: lemonchiffon;
+        transition: 0.75s;
+        font-weight: bold;
+        }      
+    }   
 `;
 
