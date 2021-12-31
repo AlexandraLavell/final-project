@@ -27,9 +27,9 @@ const SignIn = () => {
 
     // consume context
     const { signInPage, setSignInPage,
-            permission, setPermission,
-            admPermission, setAdmPermission,
-            empPermission, setEmpPermission,
+            setPermission,
+            setAdmPermission,
+            setEmpPermission,
             setErrorMessage,
             } = useContext(MainContext);
 

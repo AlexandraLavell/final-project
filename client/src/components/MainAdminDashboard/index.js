@@ -35,7 +35,7 @@ const MainAdminDashboard = (props) => {
     // TODO: LIFT TO CONTEXT
     const todaysProjects = [];
 
-    employeeList.map((emp) => {            
+    employeeList.forEach((emp) => {            
         // // this generates a list of projects the employee is working on today
         const keyList = Object.keys(emp.projects);         
                     
@@ -92,7 +92,7 @@ const MainAdminDashboard = (props) => {
 
         totalRemaining = totalRemaining - prj.actual_budget;
 
-        const labelName = prj._id + " " + "$" + prj.actual_budget;
+        const labelName = `${prj._id} $${prj.actual_budget}`;
 
         return {"name":labelName, 
                 "size":(Math.round(100 * prj.actual_budget/budget)), 
@@ -141,7 +141,7 @@ const MainAdminDashboard = (props) => {
                     dataKey="size"
                     ratio={4 / 3}
                     stroke="black"
-                    fill="transparent"                        
+                    fill="transparent"           
                     />                    
                 </ResponsiveContainer>
             </TreeChartWrapper>
@@ -178,7 +178,7 @@ const MainAdminDashboard = (props) => {
                 </ListWrapper>
                 <ListWrapper>
                     <SubsectionHeader><p>Projects waiting for approval</p></SubsectionHeader>
-                    <ItemList>{waitingProjects.map((prj)=>{return <ListNumber>{prj}</ListNumber>})}</ItemList>
+                    <ItemList>{waitingProjects.map((prj)=>{return <ListNumber key={Math.round(Math.random()*42000000)}>{prj}</ListNumber>})}</ItemList>
                 </ListWrapper>
             </MultipleListContainer>
             

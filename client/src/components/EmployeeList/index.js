@@ -1,9 +1,5 @@
 import React,{ useContext } from "react";
 
-// Tippy
-import Tippy from "@tippyjs/react";
-import "tippy.js/dist/tippy.css";
-
 // context
 import MainContext from "../MainContext";
 
@@ -83,7 +79,10 @@ const EmployeeList = (props) => {
                                             })
                                         })   
                     return  (                            
-                                <EmployeeCard _id={emp._id} className="employeeCard" draggable="true" >                                
+                                <EmployeeCard   key={Math.round(Math.random()*42000000)}
+                                                _id={emp._id} 
+                                                className="employeeCard" 
+                                                draggable="true" >                                
                                     <TippyWrapper content={<div><p>Today: </p><TippyContent>{todaysProjects.toString()}</TippyContent></div>}>
                                         <div>
                                             <p>{emp._id}</p>

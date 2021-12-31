@@ -14,9 +14,8 @@ import {    ProjectFormWrapper,
 const AddProjectForm = () => {
 
     // consume context
-    const { projectList,
-            setProjectSubmission,
-            admPermission } = useContext(MainContext);  
+    const { setProjectSubmission,
+            } = useContext(MainContext);  
     
     const history = useHistory();
 

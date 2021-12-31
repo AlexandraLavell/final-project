@@ -1,5 +1,3 @@
-import React from "react";
-
 // Tippy
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
