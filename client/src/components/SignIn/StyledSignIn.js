@@ -33,11 +33,11 @@ export const GoToButton = styled.input`
     bottom: 15px;
     right: 15px;
     height: 1.5em;
-    min-width: 17%;
+    min-width: 25%;
     padding: 4px;
     background-color: black; 
     box-shadow:0 0 100px #fffacd;
-    font-size: 3em;
+    font-size: 2em;
     font-weight: bold;
     text-decoration: none;
     border-radius: 0;
@@ -60,7 +60,7 @@ export const GoToButton = styled.input`
         width: 100%;
         padding: 0;
         margin: 3% 0 0 0;
-        font-size: 3em;
+        font-size: 2em;
         background: lemonchiffon;
         box-shadow: none;
         color: black;
@@ -73,8 +73,8 @@ export const GoToButton = styled.input`
 
 export const FormInput = styled.input`
     position: relative;
-    height: 1.1em;
-    width: 80%;
+    max-height: 1.1em;
+    max-width: 100%;
     margin: 2px;
     display: flex;
     border: 1px solid lemonChiffon;
@@ -88,10 +88,12 @@ export const FormInput = styled.input`
 
 export const FormLabel = styled.div`
     position: relative;
-    display: flex;  
+    display: flex;
+    max-width: 80%; 
     flex-direction: column; 
     align-items: center; 
-    font-size: 3em;
+    font-size: 2em;
+    font-weight: bold;
 `;
 
 export const SignInForm = styled.form`
@@ -102,14 +104,11 @@ export const SignInForm = styled.form`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: fit-content;
-    width: 17%;
+    height: fit-content;    
     padding: 4px; 
     background-color: black;       
-    box-shadow:0 0 100px #fffacd;    
-    /* font-size: .2em; */
+    box-shadow:0 0 100px #fffacd; 
     color: lemonChiffon;
-    /* border-top: 1px solid black; */
 `;
 
 export const CloseButton = styled.button`
