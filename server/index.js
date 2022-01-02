@@ -92,6 +92,7 @@ app.post("/users/:_id", getUserById);
 // delete all users - FOR DEVELOPMENT
 app.delete("/users", deleteAllUsers);
 
+/////////////////////
 //WHIMSY ENDPOINTS//
 ///////////////////
 app.get("/joke", handleJoke)
