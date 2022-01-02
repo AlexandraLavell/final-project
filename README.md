@@ -6,7 +6,7 @@ Good morning
 Simple and customizable tool for managers of employees engaging in project based work. 
 This application uploads basic employee and project information.
 My goals for this project:
- Build an app using all the tools I learned in my Concordia intesive Full Stack Web Dev diploma and also integrate a novel
+ build an app using all the tools I learned in my Concordia intesive Full Stack Web Dev diploma and also integrate a novel
  use of these tools that was not part of the diploma. The two parts of this project that satisfy the second criteria, are the use of drag and drop to update state and use of recharts to render the graphs on the main dashboard.
 Created in 2 weeks (everything except readme)
 It allows a manager and/or employee quickly see:
