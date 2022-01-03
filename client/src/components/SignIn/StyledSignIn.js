@@ -33,7 +33,7 @@ export const GoToButton = styled.input`
     bottom: 15px;
     right: 15px;
     height: 1.5em;
-    min-width: 25%;
+    min-width: 8em;
     padding: 4px;
     background-color: black; 
     box-shadow:0 0 100px #fffacd;
@@ -74,7 +74,7 @@ export const GoToButton = styled.input`
 export const FormInput = styled.input`
     position: relative;
     max-height: 1.1em;
-    max-width: 100%;
+    max-width: 8em;
     margin: 2px;
     display: flex;
     border: 1px solid lemonChiffon;
