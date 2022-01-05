@@ -30,7 +30,7 @@ const ProjectCard = (props) => {
     const history = useHistory();
 
     // local fetch function
-    useEffect((props) => {
+    useEffect(() => {
         fetch(`/employees/project/${props?._id}`, {
             method: "GET",
             headers: {
