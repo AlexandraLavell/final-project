@@ -3,10 +3,7 @@
 // require the 'request-promise' module.
 const request = require("request-promise");
 
-//get URI
-require("dotenv").config({path:"../.env"});
-const { OPENCAGE_API_KEY } = process.env;
-
+// URI
 const options = {
     uri: 'https://icanhazdadjoke.com/ ', 
     headers:{ 
@@ -17,6 +14,8 @@ const options = {
 // get one project by _id
 const handleJoke = async (req, res) =>  {
     try {  
+        
+        console.log("******in JOKE***********");
         // return the json object and status
         const theJoke =  await request(options);
 

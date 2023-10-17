@@ -1,16 +1,8 @@
 'use strict';
 
-//require Mongodb
-const { MongoClient } = require("mongodb");
+//require
 
-//get URI
-require("dotenv").config({path:"../.env"});
-const { MONGO_URI } = process.env;
-
-const options = {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-}
+const employees = require("../data").employees;
 
 // add an employee to the database
 const addEmployee = async (req, res) =>  {
@@ -26,15 +18,6 @@ const addEmployee = async (req, res) =>  {
             } = req.body;
 
 
-        // create a new client
-        const client = new MongoClient(MONGO_URI, options);
-
-        // connect to the client
-        await client.connect();
-
-        // connect to the database
-        const db = client.db("goodmorning");
-        console.log("CONNECTED");
 
         // change the dates in the project object to ISO date objects
         
@@ -62,13 +45,8 @@ const addEmployee = async (req, res) =>  {
             projects : updatedProjects};
 
         // insert one new employee
-        const employeeAdded = await db.collection("employees")
-                                        .insertOne(newEmployee); 
+        const employeeAdded = employees.push(newEmployee);
 
-
-        // close the collection
-        client.close();
-        console.log("DISCONNECTED");
 
         // return the json object and status
         return (

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { redirect } from "react-router-dom"
 
 // context
 import MainContext from "../MainContext";
@@ -33,8 +33,8 @@ const SignIn = () => {
             setErrorMessage,
             } = useContext(MainContext);
 
-    // history for error page
-    const history = useHistory();
+    // redirect for error page
+    
 
     const handleUsernameChange = (ev) => {
         setUsername(ev.target.value);
@@ -72,7 +72,7 @@ const SignIn = () => {
             })
             .catch((err) => {
                                 setErrorMessage(err);
-                                history.push("/error");
+                                redirect("/error");
                             });                               
         }
 

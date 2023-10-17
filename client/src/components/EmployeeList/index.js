@@ -51,7 +51,7 @@ const EmployeeList = (props) => {
     // start of main return
     return (
         <EmployeeContainerWrapper>
-            <SubsectionHeader>Employees{admPermission && <AddNav exact to="/addEmployee"><FiPlus/></AddNav>}</SubsectionHeader>
+            <SubsectionHeader>Employees{admPermission && <AddNav to="/addEmployee"><FiPlus/></AddNav>}</SubsectionHeader>
             <EmployeeListWrapper
                         _id={props.id}
                         onDrop={drop}

@@ -2,7 +2,7 @@ import React, { useState,
                 useEffect, 
             } from "react";
 
-import { useHistory } from "react-router-dom";
+import { redirect } from "react-router-dom";
 
 // persisted state hook
 import usePersistedState from "./PersistedStateHook.js";
@@ -19,8 +19,8 @@ export const MainContext = React.createContext(null);
 // main provider
 export const MainContextProvider = ({children}) => {
 
-    // history for error page
-    const history = useHistory();
+    // redirect for error page
+    
 
     // global state variables
     const [signInPage, setSignInPage] = useState(false); //usePersistedState("sign-in", true); //for viewing the signin form
@@ -52,7 +52,7 @@ export const MainContextProvider = ({children}) => {
     const [newEmployee, setNewEmployee] = useState(); // for adding a new employee
     const [projectSubmission, setProjectSubmission] = useState(); //array of all project proposals 
     
-    // fetch a joke on load
+    // fetch a joke on 
     useEffect(()=>{ 
         
         fetch(`/joke`, {
@@ -67,12 +67,16 @@ export const MainContextProvider = ({children}) => {
         })
         .catch((err) => {
                             setErrorMessage(err);
-                            history.push("/error");
+                            redirect("/error");
                         });
     },[renderFlag]);
+
+
+    console.log("************************TEST**************");
     
     // fetch a list of all employees
     useEffect(()=>{  
+        console.log("*********IN USE EFFECT*************");
 
         fetch(`/employees`, {
         method: "GET",
@@ -82,13 +86,13 @@ export const MainContextProvider = ({children}) => {
         })
         .then(res => res.json())
         .then(data => {
-                        setEmployeeList(data.data);
+                        setEmployeeList(data.data ?? {});
         })
         .catch((err) => {
                             setErrorMessage(err);
-                            history.push("/error");
+                            redirect("/error");
                         });
-    },[renderFlag]);
+    }, [renderFlag]);
 
     // fetch a list of all projects
     useEffect(()=>{     
@@ -101,11 +105,11 @@ export const MainContextProvider = ({children}) => {
         })
         .then(res => res.json())
         .then(data => {
-                        setProjectList(data.data);
+                        setProjectList(data.data ?? {});
         })
         .catch((err) => {
                             setErrorMessage(err);
-                            history.push("/error");
+                            redirect("/error");
                         });
     },[renderFlag]);
 
@@ -129,7 +133,7 @@ export const MainContextProvider = ({children}) => {
                 })
                 .catch(err => {
                     console.log(err);
-                    history.push("/error");
+                    redirect("/error");
                 });   
                 
             } 
@@ -155,7 +159,7 @@ export const MainContextProvider = ({children}) => {
                 })
                 .catch(err => {
                     console.log(err);
-                    history.push("/error");
+                    redirect("/error");
                 });   
                 
             } 
@@ -179,7 +183,7 @@ export const MainContextProvider = ({children}) => {
             })
             .catch((err) => {
                                 setErrorMessage(err);
-                                history.push("/error");
+                                redirect("/error");
                             });
             }
     },[currentProject]);    
@@ -200,7 +204,7 @@ export const MainContextProvider = ({children}) => {
                 })
                 .catch((err) => {
                                     setErrorMessage(err);
-                                    history.push("/error");
+                                    redirect("/error");
                                 });  
                         }    
     }, [currentEmployee]);
@@ -223,7 +227,7 @@ export const MainContextProvider = ({children}) => {
                 })
                 .catch((err) => {
                                     setErrorMessage(err);
-                                    history.push("/error");
+                                    redirect("/error");
                                 });  
                         }  
     }
@@ -246,7 +250,7 @@ export const MainContextProvider = ({children}) => {
                 })
                 .catch((err) => {
                                     setErrorMessage(err);
-                                    history.push("/error");
+                                    redirect("/error");
                                 });  
                         }  
     }
@@ -268,7 +272,7 @@ export const MainContextProvider = ({children}) => {
             })
             .catch(err => {
                 console.log(err);
-                history.push("/error");
+                redirect("/error");
             });   
         
     };
@@ -291,20 +295,20 @@ export const MainContextProvider = ({children}) => {
                 })
                 .catch(err => {
                     console.log(err);
-                    history.push("/error");
+                    redirect("/error");
                 });                             
     } 
 
-    if(
-        !employeeList
-        || !projectList
-        || !joke
-    ){  return (
-                    <CircularProgressWrapper>
-                        <CircularProgress color="primary"/>
-                    </CircularProgressWrapper>                    
-                )                    
-    }
+    // if(
+    //     !employeeList
+    //     || !projectList
+    //     || !joke
+    // ){  return (
+    //                 <CircularProgressWrapper>
+    //                     <CircularProgress color="primary"/>
+    //                 </CircularProgressWrapper>                    
+    //             )                    
+    // }
 
     return <MainContext.Provider value={{
                                             signInPage, setSignInPage,

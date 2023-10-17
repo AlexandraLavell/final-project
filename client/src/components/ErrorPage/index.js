@@ -19,7 +19,7 @@ const ErrorPage = () => {
     return (
         <ErrorWrapper > 
             <MessageWrapper>{errorMessage}</MessageWrapper>
-            <HomeNavLink exact to="/">Click here</HomeNavLink>
+            <HomeNavLink to="/">Click here</HomeNavLink>
         </ErrorWrapper>
     ) // end of main return
 }

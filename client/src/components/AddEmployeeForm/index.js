@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
+import { redirect } from "react-router-dom"
 
 // context
 import MainContext from "../MainContext";
@@ -16,8 +16,8 @@ const AddEmployeeForm = () => {
     // consume context
     const { setNewEmployee, admPermission } = useContext(MainContext);
 
-    // history for move after submit
-    const history = useHistory();
+    // redirect for move after submit
+    
     
     // local state variables
     const [ empNumber, setEmpNumber ] = useState();
@@ -37,7 +37,7 @@ const AddEmployeeForm = () => {
                         "email": empEmail,
                         "phone": empPhone,
                     }); 
-        history.push("/dash");
+        redirect("/dash");
     }   
 
     // start main return

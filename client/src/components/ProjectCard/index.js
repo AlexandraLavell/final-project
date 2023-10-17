@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { redirect } from "react-router-dom"
 
 // context 
 import MainContext from "../MainContext";
@@ -26,8 +26,8 @@ const ProjectCard = (props) => {
             renderFlag,
             } = useContext(MainContext);
 
-    // set up useHistory
-    const history = useHistory();
+    // set up redirect
+    
 
     // local fetch function
     useEffect(() => {
@@ -43,7 +43,7 @@ const ProjectCard = (props) => {
                         })
             .catch((err) => {
                                 setErrorMessage(err);
-                                history.push("/error");
+                                redirect("/error");
                             });        
     }, [renderFlag]);    
 

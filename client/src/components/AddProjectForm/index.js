@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
-
+import { redirect } from "react-router-dom"
 // context
 import MainContext from "../MainContext"
 
@@ -17,7 +16,7 @@ const AddProjectForm = () => {
     const { setProjectSubmission,
             } = useContext(MainContext);  
     
-    const history = useHistory();
+    
 
     // for project submission form        
     const today = new Date();
@@ -41,7 +40,7 @@ const AddProjectForm = () => {
                         "status": "not started",
                         "final_report": "" 
                     }); 
-        history.push("/project");
+        redirect("/project");
     }   
     
     // start main return

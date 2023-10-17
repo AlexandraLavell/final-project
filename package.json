@@ -2,13 +2,9 @@
   "author": {
     "name": "Alexandra Lavell"
   },
-  
   "license": "MIT",
-
   "version": "1.0.0",
-
   "homepage": "https://alexandralavell.github.io/final-project/",
-
   "dependencies": {
     "concurrently": "^6.5.1",
     "dotenv": "^10.0.0",
@@ -20,10 +16,10 @@
     "recharts": "^2.1.8"
   },
   "scripts": {
-    "client": "cd client && yarn start",
-    "server": "cd server && yarn start",
-    "start": "concurrently \"yarn run server\" \"yarn run client\"",
-    "predeploy": "yarn build",
+    "client": "cd client && npm start", 
+    "server": "cd server && npm start", 
+    "start": "concurrently \"npm run server\" \"npm run client\"", 
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   }
 }

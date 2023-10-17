@@ -28,7 +28,7 @@ const Footer = () => {
                                             setAdmPermission(false);
                                             setEmpPermission(false);
                                             }}
-                            exact to="/">signout</SignoutNavLink>
+                            to="/">signout</SignoutNavLink>
 
         </FooterWrapper>
     )

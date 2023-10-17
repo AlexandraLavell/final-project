@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import {
       BrowserRouter as Router,
       Route,
-      Switch,
+      Routes,
 } from "react-router-dom";
 
 // style
@@ -31,9 +31,10 @@ const App = () => {
   const { permission, empPermission, admPermission } = useContext(MainContext);
 
   return (    
-    <MyRouter> 
-     {/* permission to enter and level of permission (employee or administrator)  */}
-    {!(permission && (empPermission || admPermission)) ?
+    // <MyRouter> 
+    //  {/* permission to enter and level of permission (employee or administrator)  */}
+    // {
+      !(permission && (empPermission || admPermission)) ?
     <SignIn /> :
     <AppContainer>
       <Header />            
@@ -41,32 +42,21 @@ const App = () => {
           <EmployeeList _id="board-1" className="employeeBoard" />
           <DashWrapper>
             <DashNavigation />
-              <Switch>          
-                <Route exact path="/">            
-                  <MainAdminDashBoard />
-                </Route>
-                <Route exact path="/employee">            
-                  <MainEmployeeDashBoard />
-                </Route>
-                <Route exact path="/project">            
-                  <MainProjectDashBoard />
-                </Route>    
-                <Route exact path="/addEmployee">            
-                  <AddEmployeeForm />
-                </Route>
-                <Route exact path="/addProject">            
-                  <AddProjectForm />
-                </Route> 
-                <Route path="*">            
-                  <ErrorPage />
-                </Route>                
-              </Switch>
+              <Routes>          
+                  <Route index element={<MainAdminDashBoard />} />
+                  <Route path="/employee" element={<MainEmployeeDashBoard />} />
+                  <Route path="/project" element={<MainProjectDashBoard />} />
+                  <Route path="/addEmployee" element={<AddEmployeeForm />} />
+                  <Route path="/addProject" element={<AddProjectForm />} /> 
+                  <Route path="*" element={<ErrorPage />} />                
+              </Routes>
             </DashWrapper>
             <ProjectList id="board-2" className="projectBoard" />   
         </ComponentContainer>
       <Footer />        
-    </AppContainer>}
-  </MyRouter> 
+    </AppContainer>
+    // }
+  // </MyRouter> 
   
   );
 }

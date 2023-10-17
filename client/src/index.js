@@ -1,27 +1,19 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-
+import { createRoot } from 'react-dom/client';
 import { BrowserRouter as Router } from "react-router-dom";
-
-
-// context provider
 import { MainContextProvider } from "./components/MainContext";
-
-// style
 import GlobalStyles from "./GlobalStyles";
-
-// main App component
 import App from "./components/App";
 
-// main render
-ReactDOM.render(
+const root = createRoot(document.getElementById('root'));
+
+root.render(
   <React.StrictMode>
     <Router>
       <MainContextProvider>
-          <GlobalStyles />
-          <App />
+        <GlobalStyles />
+        <App />
       </MainContextProvider>
     </Router>
-  </React.StrictMode>,
-  document.getElementById('root')
+  </React.StrictMode>
 );

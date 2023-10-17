@@ -11,13 +11,13 @@ const DashNavigation = () => {
     // main return
     return (
         <NavigationWrapper>
-        <DashLink activeClassName="active" exact to="/">
+        <DashLink activeClassName="active" to="/">
             <p>Dash</p>
         </DashLink>          
-        <DashLink activeClassName="active" exact to="/employee">
+        <DashLink activeClassName="active" to="/employee">
             <p>Employee</p> 
         </DashLink>
-        <DashLink activeClassName="active" exact to="/project">
+        <DashLink activeClassName="active" to="/project">
             <p>Project</p>
         </DashLink>
         </NavigationWrapper>

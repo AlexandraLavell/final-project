@@ -1,23 +1,24 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
+  "description": "Server for Good Morning application",  
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "node index.js",  
+    "dev": "nodemon index.js" 
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["node", "express", "server"],
+  "author": "Alexandra Lavell",  
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.19.0",
+    "body-parser": "^1.19.0",  
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "file-system": "^2.2.2",
+    "file-system": "^2.2.2",  
     "mongodb": "^4.2.0",
     "morgan": "^1.10.0",
     "nodemailer": "^6.7.2",
-    "request": "^2.88.2",
+    "request": "^2.88.2",  
     "request-promise": "^4.2.6"
   },
   "devDependencies": {

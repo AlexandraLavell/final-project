@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
+import { redirect } from "react-router-dom";
 
 // context
 import MainContext from "../MainContext";
@@ -41,8 +41,8 @@ const MainProjectDashboard = (props) => {
             setErrorMessage, 
             } = useContext(MainContext);
 
-    // set up useHistory for the fetch
-    const history = useHistory();
+    // set up withRouter for the fetch
+    
 
     // local fetch function
     const getProjectEmployees = (id) => {
@@ -58,7 +58,7 @@ const MainProjectDashboard = (props) => {
                         })
             .catch((err) => {
                                 setErrorMessage(err);
-                                history.push("/error");
+                                redirect("/error");
                             });        
     };    
 

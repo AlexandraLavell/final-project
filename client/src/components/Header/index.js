@@ -32,7 +32,7 @@ const Header = () => {
     // start of main return
     return (
         <HeaderWrapper className={show && "blue"}>            
-            <HeaderNavLink exact to="/">G<MinimizedContentSpan className={show && "vert"}>ood</MinimizedContentSpan> M<MinimizedContentSpan className={show && "vert"}>orning.</MinimizedContentSpan></HeaderNavLink>
+            <HeaderNavLink to="/">G<MinimizedContentSpan className={show && "vert"}>ood</MinimizedContentSpan> M<MinimizedContentSpan className={show && "vert"}>orning.</MinimizedContentSpan></HeaderNavLink>
         </HeaderWrapper>
 
     ) //end of main return
