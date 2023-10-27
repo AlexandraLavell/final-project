@@ -1,5 +1,6 @@
 "use strict";
 
+//require data file
 const projects = require("../data").projects;
 
 // get all projects from the database

@@ -1,38 +1,11 @@
 'use strict';
 
-//require Mongodb
-const { MongoClient } = require("mongodb");
-
-//get URI
-require("dotenv").config({path:"../.env"});
-const { MONGO_URI } = process.env;
-
-const options = {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-}
-
 // delete all employees from the database FOR DEV PURPOSES
 const deleteAllEmployees = async (req, res) =>  {
     try {
 
-        // create a new client
-        const client = new MongoClient(MONGO_URI, options);
-
-        // connect to the client
-        await client.connect();
-
-        // connect to the database
-        const db = client.db("goodmorning");
-        console.log("CONNECTED");
-
-        //delete all employees YIKES
-        const allEmployeesDeleted = await db.collection("employees").deleteMany({ }); 
-
-
-        //close the collection
-        client.close();
-        console.log("DISCONNECTED");
+       //delete all employees YIKES (database doesn't exist so nothing is deleted)
+        const allEmployeesDeleted = true;
 
         // return the json object and status
         return (

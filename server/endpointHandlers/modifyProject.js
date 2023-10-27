@@ -1,16 +1,7 @@
 'use strict';
 
-//require Mongodb
-const { MongoClient } = require("mongodb");
-
-//get URI
-require("dotenv").config({path:"../.env"});
-const { MONGO_URI } = process.env;
-
-const options = {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-}
+//require data file
+const projects = require("../data").projects;
 
 // modify a project
 const modifyProject = async (req, res) =>  {
@@ -29,20 +20,9 @@ const modifyProject = async (req, res) =>  {
                 final_report,
                 project_employees, // handled on the client side as part of the onSubmit function
                 } = req.body;
-
-        // create a new client
-        const client = new MongoClient(MONGO_URI, options);
-
-        // connect to the client
-        await client.connect();
-
-        // connect to the database
-        const db = client.db("goodmorning");
-        console.log("CONNECTED");   
-
-        // find the employee
-        const projectFound = await db.collection("projects")
-                                        .findOne({_id}); 
+      
+        // find the project
+        const projectFound = await projects.find((project) => project._id === _id); 
         
         // check for updated information        
         const newName = (!!project_name && (projectFound.project_name !== project_name)) ? project_name : projectFound.project_name;
@@ -54,25 +34,15 @@ const modifyProject = async (req, res) =>  {
         const newFinal_report = (!!final_report && (projectFound.final_report !== final_report)) ? final_report : projectFound.final_report;
         
         // update project info
-        const filterProjects = {"_id":_id};
-        
-        const updateProjectInfo = {$set: {
-                                            "project_name": newName,
-                                            "approval": newApproval,
-                                            "description" : newDescription,
-                                            "requested_budget" : newRequested_budget,
-                                            "actual_budget" : newActual_budget,
-                                            "status" : newStatus,
-                                            "final_report" : newFinal_report,
-                                            }};
-
-        // update
-        const updatedProject = await db.collection("projects")
-                                        .updateOne(filterProjects, updateProjectInfo);  
-
-        //close the collection
-        client.close();
-        console.log("DISCONNECTED");
+        const updatedProjectInfo = { "_id": _id,
+                                    "project_name": newName,
+                                    "approval": newApproval,
+                                    "description" : newDescription,
+                                    "requested_budget" : newRequested_budget,
+                                    "actual_budget" : newActual_budget,
+                                    "status" : newStatus,
+                                    "final_report" : newFinal_report,
+                                    };
 
         // return the json object and status
         return (
@@ -80,7 +50,7 @@ const modifyProject = async (req, res) =>  {
             // SUCCESS return
             res.status(200).json({
                 status: 200,
-                data: updatedProject,
+                data: updatedProjectInfo,
             })
         ) 
     } catch (err) {

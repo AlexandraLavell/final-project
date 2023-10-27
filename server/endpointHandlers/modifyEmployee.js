@@ -1,16 +1,8 @@
 'use strict';
 
-//require Mongodb
-const { MongoClient } = require("mongodb");
+//require data file
+const employees = require("../data").employees;
 
-//get URI
-require("dotenv").config({path:"../.env"});
-const { MONGO_URI } = process.env;
-
-const options = {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-}
 
 // get an employee by id
 const modifyEmployee = async (req, res) =>  {
@@ -27,19 +19,8 @@ const modifyEmployee = async (req, res) =>  {
                     projects,
                 } = req.body;
 
-        // create a new client
-        const client = new MongoClient(MONGO_URI, options);
-
-        // connect to the client
-        await client.connect();
-
-        // connect to the database
-        const db = client.db("goodmorning");
-        console.log("CONNECTED");   
-
         // find the employee
-        const employeeFound = await db.collection("employees")
-                                        .findOne({_id}); 
+        const employeeFound = employees.find((emp)=> emp._id === _id); 
         
         // check for updated information
         const newFirstName = (!!firstName && (employeeFound.firstName !== firstName)) ? firstName : employeeFound.firstName;
@@ -47,8 +28,7 @@ const modifyEmployee = async (req, res) =>  {
         const newEmail = (!!email && (employeeFound.email !== email)) ? email : employeeFound.email;
         const newPhone = (!!phone && (employeeFound.phone !== phone)) ? phone : employeeFound.phone;
 
-        const newProjects = employeeFound.projects;
-        
+        const newProjects = employeeFound.projects;        
 
         // add the new projects
         if (Array.isArray(projects)){            
@@ -68,23 +48,15 @@ const modifyEmployee = async (req, res) =>  {
         } 
 
         // update all employee info
-        const filterEmployees = {"_id":_id};
+        const updatedEmployeeInfo = {
+                                    "_id": _id,
+                                    "firstName": newFirstName,
+                                    "lastName" : newLastName,
+                                    "email" : newEmail,
+                                    "phone" : newPhone,
+                                    "projects": newProjects
+                                    };
 
-        const updateEmployeeInfo = {$set: {
-                                            "firstName": newFirstName,
-                                            "lastName" : newLastName,
-                                            "email" : newEmail,
-                                            "phone" : newPhone,
-                                            "projects": newProjects
-                                            }};
-
-        // update
-        const updatedEmployee = await db.collection("employees")
-                                        .updateOne(filterEmployees, updateEmployeeInfo);  
-
-        //close the collection
-        client.close();
-        console.log("DISCONNECTED");
 
         // return the json object and status
         return (
@@ -92,7 +64,7 @@ const modifyEmployee = async (req, res) =>  {
             // SUCCESS return
             res.status(200).json({
                 status: 200,
-                data: updatedEmployee,
+                data: updatedEmployeeInfo,
             })
         ) 
     } catch (err) {

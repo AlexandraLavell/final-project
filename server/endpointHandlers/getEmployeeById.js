@@ -1,16 +1,7 @@
 'use strict';
 
-//require Mongodb
-const { MongoClient } = require("mongodb");
-
-//get URI
-require("dotenv").config({path:"../.env"});
-const { MONGO_URI } = process.env;
-
-const options = {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-}
+//require data file
+const employees = require("../data").employees;
 
 // get an employee by id
 const getEmployeeById = async (req, res) =>  {
@@ -18,23 +9,8 @@ const getEmployeeById = async (req, res) =>  {
         // get the employee id from the request parameters
         const { _id } = req.params;
 
-        // create a new client
-        const client = new MongoClient(MONGO_URI, options);
-
-        // connect to the client
-        await client.connect();
-
-        // connect to the database
-        const db = client.db("goodmorning");
-        console.log("CONNECTED");   
-
         // find the employee
-        const employeeFound = await db.collection("employees")
-                                        .findOne({_id}); 
-
-        //close the collection
-        client.close();
-        console.log("DISCONNECTED");
+        const employeeFound = employees.find((employee) => employee._id === _id);
 
         // return the json object and status
         return (

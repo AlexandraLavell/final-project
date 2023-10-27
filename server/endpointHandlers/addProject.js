@@ -1,19 +1,12 @@
 'use strict';
 
-//require Mongodb
-const { MongoClient } = require("mongodb");
+//require data file
+const projects = require("../data").projects;
 
 // NOT IMPLEMENTED require mailer for sending email
 const nodemailer = require("nodemailer");
 
-//get URI
-require("dotenv").config({path:"./.env"});
-const { MONGO_URI } = process.env;
 
-const options = {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-}
 
 // NOT IMPLEMENTED
 const transporter = nodemailer.createTransport({
@@ -55,15 +48,6 @@ const addProject = async (req, res) =>  {
                 status = "",
                 final_report = "" } = req.body;
 
-        // create a new client
-        const client = new MongoClient(MONGO_URI, options);
-
-        // connect to the client
-        await client.connect();
-
-        // connect to the database
-        const db = client.db("goodmorning");
-        console.log("CONNECTED");
         
         const newProject = {    _id,
                                 project_name,
@@ -76,12 +60,8 @@ const addProject = async (req, res) =>  {
     
 
         // add a project
-        const projectAdded = await db.collection("projects").insertOne(newProject);
+        const projectAdded = projects.push(newProject);
     
-        // close the collection
-        client.close();
-        console.log("DISCONNECTED");
-
         // NOT IMPLEMENTED upon sucessful submit send an email to the admin
         // transporter.sendMail(mailOptions);
 

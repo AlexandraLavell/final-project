@@ -1,7 +1,7 @@
 'use strict';
 
+//require data file
 const users = require("../data").users;
-
 
 // get an user by id
 const getUserById = async (req, res) =>  {
@@ -10,14 +10,12 @@ const getUserById = async (req, res) =>  {
         const { _id="" } = req.params;
 
         const { password="" } = req.body;
-
     
         // find the user
         const userFound = users.find((user) => user._id === _id); 
         
         // if the password sent equals the password found send back true otherwise false
         const returnPermission = (userFound.password === password);        
-
 
         // return the json object and status
         return (

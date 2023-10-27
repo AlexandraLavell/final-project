@@ -1,5 +1,6 @@
 "use strict";
 
+//require data file
 const users = require("../data").users;
 
 // get all users from the database

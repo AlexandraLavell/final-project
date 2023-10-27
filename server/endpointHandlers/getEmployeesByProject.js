@@ -1,6 +1,7 @@
 'use strict';
 
-const { employees, projects } = require("../data");
+//require data file
+const { employees } = require("../data");
 
 // get all employees working on a particular project
 const getEmployeesByProject = async (req, res) =>  {
@@ -9,11 +10,9 @@ const getEmployeesByProject = async (req, res) =>  {
         const { _id } = req.params;
 
         // find all employees who are working on the project
-        const employeesOnTheProject = employees;
-        
-       
+        const employeesOnTheProject = employees.filter((employee) => Object.keys(employee.projects).includes(_id));    
 
-
+        // create list of employee ids
         let listOfEmployees = [];
         employeesOnTheProject.map((emp) => {
             listOfEmployees.push(emp._id);
@@ -21,7 +20,6 @@ const getEmployeesByProject = async (req, res) =>  {
 
         // return the json object and status
         return (
-
             // SUCCESS return
             res.status(200).json({
                 status: 200,

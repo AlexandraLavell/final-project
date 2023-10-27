@@ -72,12 +72,10 @@ export const MainContextProvider = ({children}) => {
     },[renderFlag]);
 
 
-    console.log("************************TEST**************");
     
     // fetch a list of all employees
     useEffect(()=>{  
-        console.log("*********IN USE EFFECT*************");
-
+      
         fetch(`/employees`, {
         method: "GET",
         headers: {

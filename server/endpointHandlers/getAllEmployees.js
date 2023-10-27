@@ -1,5 +1,6 @@
 "use strict";
 
+//require data file
 const employees = require("../data").employees;
 
 // get all items from the database

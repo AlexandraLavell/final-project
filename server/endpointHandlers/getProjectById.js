@@ -1,7 +1,7 @@
 'use strict';
 
+//require data file
 const projects = require("../data").projects;
-
 
 // get one project by _id
 const getProjectById = async (req, res) =>  {

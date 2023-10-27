@@ -1,7 +1,6 @@
 'use strict';
 
-//require
-
+//require data file
 const employees = require("../data").employees;
 
 // add an employee to the database

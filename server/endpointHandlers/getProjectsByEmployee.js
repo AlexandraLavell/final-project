@@ -1,7 +1,7 @@
 'use strict';
 
-const { employees, projects } = require("../data");
-
+//require data file
+const { employees } = require("../data");
 
 // get an employee by id
 const getProjectsByEmployee = async (req, res) =>  {
