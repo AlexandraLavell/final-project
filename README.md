@@ -1,5 +1,6 @@
 ﻿# final-project
-
+This was my final project from my Concordia Full Stack Web Development bootcamp
+Now I'm using this project to try new things. It's evolving. :)
 ## Project Name: 
 Good morning
 ## Usage: 
